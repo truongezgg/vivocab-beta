@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vocab Learning App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Tabs Navigation -->
+      <nav class="tabs">
+        <button class="tab-button active" data-tab="overview">Overview</button>
+        <button class="tab-button" data-tab="add">Add New Vocab</button>
+        <button class="tab-button" data-tab="list">List by Level</button>
+      </nav>
+
+      <!-- Tabs Content -->
+      <section id="overview" class="tab-content active">
+        <h1>Overview</h1>
+        <p>Total Vocabulary: <span id="total-vocab">0</span></p>
+        <p>
+          Next Review: <span id="next-review-time">N/A</span> <br />
+          Total to Review: <span id="total-review">0</span>
+        </p>
+        <button id="learn-btn">Start Learning</button>
+      </section>
+
+      <section id="add" class="tab-content">
+        <h1>Add New Vocabulary</h1>
+        <form id="add-form">
+          <input
+            type="text"
+            id="vocab-text"
+            placeholder="Vocabulary"
+            required
+          />
+          <input
+            type="text"
+            id="vocab-pronunciation"
+            placeholder="Pronunciation (e.g., /prəˌnʌnsɪˈeɪʃn/)"
+          />
+          <input
+            type="text"
+            id="vocab-translation"
+            placeholder="Translations (comma separated)"
+          />
+          <input type="url" id="vocab-image" placeholder="Image URL" />
+          <textarea id="vocab-description" placeholder="Description"></textarea>
+          <button type="submit">Add Vocab</button>
+        </form>
+      </section>
+
+      <section id="list" class="tab-content">
+        <h1>All Vocabulary</h1>
+
+        <div class="button-container">
+          <button id="import-btn">Import</button>
+          <input
+            type="file"
+            id="import-file"
+            accept=".json"
+            style="display: none"
+          />
+          <button id="export-btn">Export</button>
+        </div>
+
+        <!-- Filter and Sort Controls -->
+        <div id="filters">
+          <label for="filter-level">Filter by Level:</label>
+          <select id="filter-level">
+            <option value="">All Levels</option>
+            <option value="1">Level 1</option>
+            <option value="2">Level 2</option>
+            <option value="3">Level 3</option>
+            <option value="4">Level 4</option>
+            <option value="5">Level 5</option>
+            <option value="6">Level 6</option>
+            <option value="7">Level 7</option>
+          </select>
+        </div>
+
+        <div id="voice-selector-container">
+          <label for="voice-selector">Select Voice:</label>
+          <select id="voice-selector"></select>
+        </div>
+
+        <!-- Vocabulary List -->
+        <div id="vocab-list"></div>
+      </section>
+    </div>
+
+    <!-- Learn Modal -->
+    <div id="learn-modal" class="modal">
+      <div class="modal-content">
+        <span id="close-modal" class="close-button">&times;</span>
+        <h2>Review Vocabulary</h2>
+        <div id="review-content">
+          <p>Vocabulary to Review Will Appear Here</p>
+        </div>
+        <button id="next-vocab-btn">Next</button>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+    <script src="app.js"></script>
+    <script src="learn.js"></script>
+    <script src="speech.js"></script>
+  </body>
+</html>
