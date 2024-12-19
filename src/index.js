@@ -1,6 +1,7 @@
 "use strict";
 var Level;
 (function (Level) {
+    Level[Level["ZERO"] = 0] = "ZERO";
     Level[Level["ONE"] = 1] = "ONE";
     Level[Level["TWO"] = 2] = "TWO";
     Level[Level["THREE"] = 3] = "THREE";
@@ -98,6 +99,9 @@ class Vocab {
         Store.sync();
     }
     getShouldReviewAt(level, time) {
+        if (level === Level.ZERO) {
+            return time;
+        }
         if (level === Level.ONE) {
             return time + 1000 * 60 * 60;
         }
@@ -129,6 +133,9 @@ class Vocab {
             const text = Store.database.vocabularies.find((item) => item.text === vocab.text && item.type === vocab.type);
             if (text)
                 continue;
+            if (vocab.level === Level.ONE) {
+                vocab.level = Level.ZERO;
+            }
             Store.database.vocabularies.push(vocab);
             Store.sync();
         }

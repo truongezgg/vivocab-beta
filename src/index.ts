@@ -1,4 +1,5 @@
 enum Level {
+  ZERO = 0,
   ONE = 1,
   TWO = 2,
   THREE = 3,
@@ -144,6 +145,10 @@ class Vocab {
   }
 
   getShouldReviewAt(level: number, time: number) {
+    if (level === Level.ZERO) {
+      return time;
+    }
+
     if (level === Level.ONE) {
       return time + 1000 * 60 * 60;
     }
@@ -187,6 +192,9 @@ class Vocab {
       );
       if (text) continue;
 
+      if (vocab.level === Level.ONE) {
+        vocab.level = Level.ZERO;
+      }
       Store.database.vocabularies.push(vocab);
       Store.sync();
     }
