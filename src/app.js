@@ -135,6 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ? getTimeLeft(vocab.shouldReviewAfter)
                 : "N/A"
             }</p>
+            <button class="remove-vocab-btn" data-id="${vocab.id}">X</button>
           </div>
           <hr />
         `;
@@ -146,6 +147,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     makeWordsSpeakable(); // Activate speakable words
+    attachRemoveEventListeners();
+  }
+
+  /* -------------------------------------------------------------------------- */
+  /*                                   Remove                                   */
+  /* -------------------------------------------------------------------------- */
+  /* ------------------ Remove Vocabulary ------------------ */
+  function attachRemoveEventListeners() {
+    const removeButtons = document.querySelectorAll(".remove-vocab-btn");
+
+    removeButtons.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const vocabId = e.target.getAttribute("data-id");
+        removeVocab(vocabId);
+      });
+    });
+  }
+
+  function removeVocab(vocabId) {
+    const vocab = new Vocab();
+    if (confirm("Are you sure you want to remove this item?")) {
+      vocab.remove(vocabId);
+      renderVocabList();
+    }
   }
 
   filterLevel.addEventListener("change", renderVocabList);
