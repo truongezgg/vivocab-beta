@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const addForm = document.getElementById("add-form");
   const vocabText = document.getElementById("vocab-text");
   const vocabPronunciation = document.getElementById("vocab-pronunciation");
+  const type = document.getElementById("vocab-type");
   const vocabTranslation = document.getElementById("vocab-translation");
   const vocabImage = document.getElementById("vocab-image");
   const vocabDescription = document.getElementById("vocab-description");
@@ -49,27 +50,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     totalVocabEl.innerText = total;
     totalReviewEl.innerText = reviewData.totalVocabularies || 0;
-    nextReviewTimeEl.innerText =
-      reviewData.vocabularies.length > 0
-        ? new Date(
-            reviewData.vocabularies[0].shouldReviewAfter
-          ).toLocaleString()
-        : "N/A";
+
+    // Calculate time left in minutes
+    const shouldReviewAt = vocab.getNextReviewTime();
+    nextReviewTimeEl.innerText = getTimeLeft(shouldReviewAt);
   }
 
-  /* ------------------ Learn Now: Modal ------------------ */
-  initLearnModal(
-    "learn-modal",
-    "close-modal",
-    "review-content",
-    "next-vocab-btn"
-  );
-
+  /* ------------------ Learn Now: Open Modal ------------------ */
   learnBtn.addEventListener("click", () => {
-    // const vocabListToReview = vocab.getVocabToReview().vocabularies;
-    // showLearnModal(vocabListToReview);
-
-    window.location.href = "learn.html";
+    const modal = document.getElementById("learning-modal");
+    modal.style.display = "flex";
+    handleLearning();
   });
 
   /* ------------------ Add New Vocabulary ------------------ */
@@ -83,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const newVocab = {
       id: Date.now().toString(),
-      type: "manual",
+      type: type.value.trim() || "",
       pronunciation: vocabPronunciation.value.trim(),
       text: vocabText.value.trim(),
       translations: vocabTranslation.value
@@ -95,7 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
       level: Level.ONE,
       lastReviewAt: Date.now(),
       shouldReviewAfter: Date.now() + 1000 * 60 * 60, // 1 hour later
-      isSendNotification: false,
     };
 
     vocab.add(newVocab);
@@ -104,22 +94,19 @@ document.addEventListener("DOMContentLoaded", () => {
     updateOverview();
   });
 
-  /* ------------------ List Vocab: Filter & Sort ------------------ */
+  /* ------------------ List Vocab: Filter & Render ------------------ */
   function renderVocabList() {
     const selectedLevel = filterLevel.value;
     let vocabList = [...Store.database.vocabularies];
 
-    // Filter by level
     if (selectedLevel) {
       vocabList = vocabList.filter(
         (item) => item.level === parseInt(selectedLevel)
       );
     }
 
-    // Sort by createdAt (newest first)
     vocabList.sort((a, b) => b.createdAt - a.createdAt);
 
-    // Render
     vocabListContainer.innerHTML = vocabList
       .map((vocab) => {
         const dataWord = `data-word="${vocab.text}"`;
@@ -128,6 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <p>
               <span onclick="speak(event)">
                 <b class="speak-icon" ${dataWord}>${vocab.text}</b>
+                     ${vocab.type ? `<span>(${vocab.type})</span>` : ``}
                 <span class="speak-icon" ${dataWord}>🔊</span>
                 ${
                   vocab.pronunciation
@@ -136,12 +124,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 <span>:</span>
                 <span>${vocab.translations.join(", ")}</span>
-                
               </span>
             </p>
             <p><strong>Level:</strong> ${vocab.level}</p>
             <p><strong>Description:</strong> ${
               vocab.description.split("\n")[0]
+            }</p>
+            <p><strong>Next review:</strong> ${
+              vocab.shouldReviewAfter
+                ? getTimeLeft(vocab.shouldReviewAfter)
+                : "N/A"
             }</p>
           </div>
           <hr />
@@ -158,9 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   filterLevel.addEventListener("change", renderVocabList);
 
-  /* -------------------------------------------------------------------------- */
-  /*                                   Import                                   */
-  /* -------------------------------------------------------------------------- */
+  /* ------------------ Import & Export ------------------ */
   document.getElementById("import-btn").addEventListener("click", () => {
     document.getElementById("import-file").click();
   });
@@ -174,7 +164,6 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         const data = JSON.parse(e.target.result);
 
-        // Validate format
         if (
           typeof data.version !== "string" ||
           !Array.isArray(data.vocabularies)
@@ -185,7 +174,6 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
-        // Merge with existing data
         Store.database.vocabularies = [
           ...Store.database.vocabularies,
           ...data.vocabularies,
@@ -224,3 +212,32 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ------------------ Initial Load ------------------ */
   updateOverview();
 });
+
+function getTimeLeft(timeMs) {
+  const now = Date.now(); // Current time in milliseconds
+  let timeDifference = Math.floor((timeMs - now) / 1000); // Time difference in seconds
+
+  if (timeDifference <= 0) {
+    return "Time to review now!";
+  }
+
+  const days = Math.floor(timeDifference / (60 * 60 * 24));
+  timeDifference %= 60 * 60 * 24; // Remaining seconds after calculating days
+
+  const hours = Math.floor(timeDifference / (60 * 60));
+  timeDifference %= 60 * 60; // Remaining seconds after calculating hours
+
+  const minutes = Math.floor(timeDifference / 60);
+
+  // Construct the time string
+  let timeString = "";
+  if (days > 0) timeString += `${days}d`;
+  if (hours > 0) timeString += `${hours}h`;
+  timeString += `${minutes}m`;
+
+  return `${timeString} left`;
+}
+
+// Example Usage
+const exampleTimeMs = Date.now() + 90061000; // 1 day, 1 hour, and 1 minute from now
+console.log(getTimeLeft(exampleTimeMs));

@@ -113,6 +113,14 @@ class Vocab {
     };
   }
 
+  getNextReviewTime() {
+    const vocabularies = Store.database.vocabularies.sort(
+      (a, b) => a.shouldReviewAfter - b.shouldReviewAfter
+    );
+    if (vocabularies.length) return vocabularies[0].shouldReviewAfter;
+    return null;
+  }
+
   learn(vocab: IVocabulary, isCorrect: boolean) {
     const data = Store.database.vocabularies.find(
       (item) => item.id === vocab.id
