@@ -110,6 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
     vocabListContainer.innerHTML = vocabList
       .map((vocab) => {
         const dataWord = `data-word="${vocab.text}"`;
+        const description = vocab.description.split("\n")[0] || "";
         return `
           <div class="vocab-item">
             <p>
@@ -127,9 +128,11 @@ document.addEventListener("DOMContentLoaded", () => {
               </span>
             </p>
             <p><strong>Level:</strong> ${vocab.level}</p>
-            <p><strong>Description:</strong> ${
-              vocab.description.split("\n")[0]
-            }</p>
+            <p>
+              <strong>Description:</strong>
+              <span class="speak-icon" onclick="speak(event)" data-word="${description}">🔊</span>
+              ${description}
+            </p>
             <p><strong>Next review:</strong> ${
               vocab.shouldReviewAfter
                 ? getTimeLeft(vocab.shouldReviewAfter)
