@@ -131,7 +131,7 @@ class Vocab {
     const currentTime = () => Date.now();
 
     // Reset to 1h after
-    data.level = isCorrect ? Math.min(data.level + 1, MaxLevel) : Level.ONE;
+    data.level = isCorrect ? Math.min(data.level + 1, MaxLevel) : Level.ZERO;
     data.lastReviewAt = currentTime();
 
     /* -------------------------------------------------------------------------- */

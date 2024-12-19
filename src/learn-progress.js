@@ -274,7 +274,7 @@ const handleLearning = function () {
       ? `${vocab.text} (${vocab.pronunciation})`
       : vocab.text;
 
-    vocabTextEl.innerHTML = `<span class="speak-icon" onclick="speak(event)" data-word="${vocabText}">${vocabText}🔊</span>`;
+    vocabTextEl.innerHTML = `<span class="speak-icon" onclick="speak(event)" data-word="${vocab.text}">${vocabText}🔊</span>`;
 
     vocabDescriptionEl.innerHTML = vocab.description
       .split("\n")
@@ -303,8 +303,13 @@ const handleLearning = function () {
     if (!vocab || !vocabToReview.length) return;
     const options = new Set([vocab.translations.join(",")]);
 
-    for (const item of vocabToReview) {
-      options.add(item.translations.join(","));
+    const totalVocabularies = Store.database.vocabularies.length;
+    for (let i = 1; i <= 10; i++) {
+      const random = Math.floor(Math.random() * (totalVocabularies + 1)); // 0 to 10
+      const el = Store.database.vocabularies[random];
+      if (!el) break;
+      options.add(el.translations.join(","));
+      if (options.size === 4) break;
     }
 
     const shuffledOptions = Array.from(options).sort(() => Math.random() - 0.5);

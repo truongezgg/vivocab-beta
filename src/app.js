@@ -210,7 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ------------------ Initial Load ------------------ */
-  updateOverview();
+  setInterval(() => updateOverview(), 1_000);
 });
 
 function getTimeLeft(timeMs) {
@@ -228,16 +228,14 @@ function getTimeLeft(timeMs) {
   timeDifference %= 60 * 60; // Remaining seconds after calculating hours
 
   const minutes = Math.floor(timeDifference / 60);
+  const seconds = timeDifference % 60; // Remaining seconds after calculating minutes
 
   // Construct the time string
   let timeString = "";
   if (days > 0) timeString += `${days}d`;
   if (hours > 0) timeString += `${hours}h`;
-  timeString += `${minutes}m`;
+  if (minutes > 0 || days > 0 || hours > 0) timeString += `${minutes}m`;
+  timeString += `${seconds}s`;
 
   return `${timeString} left`;
 }
-
-// Example Usage
-const exampleTimeMs = Date.now() + 90061000; // 1 day, 1 hour, and 1 minute from now
-console.log(getTimeLeft(exampleTimeMs));
