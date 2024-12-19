@@ -32,22 +32,26 @@
           <input
             type="text"
             id="vocab-text"
-            placeholder="Vocabulary"
+            placeholder="Text(ex: Run)"
             required
           />
           <input
             type="text"
             id="vocab-pronunciation"
-            placeholder="Pronunciation"
+            placeholder="Pronunciation(ex: /rʌn/)"
           />
-          <input type="text" id="vocab-type" placeholder="Ex: n, v, adj..." />
+          <input type="text" id="vocab-type" placeholder="Type(ex: verb)" />
           <input
             type="text"
             id="vocab-translation"
-            placeholder="Translations (comma separated)"
+            placeholder="Translations(comma separated, ex: Chạy)"
+            required
           />
           <input type="url" id="vocab-image" placeholder="Image URL" />
-          <textarea id="vocab-description" placeholder="Description"></textarea>
+          <textarea
+            id="vocab-description"
+            placeholder="Description(ex: To move quickly on foot.)"
+          ></textarea>
           <button type="submit">Add Vocab</button>
         </form>
       </section>
