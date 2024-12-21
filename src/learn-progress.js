@@ -50,6 +50,18 @@ const handleLearning = function () {
     if (vocabToReview.length === 0) {
       vocabTextEl.innerHTML = `<p>No vocabulary to review!</p>`;
       answerOptionsEl.innerHTML = `<button id="back-to-home-btn">Back to Home</button>`;
+
+      const vocab = new Vocab();
+      const reviewData = vocab.getNextReviewTime();
+      if (reviewData) {
+        vocabDescriptionEl.innerText =
+          "Count down: " + getTimeLeft(reviewData.time);
+      } else {
+        vocabDescriptionEl.innerText =
+          "You don't have any vocabulary! Add more now!";
+      }
+
+      // vocabDescriptionEl.innerHTML = "";
       submitAnswerBtn.style.display = "none";
 
       document.getElementById("back-to-home-btn").onclick = () => {

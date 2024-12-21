@@ -11,6 +11,7 @@
       <!-- Tabs Navigation -->
       <nav class="tabs">
         <button class="tab-button active" data-tab="overview">Overview</button>
+        <button class="tab-button" data-tab="lessions">Lessons</button>
         <button class="tab-button" data-tab="add">Add New Vocab</button>
         <button class="tab-button" data-tab="list">List by Level</button>
       </nav>
@@ -25,6 +26,26 @@
         </p>
         <button id="learn-btn">Start Learning</button>
       </section>
+
+      <section id="lessions" class="tab-content">
+        <h1>Lessons</h1>
+        <div id="lessons-container"></div>
+      </section>
+
+      <!-- Popup Modal -->
+      <div class="modal-lession hidden">
+        <div class="modal-content">
+          <div class="modal-content-btn">
+            <button id="import-words-btn">Import all</button>
+            <button id="close-modal" width="30%" style="background-color: red">
+              Close
+            </button>
+          </div>
+          <h2 id="lesson-title"></h2>
+          <p id="lesson-description"></p>
+          <ul id="lesson-words"></ul>
+        </div>
+      </div>
 
       <section id="add" class="tab-content">
         <h1>Add New Vocabulary</h1>
@@ -133,9 +154,15 @@
       </div>
     </div>
 
+    <div id="practice-badge" class="practice-badge">
+      <span id="review-count" class="review-count">0</span>
+      📝
+    </div>
+
     <script src="index.js"></script>
     <script src="app.js"></script>
     <script src="speech.js"></script>
     <script src="learn-progress.js"></script>
+    <script src="lesson.js"></script>
   </body>
 </html>

@@ -88,6 +88,7 @@ h1 {
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  overflow: auto;
 }
 
 .modal-content {
@@ -360,4 +361,174 @@ hr {
 }
 #vocabTextarea {
   overflow: auto;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/*                                   Lesson                                   */
+/* -------------------------------------------------------------------------- */
+/* Lesson Modal Styles */
+.modal-lession {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  
+}
+
+.modal-lession.show {
+  display: flex; /* Make modal visible */
+}
+
+.modal-lession .modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  max-height: 90%;
+  overflow: auto;
+}
+
+.modal-content-btn {
+  display: flex;
+}
+
+/* .modal-content-btn > div {
+  width: 50%;
+} */
+
+.modal-lession .modal-content h2 {
+  margin-bottom: 20px;
+}
+
+.modal-lession .modal-content ul {
+  text-align: left;
+  margin: 20px 0;
+  padding-left: 20px;
+}
+
+.modal-lession .modal-content ul li {
+  margin-bottom: 10px;
+}
+
+.modal-lession .modal-content button {
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #046bd2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-lession .modal-content button:hover {
+  background-color: #034c91;
+}
+
+.modal-lession .lesson-top-button:hover {
+  color: #000;
+}
+.modal-lession .lesson-top-button {
+  width: 30%;
+}
+
+.lesson-item {
+  margin: 10px 0;
+  padding: 10px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.lesson-item h3 {
+  margin-bottom: 5px;
+}
+
+.lesson-item p {
+  margin-bottom: 10px;
+}
+
+.view-lesson-btn {
+  background-color: #046bd2;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.view-lesson-btn:hover {
+  background-color: #034c91;
+}
+
+.hidden {
+  display: none;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    badge                                   */
+/* -------------------------------------------------------------------------- */
+
+/* Badge Style */
+.practice-badge {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ff6347;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  animation: shake 1s ease-in-out infinite;
+  z-index: 1000;
+}
+
+/* Badge Number Style */
+.review-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: #ff4500;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Shake Animation */
+@keyframes shake {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(3deg);
+  }
+  50% {
+    transform: rotate(-3deg);
+  }
+  75% {
+    transform: rotate(3deg);
+  }
 }

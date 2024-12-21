@@ -80,6 +80,7 @@ function makeWordsSpeakable() {
 
 function loadVoices() {
   voices = synth.getVoices();
+  console.log(voices);
 
   const voiceSelector = document.getElementById("voice-selector");
   voiceSelector.innerHTML = voices
@@ -94,7 +95,26 @@ function loadVoices() {
   if (savedVoiceIndex && voices[savedVoiceIndex]) {
     voiceSelector.value = savedVoiceIndex;
   } else {
-    voiceSelector.value = 0; // Default to the first voice
+    const samantha = voices.findIndex((item) => {
+      return item.name.toLowerCase().includes("samantha");
+    });
+    const google = voices.findIndex((item) => {
+      return item.name.toLowerCase().includes("google us");
+    });
+    const enUs = voices.findIndex((item) => {
+      return item.lang.toLowerCase().includes("en-us");
+    });
+    const enUk = voices.findIndex((item) => {
+      return item.lang.toLowerCase().includes("en-uk");
+    });
+    const index = (() => {
+      if (google >= 0) return google;
+      if (samantha >= 0) return samantha;
+      if (enUs >= 0) return enUs;
+      if (enUk >= 0) return enUk;
+      return 0;
+    })();
+    voiceSelector.value = index || 0; // Default to the first voice
   }
 }
 

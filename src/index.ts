@@ -77,7 +77,22 @@ class Store {
 
 class Vocab {
   add(vocab: IVocabulary) {
-    if (!vocab.id || !vocab.text) return;
+    if (!vocab.id || !vocab.text) {
+      console.warn("Missing id or text");
+      return;
+    }
+
+    const id = Store.database.vocabularies.find((item) => item.id === vocab.id);
+    if (id) return;
+
+    const text = Store.database.vocabularies.find(
+      (item) => item.text === vocab.text && item.type === vocab.type
+    );
+    if (text) return;
+
+    if (vocab.shouldReviewAfter) {
+      vocab.shouldReviewAfter = Vocab.roundTime(vocab.shouldReviewAfter);
+    }
 
     Store.database.vocabularies.push(vocab);
     Store.sync();
@@ -86,6 +101,10 @@ class Vocab {
   update(id: string, vocab: Partial<IVocabulary>) {
     const data = Store.database.vocabularies.find((item) => item.id === id);
     if (!data) return;
+
+    if (vocab.shouldReviewAfter) {
+      vocab.shouldReviewAfter = Vocab.roundTime(vocab.shouldReviewAfter);
+    }
 
     Object.assign(data, vocab);
   }
@@ -98,14 +117,14 @@ class Vocab {
     Store.sync();
   }
 
-  getVocabToReview() {
+  getVocabToReview(time?: number) {
     // return {
     //   vocabularies: Store.database.vocabularies,
     //   totalVocabularies: Store.database.vocabularies.length,
     // };
-    const current = Date.now();
+    const current = time || Date.now();
     const vocabularies = Store.database.vocabularies.filter((item) => {
-      return item.shouldReviewAfter <= current;
+      return Vocab.roundTime(item.shouldReviewAfter) <= current;
     });
 
     return {
@@ -118,8 +137,21 @@ class Vocab {
     const vocabularies = Store.database.vocabularies.sort(
       (a, b) => a.shouldReviewAfter - b.shouldReviewAfter
     );
-    if (vocabularies.length) return vocabularies[0].shouldReviewAfter;
+    if (vocabularies.length) {
+      const time = Vocab.roundTime(vocabularies[0].shouldReviewAfter);
+      const total = vocabularies.filter(
+        (item) => Vocab.roundTime(item.shouldReviewAfter) === time
+      ).length;
+
+      return { time, total };
+    }
     return null;
+  }
+
+  // -30m
+  static roundTime(time: number, timeToRound = 30 * 60 * 1000) {
+    // return time - (time % timeToRound) - timeToRound;
+    return time - (time % timeToRound);
   }
 
   learn(vocab: IVocabulary, isCorrect: boolean) {
@@ -138,13 +170,15 @@ class Vocab {
     /*                                Rounded time                                */
     /* -------------------------------------------------------------------------- */
     const time = this.getShouldReviewAt(data.level, currentTime());
-    const timeToRound = 1000 * 60 * 15; // 15m
-    data.shouldReviewAfter = time - (time % timeToRound) + timeToRound;
+    // const timeToRound = 1000 * 60 * 15; // 15m
+    data.shouldReviewAfter = Vocab.roundTime(time);
 
     Store.sync();
   }
 
-  getShouldReviewAt(level: number, time: number) {
+  getShouldReviewAt(level: number, _time: number) {
+    const time = Vocab.roundTime(_time);
+
     if (level === Level.ZERO) {
       return time;
     }

@@ -52,8 +52,14 @@ document.addEventListener("DOMContentLoaded", () => {
     totalReviewEl.innerText = reviewData.totalVocabularies || 0;
 
     // Calculate time left in minutes
-    const shouldReviewAt = vocab.getNextReviewTime();
-    nextReviewTimeEl.innerText = getTimeLeft(shouldReviewAt);
+    const dataReview = vocab.getNextReviewTime();
+    if (dataReview) {
+      nextReviewTimeEl.innerText =
+        `${dataReview.total} words | ` + getTimeLeft(dataReview.time);
+    } else {
+      nextReviewTimeEl.innerText =
+        "You don't have any vocabulary, Add more now!";
+    }
   }
 
   /* ------------------ Learn Now: Open Modal ------------------ */
@@ -85,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
       createdAt: Date.now(),
       level: Level.ONE,
       lastReviewAt: Date.now(),
-      shouldReviewAfter: Date.now() + 1000 * 60 * 60, // 1 hour later
+      shouldReviewAfter: Vocab.roundTime(Date.now()),
     };
 
     vocab.add(newVocab);
@@ -135,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </p>
             <p><strong>Next review:</strong> ${
               vocab.shouldReviewAfter
-                ? getTimeLeft(vocab.shouldReviewAfter)
+                ? getTimeLeft(Vocab.roundTime(vocab.shouldReviewAfter))
                 : "N/A"
             }</p>
             <button class="remove-vocab-btn" data-id="${vocab.id}">X</button>
@@ -225,7 +231,8 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const blob = new Blob([JSON.stringify(data, null, 2)], {
-      type: "application/json",
+      // type: "application/json",
+      type: "application/json;charset=utf-8",
     });
     const url = URL.createObjectURL(blob);
 
@@ -267,3 +274,41 @@ function getTimeLeft(timeMs) {
 
   return `${timeString} left`;
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const practiceBadge = document.getElementById("practice-badge");
+  const reviewCountEl = document.getElementById("review-count");
+
+  function updateReviewCount() {
+    const reviewData = Store.database.vocabularies.filter(
+      (vocab) => Vocab.roundTime(vocab.shouldReviewAfter) < Date.now()
+    );
+    const count = reviewData.length;
+
+    // Update the badge count
+    reviewCountEl.textContent = count;
+
+    // Show or hide the badge based on the count
+    if (count > 0) {
+      practiceBadge.style.display = "flex";
+    } else {
+      practiceBadge.style.display = "none";
+    }
+  }
+
+  // Navigate to the review section when the badge is clicked
+  practiceBadge.addEventListener("click", () => {
+    const modal = document.getElementById("learning-modal");
+    modal.style.display = "flex";
+
+    // Call a function to initialize the review session
+    // initializeLearningLogic();
+    handleLearning();
+  });
+
+  // Update the badge on page load
+  updateReviewCount();
+
+  // Periodically check for updates (optional)
+  setInterval(updateReviewCount, 1000); // Check every minute
+});
