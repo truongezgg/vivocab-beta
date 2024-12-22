@@ -111,6 +111,7 @@ h1 {
   border-radius: 5px;
   max-width: 500px;
   text-align: center;
+  width: 100%;
 }
 
 .modal-content h2 {

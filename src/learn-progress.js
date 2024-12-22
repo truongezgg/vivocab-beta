@@ -47,6 +47,7 @@ const handleLearning = function () {
 
   // Display vocabulary
   async function displayVocab() {
+    submitAnswerBtn.style.display = "block";
     if (vocabToReview.length === 0) {
       vocabTextEl.innerHTML = `<p>No vocabulary to review!</p>`;
       answerOptionsEl.innerHTML = `<button id="back-to-home-btn">Back to Home</button>`;
