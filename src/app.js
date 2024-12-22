@@ -244,6 +244,19 @@ document.addEventListener("DOMContentLoaded", () => {
     URL.revokeObjectURL(url);
   });
 
+  document.getElementById("copy-button").addEventListener("click", () => {
+    const textToCopy = document.getElementById("chatgpt-prompt").value;
+
+    navigator.clipboard
+      .writeText(textToCopy)
+      .then(() => {
+        alert("Text copied to clipboard!");
+      })
+      .catch((err) => {
+        console.error("Failed to copy text: ", err);
+      });
+  });
+
   /* ------------------ Initial Load ------------------ */
   setInterval(() => updateOverview(), 1_000);
 });

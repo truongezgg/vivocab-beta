@@ -85,9 +85,21 @@ class Vocab {
     const id = Store.database.vocabularies.find((item) => item.id === vocab.id);
     if (id) return;
 
-    const text = Store.database.vocabularies.find(
-      (item) => item.text === vocab.text && item.type === vocab.type
-    );
+    const text = Store.database.vocabularies.find((item) => {
+      if (
+        (item.text || "").toLowerCase() !== (vocab.text || "").toLowerCase()
+      ) {
+        return false;
+      }
+
+      if (
+        (item.type || "").toLowerCase() !== (vocab.type || "").toLowerCase()
+      ) {
+        return false;
+      }
+
+      return true;
+    });
     if (text) return;
 
     if (vocab.shouldReviewAfter) {

@@ -80,6 +80,46 @@
           ></textarea>
           <button type="submit">Add Vocab</button>
         </form>
+
+        <div>
+          <p>
+            Below is a pre-written prompt you can use to interact with ChatGPT.
+            Follow these steps:
+          </p>
+          <ol>
+            <li>Review or edit the text in the box below as needed.</li>
+            <li>
+              Click the <b>"Click to Copy"</b> button to copy the text to your
+              clipboard.
+            </li>
+            <li>Paste the text into ChatGPT and ask for help.</li>
+            <li>
+              After receiving the response, copy the result from ChatGPT and
+              paste it into the <b>Vocab Text</b> field in your application.
+            </li>
+          </ol>
+          <textarea id="chatgpt-prompt" rows="15" cols="50">
+Every time I send an English word, please provide its information in the following format:  
+1. Must exactly match my sample.  
+2. Just give me what I need, nothing more.  
+3. The description should begin with a single sentence that defines the word. Then, include three sample sentences illustrating its usage.  
+
+Here is an example:  
+
+Word: Kidnap  
+Type: Verb  
+Pronunciation: /ˈkɪd.næp/  
+Translations: Bắt cóc  
+Description: To take someone away illegally by force, often to demand something in return.  
+The criminals plan to kidnap the millionaire’s child.  
+The police arrested a gang that tried to kidnap a tourist.  
+It's a crime to kidnap anyone, regardless of their background.  
+
+Let’s start with "kidnap".
+          </textarea>
+          <br />
+          <button id="copy-button">Click to Copy</button>
+        </div>
       </section>
 
       <section id="list" class="tab-content">
