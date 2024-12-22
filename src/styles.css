@@ -640,3 +640,47 @@ hr {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* Info Icon Styling */
+.info-icon {
+  /* font-size: 0.8rem; */
+  color: #ffffff;
+  cursor: pointer;
+  /* margin-left: 5px; */
+  display: inline-block;
+  position: relative;
+  display: flex;
+}
+
+.info-icon small {
+  font-size: 7px;
+  position: absolute;
+  top: 0;
+  right: 5px;
+  
+}
+.info-icon:hover,
+.info-icon:focus {
+  color: #ffcc00;
+}
+
+/* Tooltip Styling */
+.tooltip {
+  display: none;
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  z-index: 10;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.info-icon:hover .tooltip,
+.info-icon:focus .tooltip {
+  display: block;
+}
