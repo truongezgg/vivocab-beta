@@ -54,12 +54,13 @@
       <section id="add" class="tab-content">
         <h1>Add New Vocabulary</h1>
         <form id="add-form">
-          <input
+          <textarea
             type="text"
             id="vocab-text"
             placeholder="Text(ex: Run)"
+            onchange="processVocabText(event.target.value)"
             required
-          />
+          ></textarea>
           <input
             type="text"
             id="vocab-pronunciation"

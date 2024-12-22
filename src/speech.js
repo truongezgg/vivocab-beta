@@ -80,7 +80,6 @@ function makeWordsSpeakable() {
 
 function loadVoices() {
   voices = synth.getVoices();
-  console.log(voices);
 
   const voiceSelector = document.getElementById("voice-selector");
   voiceSelector.innerHTML = voices

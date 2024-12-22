@@ -312,3 +312,60 @@ document.addEventListener("DOMContentLoaded", () => {
   // Periodically check for updates (optional)
   setInterval(updateReviewCount, 1000); // Check every minute
 });
+
+const processVocabText = (inputText) => {
+  try {
+    let data = {};
+
+    // Check if input is JSON
+    try {
+      data = JSON.parse(inputText);
+    } catch (e) {
+      // If not JSON, assume it's plain text
+      const [detailsPart, _descriptionPart] = inputText.includes("Description:")
+        ? inputText.split("Description:")
+        : [inputText, ""];
+      const descriptionPart = _descriptionPart.trim();
+
+      const lines = detailsPart
+        .split("\r")
+        .join("\n")
+        .split("\n")
+        .map((line) => line.trim());
+
+      lines.forEach((line) => {
+        if (line.startsWith("Word:")) {
+          data.word = line.replace("Word:", "").trim();
+        } else if (line.startsWith("Type:")) {
+          data.type = line.replace("Type:", "").trim();
+        } else if (line.startsWith("Pronunciation:")) {
+          data.pronunciation = line.replace("Pronunciation:", "").trim();
+        } else if (line.startsWith("Translations:")) {
+          data.translations = line.replace("Translations:", "").trim();
+        }
+      });
+
+      data.description = descriptionPart;
+    }
+
+    // Populate fields
+    if (data.word) {
+      document.getElementById("vocab-text").value = data.word;
+    }
+    if (data.type) {
+      document.getElementById("vocab-type").value = data.type;
+    }
+    if (data.pronunciation) {
+      document.getElementById("vocab-pronunciation").value = data.pronunciation;
+    }
+    if (data.translations) {
+      document.getElementById("vocab-translation").value = data.translations;
+    }
+    if (data.description) {
+      document.getElementById("vocab-description").value =
+        data.description.trim();
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
