@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Overview Elements
   const learnBtn = document.getElementById("learn-btn");
   const totalVocabEl = document.getElementById("total-vocab");
-  const totalReviewEl = document.getElementById("total-review");
+  // const totalReviewEl = document.getElementById("total-review");
   const nextReviewTimeEl = document.getElementById("next-review-time");
 
   // Add Vocab Elements
@@ -17,6 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const vocabImage = document.getElementById("vocab-image");
   const vocabDescription = document.getElementById("vocab-description");
 
+  const levelCount1 = document.getElementById("level-1-count");
+  const levelCount2 = document.getElementById("level-2-count");
+  const levelCount3 = document.getElementById("level-3-count");
+  const levelCount4 = document.getElementById("level-4-count");
+  const levelCount5 = document.getElementById("level-5-count");
+
   // List Vocab Elements
   const vocabListContainer = document.getElementById("vocab-list");
   const filterLevel = document.getElementById("filter-level");
@@ -26,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ------------------ Tab Navigation ------------------ */
   tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
+    tab.onclick = () => {
       const target = tab.getAttribute("data-tab");
 
       tabs.forEach((t) => t.classList.remove("active"));
@@ -40,30 +46,54 @@ document.addEventListener("DOMContentLoaded", () => {
         renderVocabList();
         loadVoices(); // Ensure voices are loaded
       }
-    });
+    };
   });
 
   /* ------------------ Overview: Update Stats ------------------ */
   function updateOverview() {
     const total = Store.database.vocabularies.length;
-    const reviewData = vocab.getVocabToReview();
+
+    // const reviewData = vocab.getVocabToReview();
 
     totalVocabEl.innerText = total;
-    totalReviewEl.innerText = reviewData.totalVocabularies || 0;
+    // totalReviewEl.innerText = reviewData.totalVocabularies || 0;
 
     // Calculate time left in minutes
     const dataReview = vocab.getNextReviewTime();
+
     if (dataReview) {
-      nextReviewTimeEl.innerText =
-        `${dataReview.total} words | ` + getTimeLeft(dataReview.time);
+      nextReviewTimeEl.innerText = `${dataReview.total} words`;
+      const timeLeft = getTimeLeft(dataReview.time);
+      if (timeLeft === "Ready to learn!") {
+        learnBtn.textContent = "Learn now!";
+      } else {
+        learnBtn.textContent = timeLeft;
+      }
     } else {
       nextReviewTimeEl.innerText =
-        "You don't have any vocabulary, Add more now!";
+        "You don't have any vocabulary, add more now!";
     }
+
+    const vocabularyByLevel = Store.database.vocabularies.reduce((acc, cur) => {
+      const level = Math.max(Number(cur.level) || 1, 1);
+      const key = Math.min(level, 5);
+      acc[key] = Number(acc[key]) || 0;
+      acc[key] += 1;
+      return acc;
+    }, {});
+    levelCount1.innerText = vocabularyByLevel[1] || 0;
+    levelCount2.innerText = vocabularyByLevel[2] || 0;
+    levelCount3.innerText = vocabularyByLevel[3] || 0;
+    levelCount4.innerText = vocabularyByLevel[4] || 0;
+    levelCount5.innerText = vocabularyByLevel[5] || 0;
   }
 
   /* ------------------ Learn Now: Open Modal ------------------ */
-  learnBtn.addEventListener("click", () => {
+  learnBtn.addEventListener("click", (e) => {
+    if (learnBtn.textContent === "Add your first vocabulary") {
+      return;
+    }
+
     const modal = document.getElementById("learning-modal");
     modal.style.display = "flex";
     handleLearning();
@@ -270,7 +300,7 @@ function getTimeLeft(timeMs) {
   let timeDifference = Math.floor((timeMs - now) / 1000); // Time difference in seconds
 
   if (timeDifference <= 0) {
-    return "Time to review now!";
+    return "Ready to learn!";
   }
 
   const days = Math.floor(timeDifference / (60 * 60 * 24));

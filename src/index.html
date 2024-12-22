@@ -27,12 +27,47 @@
       <!-- Tabs Content -->
       <section id="overview" class="tab-content active">
         <h1>Overview</h1>
-        <p>Total Vocabulary: <span id="total-vocab">0</span></p>
+        <!-- <p>Total Vocabulary: <span id="total-vocab">0</span></p>
         <p>
           Next Review: <span id="next-review-time">N/A</span> <br />
           Total to Review: <span id="total-review">0</span>
-        </p>
-        <button id="learn-btn">Start Learning</button>
+        </p> -->
+        <!-- <button id="learn-btn">Start Learning</button> -->
+
+        <div class="overview-card">
+          <div class="card-header">
+            <h2>Total Vocabularies</h2>
+            <p class="total-vocab" id="total-vocab">0</p>
+          </div>
+          <div class="card-footer">
+            <p>Next Review: <span id="next-review-time">N/A</span></p>
+          </div>
+          <div class="word-level-table">
+            <table>
+              <thead>
+                <tr>
+                  <th title="Review after 1 hour">Lv.1</th>
+                  <th title="Review after 6 hour">Lv.2</th>
+                  <th title="Review after 1 day">Lv.3</th>
+                  <th title="Review after 3 days">Lv.4</th>
+                  <th title="Review after 7+ days">Lv.5+</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td id="level-1-count">0</td>
+                  <td id="level-2-count">0</td>
+                  <td id="level-3-count">0</td>
+                  <td id="level-4-count">0</td>
+                  <td id="level-5-count">0</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button id="learn-btn" class="start-learning-btn">
+            Start Learning
+          </button>
+        </div>
       </section>
 
       <section id="lessions" class="tab-content">
