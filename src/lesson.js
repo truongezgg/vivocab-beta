@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const vocab = new Vocab();
     selectedLesson.vocabularies.forEach((word) => {
       word.createdAt = Date.now();
-      word.level = Level.ONE;
+      word.level = Level.ZERO;
       word.lastReviewAt = Date.now();
       word.shouldReviewAfter = Date.now();
       return vocab.add(word);

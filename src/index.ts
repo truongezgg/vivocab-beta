@@ -139,8 +139,9 @@ class Vocab {
     );
     if (vocabularies.length) {
       const time = Vocab.roundTime(vocabularies[0].shouldReviewAfter);
+      const timeToCompare = Math.max(time, Date.now());
       const total = vocabularies.filter(
-        (item) => Vocab.roundTime(item.shouldReviewAfter) === time
+        (item) => Vocab.roundTime(item.shouldReviewAfter) <= timeToCompare
       ).length;
 
       return { time, total };

@@ -50,6 +50,7 @@ const handleLearning = function () {
     if (vocabToReview.length === 0) {
       vocabTextEl.innerHTML = `<p>No vocabulary to review!</p>`;
       answerOptionsEl.innerHTML = `<button id="back-to-home-btn">Back to Home</button>`;
+      answerOptionsEl.style.gridTemplateColumns = "1fr";
 
       const vocab = new Vocab();
       const reviewData = vocab.getNextReviewTime();
@@ -190,9 +191,11 @@ const handleLearning = function () {
     breakdownList.innerHTML = "";
     sessionData.wordsReviewed.forEach((wordData) => {
       const listItem = document.createElement("li");
-      listItem.textContent = `${wordData.word} - ${
-        wordData.isCorrect ? "Correct" : "Incorrect"
-      } (Level: ${wordData.level})`;
+      const pronunciation = wordData.pronunciation
+        ? `(${wordData.pronunciation})`
+        : "";
+      const correct = wordData.isCorrect ? "Correct" : "Incorrect";
+      listItem.innerHTML = `<span class="speak-icon" onclick="speak(event)" data-word="${wordData.word}">${wordData.word}</span>${pronunciation} - ${correct} (Level: ${wordData.level})`;
       breakdownList.appendChild(listItem);
     });
 

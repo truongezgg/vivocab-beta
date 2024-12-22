@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
       imageUrl: vocabImage.value.trim(),
       description: vocabDescription.value.trim(),
       createdAt: Date.now(),
-      level: Level.ONE,
+      level: Level.ZERO,
       lastReviewAt: Date.now(),
       shouldReviewAfter: Vocab.roundTime(Date.now()),
     };

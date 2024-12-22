@@ -94,7 +94,8 @@ class Vocab {
         const vocabularies = Store.database.vocabularies.sort((a, b) => a.shouldReviewAfter - b.shouldReviewAfter);
         if (vocabularies.length) {
             const time = Vocab.roundTime(vocabularies[0].shouldReviewAfter);
-            const total = vocabularies.filter((item) => Vocab.roundTime(item.shouldReviewAfter) === time).length;
+            const timeToCompare = Math.max(time, Date.now());
+            const total = vocabularies.filter((item) => Vocab.roundTime(item.shouldReviewAfter) <= timeToCompare).length;
             return { time, total };
         }
         return null;

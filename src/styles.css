@@ -24,9 +24,22 @@ body {
 
 /* Tabs Navigation */
 .tabs {
+    position: sticky;
+    top: 0;
+    z-index: 100; /* Ensures it stays above other content */
+    background-color: white; /* Matches the background color */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tabs-content {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 20px;
+  width: 100%;
+  /* margin-bottom: 20px; */
 }
 
 .tab-button {
@@ -36,6 +49,7 @@ body {
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
+  margin-bottom: 0;
 }
 
 .tab-button.active {
@@ -110,7 +124,7 @@ h1 {
 
 .modal-content button {
   padding: 10px 20px;
-  margin: 10px;
+  /* margin: 10px; */
   background-color: #007bff;
   color: white;
   border: none;
@@ -290,6 +304,10 @@ hr {
 
 #answer-options button:hover {
   background-color: #0056b3;
+}
+
+.answer-btn {
+  text-transform: capitalize;
 }
 
 /* Selected Answer Style */
@@ -532,3 +550,4 @@ hr {
     transform: rotate(3deg);
   }
 }
+
