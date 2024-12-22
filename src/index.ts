@@ -249,13 +249,16 @@ class Vocab {
       );
       if (text) continue;
 
-      if (vocab.level === Level.ONE) {
-        vocab.level = Level.ZERO;
-      }
-
       if (vocab.type) {
         vocab.type = vocab.type.toLowerCase();
       }
+
+      const currentTime = Date.now();
+      vocab.createdAt = vocab.createdAt || currentTime;
+      vocab.lastReviewAt = vocab.lastReviewAt || Vocab.roundTime(currentTime);
+      vocab.shouldReviewAfter = Vocab.roundTime(
+        vocab.shouldReviewAfter || currentTime
+      );
 
       Store.database.vocabularies.push(vocab);
       Store.sync();
