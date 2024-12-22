@@ -46,7 +46,7 @@ const handleLearning = function () {
   }
 
   // Display vocabulary
-  async function displayVocab() {
+  function displayVocab() {
     submitAnswerBtn.style.display = "block";
     if (vocabToReview.length === 0) {
       vocabTextEl.innerHTML = `<p>No vocabulary to review!</p>`;
@@ -101,7 +101,7 @@ const handleLearning = function () {
     if (vocab.text) speakText(vocab.text);
   }
 
-  async function generateAnswerOptions(vocab) {
+  function generateAnswerOptions(vocab) {
     if (!vocab || !vocabToReview.length) return;
     const options = new Set([vocab.translations.join(",")]);
 

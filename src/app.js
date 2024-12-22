@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const vocab = new Vocab();
   Store.load();
+  updateOverview();
 
   /* ------------------ Tab Navigation ------------------ */
   tabs.forEach((tab) => {

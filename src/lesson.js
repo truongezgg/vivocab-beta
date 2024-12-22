@@ -69,9 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Load Lessons into the List
-  async function renderLessons() {
+  function renderLessons() {
     try {
-      await LessionStore.loadFromFile();
+      LessionStore.loadFromFile();
       const lessons = LessionStore.getLessions();
 
       const lessonsContainer = document.getElementById("lessons-container");
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 class LessionStore {
-  static async loadFromFile() {
+  static loadFromFile() {
     // const response = await fetch(url);
     // if (!response.ok) {
     //   throw new Error("Failed to load lessons.");
