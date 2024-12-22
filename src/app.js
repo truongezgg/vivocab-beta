@@ -337,7 +337,7 @@ const processVocabText = (inputText) => {
         if (line.startsWith("Word:")) {
           data.word = line.replace("Word:", "").trim();
         } else if (line.startsWith("Type:")) {
-          data.type = line.replace("Type:", "").trim();
+          data.type = line.replace("Type:", "").trim().toLowerCase();
         } else if (line.startsWith("Pronunciation:")) {
           data.pronunciation = line.replace("Pronunciation:", "").trim();
         } else if (line.startsWith("Translations:")) {

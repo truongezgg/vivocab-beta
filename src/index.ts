@@ -94,6 +94,10 @@ class Vocab {
       vocab.shouldReviewAfter = Vocab.roundTime(vocab.shouldReviewAfter);
     }
 
+    if (vocab.type) {
+      vocab.type = vocab.type.toLowerCase();
+    }
+
     Store.database.vocabularies.push(vocab);
     Store.sync();
   }
@@ -104,6 +108,10 @@ class Vocab {
 
     if (vocab.shouldReviewAfter) {
       vocab.shouldReviewAfter = Vocab.roundTime(vocab.shouldReviewAfter);
+    }
+
+    if (vocab.type) {
+      vocab.type = vocab.type.toLowerCase();
     }
 
     Object.assign(data, vocab);
@@ -223,13 +231,20 @@ class Vocab {
       if (id) continue;
 
       const text = Store.database.vocabularies.find(
-        (item) => item.text === vocab.text && item.type === vocab.type
+        (item) =>
+          item.text === vocab.text &&
+          (item.type || "").toLowerCase() === (vocab.type || "").toLowerCase()
       );
       if (text) continue;
 
       if (vocab.level === Level.ONE) {
         vocab.level = Level.ZERO;
       }
+
+      if (vocab.type) {
+        vocab.type = vocab.type.toLowerCase();
+      }
+
       Store.database.vocabularies.push(vocab);
       Store.sync();
     }
