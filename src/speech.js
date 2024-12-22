@@ -37,7 +37,7 @@ function speakText(text) {
     utterance.voice = voices[selectedVoiceIndex || 0]; // Use the selected voice
   }
 
-  utterance.rate = 0.7;
+  utterance.rate = 0.9;
 
   synth.speak(utterance);
 }
