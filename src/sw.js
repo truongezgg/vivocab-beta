@@ -1,4 +1,5 @@
-const staticDevCoffee = "dev-coffee-site-v1";
+const version = "0.1.13";
+const staticDevCoffee = `dev-coffee-site-v${version}`;
 const assets = [
   "/",
   "/?source=pwa",
