@@ -677,7 +677,7 @@ hr {
   border-radius: 5px;
   font-size: 0.75rem;
   white-space: nowrap;
-  z-index: 10;
+  z-index: 100;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
@@ -756,7 +756,7 @@ hr {
   align-items: center;
   justify-content: center;
   background-color: unset;
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 /* Icon Styling */

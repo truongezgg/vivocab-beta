@@ -2,11 +2,12 @@
   "name": "ViVocab",
   "short_name": "ViVocab",
   "description": "Learn and review vocabulary effectively.",
-  "start_url": "/index.html",
+  "start_url": "/?source=pwa",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#4c96d7",
-  "version": "0.1.2",
+  "orientation": "portrait-primary",
+  "version": "0.1.11",
   "icons": [
     {
       "src": "icons/icon-192x192.png",

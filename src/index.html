@@ -50,31 +50,31 @@
               <thead>
                 <tr>
                   <th>
-                    <span class="info-icon">
+                    <span class="info-icon" tabindex="0">
                       <p>Lv.1 <small>ℹ️</small></p>
                       <div class="tooltip">Review after 1 hour</div>
                     </span>
                   </th>
                   <th>
-                    <span class="info-icon">
+                    <span class="info-icon" tabindex="0">
                       <p>Lv.2 <small>ℹ️</small></p>
                       <div class="tooltip">Review after 6 hours</div>
                     </span>
                   </th>
                   <th>
-                    <span class="info-icon">
+                    <span class="info-icon" tabindex="0">
                       <p>Lv.3 <small>ℹ️</small></p>
                       <div class="tooltip">Review after 1 day</div>
                     </span>
                   </th>
                   <th>
-                    <span class="info-icon">
+                    <span class="info-icon" tabindex="0">
                       <p>Lv.4 <small>ℹ️</small></p>
                       <div class="tooltip">Review after 3 days</div>
                     </span>
                   </th>
                   <th>
-                    <span class="info-icon">
+                    <span class="info-icon" tabindex="0">
                       <p>Lv.5+ <small>ℹ️</small></p>
                       <div class="tooltip">Review after 7+ days</div>
                     </span>
@@ -275,11 +275,11 @@ Let’s start with "kidnap".
     <div id="app-version" class="version-display"></div>
     <button id="reload-app" class="reload-btn">🔄</button>
 
-    <script src="index.js"></script>
-    <script src="app.js"></script>
-    <script src="speech.js"></script>
-    <script src="learn-progress.js"></script>
-    <script src="lesson.js"></script>
+    <script src="/index.js"></script>
+    <script src="/app.js"></script>
+    <script src="/speech.js"></script>
+    <script src="/learn-progress.js"></script>
+    <script src="/lesson.js"></script>
 
     <script>
       // Function to get version from the manifest and display it
@@ -301,15 +301,30 @@ Let’s start with "kidnap".
       displayAppVersion();
 
       // Reload Button functionality
-      document.getElementById("reload-app").addEventListener("click", () => {
-        // Inform the service worker to skip waiting and activate immediately
-        if (navigator.serviceWorker.controller) {
-          navigator.serviceWorker.controller.postMessage("SKIP_WAITING");
-          window.location.reload(true); // Force reload from the server
-        } else {
-          window.location.reload(); // If no service worker, just reload the page
-        }
-      });
+      document.getElementById("reload-app").addEventListener(
+        "click",
+        () => {
+          window.location.reload();
+        },
+        { once: true }
+      );
+
+      // Register PWA
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/sw.js")
+            .then((registration) => {
+              console.log(
+                "Service Worker registered with scope:",
+                registration.scope
+              );
+            })
+            .catch((error) => {
+              console.error("Service Worker registration failed:", error);
+            });
+        });
+      }
     </script>
   </body>
 </html>
