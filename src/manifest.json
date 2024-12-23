@@ -1,0 +1,22 @@
+{
+  "name": "ViVocab",
+  "short_name": "ViVocab",
+  "description": "Learn and review vocabulary effectively.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4c96d7",
+  "version": "0.1.1",
+  "icons": [
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

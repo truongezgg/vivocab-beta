@@ -7,7 +7,10 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no"
     />
-    <title>Vocab Learning App</title>
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#4c96d7" />
+    <link rel="icon" href="icons/favicon.ico" type="image/x-icon" />
+    <title>VocabViVocab</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -26,7 +29,7 @@
 
       <!-- Tabs Content -->
       <section id="overview" class="tab-content active">
-        <h1>Overview</h1>
+        <!-- <h1>Overview</h1> -->
         <!-- <p>Total Vocabulary: <span id="total-vocab">0</span></p>
         <p>
           Next Review: <span id="next-review-time">N/A</span> <br />
@@ -269,10 +272,44 @@ Let’s start with "kidnap".
       📝
     </div>
 
+    <div id="app-version" class="version-display"></div>
+    <button id="reload-app" class="reload-btn">🔄</button>
+
     <script src="index.js"></script>
     <script src="app.js"></script>
     <script src="speech.js"></script>
     <script src="learn-progress.js"></script>
     <script src="lesson.js"></script>
+
+    <script>
+      // Function to get version from the manifest and display it
+      function displayAppVersion() {
+        fetch("/manifest.json")
+          .then((response) => response.json())
+          .then((data) => {
+            const version = data.version; // Assuming the version field exists in manifest.json
+            document.getElementById(
+              "app-version"
+            ).textContent = `Version: ${version}`;
+          })
+          .catch((error) => {
+            console.error("Error loading manifest.json:", error);
+          });
+      }
+
+      // Call the function to display the version
+      displayAppVersion();
+
+      // Reload Button functionality
+      document.getElementById("reload-app").addEventListener("click", () => {
+        // Inform the service worker to skip waiting and activate immediately
+        if (navigator.serviceWorker.controller) {
+          navigator.serviceWorker.controller.postMessage("SKIP_WAITING");
+          window.location.reload(true); // Force reload from the server
+        } else {
+          window.location.reload(); // If no service worker, just reload the page
+        }
+      });
+    </script>
   </body>
 </html>
