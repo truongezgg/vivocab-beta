@@ -516,6 +516,7 @@ hr {
   cursor: pointer;
   animation: shake 1s ease-in-out infinite;
   /* z-index: 1000; */
+  opacity: 0.9;
 }
 
 /* Badge Number Style */
@@ -755,6 +756,7 @@ hr {
   align-items: center;
   justify-content: center;
   background-color: unset;
+  opacity: 0.9;
 }
 
 /* Icon Styling */
