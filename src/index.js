@@ -161,7 +161,7 @@ class Vocab {
         if (level === Level.SEVEN) {
             return time + 1000 * 60 * 60 * 24 * 30;
         }
-        return time + 1000 * 60 * 60 * 24 * 30;
+        return time + 1000 * 60 * 60 * 24 * 60;
     }
     import(database) {
         for (const vocab of database.vocabularies) {

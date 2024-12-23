@@ -109,6 +109,12 @@ class Vocab {
     if (vocab.type) {
       vocab.type = vocab.type.toLowerCase();
     }
+    if (vocab.description) {
+      vocab.description = vocab.description
+        .split("\n")
+        .filter(Boolean)
+        .join("\n");
+    }
 
     Store.database.vocabularies.push(vocab);
     Store.sync();
@@ -232,7 +238,7 @@ class Vocab {
       return time + 1000 * 60 * 60 * 24 * 30;
     }
 
-    return time + 1000 * 60 * 60 * 24 * 30;
+    return time + 1000 * 60 * 60 * 24 * 60;
   }
 
   import(database: IDatabase) {

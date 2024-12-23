@@ -393,7 +393,7 @@ const processVocabText = (inputText) => {
         }
       });
 
-      data.description = descriptionPart;
+      data.description = descriptionPart.split("\n").filter(Boolean).join("\n");
     }
 
     // Populate fields
@@ -417,3 +417,31 @@ const processVocabText = (inputText) => {
     console.error(error);
   }
 };
+
+document.addEventListener("DOMContentLoaded", () => {
+  const infoIcon = document.querySelector(".level-info__icon");
+  const modal = document.getElementById("level-info__modal");
+  const closeButton = document.getElementById("level-info__close-button");
+  const backdrop = document.querySelector(".level-info__modal-backdrop");
+
+  // Show modal and backdrop on info-icon click
+  infoIcon.addEventListener("click", () => {
+    modal.style.display = "block";
+    backdrop.style.display = "block"; // Ensure the backdrop is shown
+  });
+
+  // Close modal on button click
+  closeButton.addEventListener("click", () => {
+    modal.style.display = "none";
+    backdrop.style.display = "none"; // Hide the backdrop
+  });
+
+  // Close modal if clicking outside of it
+  window.addEventListener("click", (event) => {
+    if (event.target === backdrop) {
+      modal.classList.remove("active");
+      backdrop.style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+  });
+});

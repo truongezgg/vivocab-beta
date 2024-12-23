@@ -76,7 +76,12 @@
                   <th>
                     <span class="info-icon" tabindex="0">
                       <p>Lv.5+ <small>ℹ️</small></p>
-                      <div class="tooltip">Review after 7+ days</div>
+                      <div class="tooltip" style="text-align: left">
+                        <p>Level 5: Review after 7 days</p>
+                        <p>Level 6: Review after 15 days</p>
+                        <p>Level 7: Review after 30 days</p>
+                        <p>Level 8+: Review after 45 days</p>
+                      </div>
                     </span>
                   </th>
                 </tr>
@@ -96,6 +101,41 @@
             Start Learning
           </button>
         </div>
+
+        <!-- Learning Levels Info Section -->
+        <section id="level-info__section">
+          <h3>How Learning Levels Work <span class="level-info__icon" aria-label="Learn More">ℹ️</span></h3>
+          <p>
+            Each word starts at <strong>Level 1</strong>. Answer correctly to move up a level. Make a mistake? The word resets to <strong>Level 1</strong>.
+            <br />
+            Lower-level words appear more frequently. Higher-level words will show up occasionally to keep your knowledge sharp.
+          </p>
+        </section>
+
+      <!-- Modal -->
+      <div id="level-info__modal" class="level-info__modal">
+        <button id="level-info__close-button" class="level-info__close-button" aria-label="Close modal">×</button>
+        <div class="level-info__modal-content">
+          <h2>How Our Spaced Repetition System Works</h2>
+          <p>
+            <strong>What is Spaced Repetition?</strong>
+            <br />
+            Spaced repetition is a proven learning technique that helps you remember words better by reviewing them at increasing intervals.
+          </p>
+          <p>
+            <strong>How It Works in This App:</strong>
+            <ul>
+              <li><strong>Start at Level 1:</strong> Every new word starts at Level 1.</li>
+              <li><strong>Level Up:</strong> Answer a word correctly, and it moves to the next level.</li>
+              <li><strong>Reset on Mistake:</strong> If you answer a word incorrectly, it resets to Level 1.</li>
+              <li><strong>Review Frequency:</strong> Lower-level words appear more frequently. Higher-level words appear less often.</li>
+              <li><strong>Mastery:</strong> Words at high levels indicate strong understanding and are reviewed occasionally to keep your knowledge sharp.</li>
+            </ul>
+          </p>
+        </div>
+      </div>
+      <div class="level-info__modal-backdrop"></div>
+
       </section>
 
       <section id="lessions" class="tab-content">
@@ -305,26 +345,7 @@ Let’s start with "kidnap".
         .getElementById("reload-app")
         .addEventListener("click", async () => {
           if (navigator.onLine) {
-            try {
-              // Log the cache clearing process
-              console.log("[PWA] Clearing cache...");
-
-              // Get all cache names
-              const cacheNames = await caches.keys();
-
-              // Delete all caches
-              await Promise.all(
-                cacheNames.map((cacheName) => caches.delete(cacheName))
-              );
-
-              console.log("[PWA] Cache cleared successfully.");
-
-              // Reload the page
-              window.location.reload(true); // Force reload from server
-            } catch (error) {
-              console.error("[PWA] Error clearing cache:", error);
-              alert("Failed to clear cache. Please try again.");
-            }
+            window.location.reload(true); // Force reload from server
           } else {
             alert("You are offline. Cannot clear cache at this time.");
           }
