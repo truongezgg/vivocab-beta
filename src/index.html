@@ -301,13 +301,34 @@ Let’s start with "kidnap".
       displayAppVersion();
 
       // Reload Button functionality
-      document.getElementById("reload-app").addEventListener(
-        "click",
-        () => {
-          window.location.reload();
-        },
-        { once: true }
-      );
+      document
+        .getElementById("reload-app")
+        .addEventListener("click", async () => {
+          if (navigator.onLine) {
+            try {
+              // Log the cache clearing process
+              console.log("[PWA] Clearing cache...");
+
+              // Get all cache names
+              const cacheNames = await caches.keys();
+
+              // Delete all caches
+              await Promise.all(
+                cacheNames.map((cacheName) => caches.delete(cacheName))
+              );
+
+              console.log("[PWA] Cache cleared successfully.");
+
+              // Reload the page
+              window.location.reload(true); // Force reload from server
+            } catch (error) {
+              console.error("[PWA] Error clearing cache:", error);
+              alert("Failed to clear cache. Please try again.");
+            }
+          } else {
+            alert("You are offline. Cannot clear cache at this time.");
+          }
+        });
 
       // Register PWA
       if ("serviceWorker" in navigator) {

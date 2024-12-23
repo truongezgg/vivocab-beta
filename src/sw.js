@@ -1,5 +1,5 @@
-const version = "0.1.13";
-const staticDevCoffee = `dev-coffee-site-v${version}`;
+const version = "0.0.1";
+const cacheName = `vivocab@${version}`;
 const assets = [
   "/",
   "/?source=pwa",
@@ -18,10 +18,13 @@ const assets = [
   "/icons/favicon.ico",
 ];
 
-self.addEventListener("install", (installEvent) => {
-  installEvent.waitUntil(
-    caches.open(staticDevCoffee).then((cache) => {
-      cache.addAll(assets);
+self.addEventListener("install", (e) => {
+  e.waitUntil(
+    caches.open(cacheName).then((cache) => {
+      cache
+        .addAll(assets.map((file) => new Request(file, { cache: "no-cache" })))
+        .then(() => console.log("Install success"))
+        .catch((e) => console.error("Install failed", e));
     })
   );
 });
@@ -33,3 +36,15 @@ self.addEventListener("fetch", (fetchEvent) => {
     })
   );
 });
+
+const activateHandler = (e) => {
+  e.waitUntil(
+    caches.keys().then((names) => {
+      const invalidNames = names.filter((name) => name !== cacheName);
+      if (!invalidNames.length) return;
+      return Promise.all(invalidNames.map((name) => caches.delete(name)));
+    })
+  );
+};
+
+self.addEventListener("activate", activateHandler);
