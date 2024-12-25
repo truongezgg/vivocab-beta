@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextReviewTimeEl = document.getElementById("next-review-time");
 
   // Add Vocab Elements
+  const fixedAddButton = document.getElementById("fixed-add-button");
   const addForm = document.getElementById("add-form");
   const vocabText = document.getElementById("vocab-text");
   const vocabPronunciation = document.getElementById("vocab-pronunciation");
@@ -35,12 +36,19 @@ document.addEventListener("DOMContentLoaded", () => {
   tabs.forEach((tab) => {
     tab.onclick = () => {
       const target = tab.getAttribute("data-tab");
+      if (!target) return;
 
       tabs.forEach((t) => t.classList.remove("active"));
       contents.forEach((c) => c.classList.remove("active"));
 
       tab.classList.add("active");
       document.getElementById(target).classList.add("active");
+
+      if (target === "add") {
+        fixedAddButton.style.display = "none";
+      } else {
+        fixedAddButton.style.display = "block";
+      }
 
       if (target === "overview") updateOverview();
       if (target === "list") {

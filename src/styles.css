@@ -4,35 +4,41 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+html {
+  min-height: 100%;
+}
 body {
   font-family: Arial, sans-serif;
   background-color: #f8f9fa;
   color: #333;
   line-height: 1.6;
+  margin-top: 0;
+  min-height: 100vh
 }
 
 /* App Container */
 #app {
   max-width: 600px;
-  margin: 20px auto;
+  margin: 0px auto;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
+  padding-top: 10px;
 }
 
 /* Tabs Navigation */
 .tabs {
-    position: sticky;
-    top: 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
     z-index: 100; /* Ensures it stays above other content */
     background-color: white; /* Matches the background color */
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
-    padding: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .tabs-content {
@@ -42,14 +48,14 @@ body {
   /* margin-bottom: 20px; */
 }
 
-.tab-button {
+.tabs .tab-button {
   background-color: #046bd2;
   color: #fff;
   border: none;
-  padding: 10px;
-  border-radius: 5px;
   cursor: pointer;
   margin-bottom: 0;
+  height: 80px;
+  border-radius: 0px;
 }
 
 .tab-button.active {
@@ -58,6 +64,7 @@ body {
 
 .tab-content {
   display: none;
+  margin-bottom: 80px;
 }
 
 .tab-content.active {
@@ -69,7 +76,7 @@ input,
 textarea,
 button {
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -112,6 +119,7 @@ h1 {
   max-width: 500px;
   text-align: center;
   width: 100%;
+  position: relative;
 }
 
 .modal-content h2 {
@@ -226,14 +234,18 @@ hr {
 /* Top Button (Stop Review) */
 .top-button {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  padding: 10px 20px;
-  background-color: #d9534f;
+  top: 5px;
+  right: 10px;
+  padding: 5px 10px !important;
+  background-color: #d9534f !important;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  width: auto;
+  margin: 0 !important;
+  margin-left: 2px !important;
+  margin-right: -5px !important;
 }
 
 .top-button:hover {
@@ -494,14 +506,28 @@ hr {
 }
 
 /* -------------------------------------------------------------------------- */
+/*                                 Fixed menu                                 */
+/* -------------------------------------------------------------------------- */
+.fixed-menu {
+  position: fixed;
+  bottom: 85px;
+  right: 20px;
+}
+
+/* -------------------------------------------------------------------------- */
 /*                                    badge                                   */
 /* -------------------------------------------------------------------------- */
 
 /* Badge Style */
 .practice-badge {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
+  /* position: fixed; */
+  /* bottom: 60px; */
+  /* right: 20px; */
+
+  /* position: absolute;
+  bottom: 0;
+  right: 0; */
+
   background-color: #ff6347;
   color: white;
   font-size: 24px;
@@ -517,6 +543,30 @@ hr {
   animation: shake 1s ease-in-out infinite;
   /* z-index: 1000; */
   opacity: 0.9;
+}
+
+/* Rounded button styling */
+.fixed-add-button {
+  background-color: #046bd2; /* Blue background */
+  color: white; /* White text/icon */
+  font-size: 24px; /* Size of the icon */
+  font-weight: bold; /* Bold icon */
+  border-radius: 50%; /* Fully rounded */
+  width: 60px; /* Fixed width */
+  height: 60px; /* Fixed height */
+  display: flex; /* Flexbox for centering */
+  align-items: center; /* Center icon vertically */
+  justify-content: center; /* Center icon horizontally */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  cursor: pointer; /* Pointer cursor on hover */
+  opacity: 0.9; /* Slight transparency */
+  transition: all 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effects */
+.fixed-add-button:hover {
+  opacity: 1; /* Full opacity on hover */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); /* More prominent shadow */
 }
 
 /* Badge Number Style */
@@ -563,6 +613,7 @@ hr {
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   padding: 20px;
   margin: 20px auto;
+  margin-top: 0px;
   font-family: Arial, sans-serif;
 }
 
@@ -734,8 +785,8 @@ hr {
 /* -------------------------------------------------------------------------- */
 #app-version {
   position: fixed;
-  bottom: 5px;
-  right: 10px;
+  bottom: 80px;
+  left: 0px;
   font-size: 0.75rem;
   color: #333;
   font-family: Arial, sans-serif;
@@ -745,8 +796,8 @@ hr {
   position: fixed;
   width: 30px;
   height: 30px;
-  bottom: 15px;
-  left: 10px;
+  bottom: 95px;
+  left: 5px;
   font-size: 2em; /* Smaller font size */
   color: #fff;
   border: none;

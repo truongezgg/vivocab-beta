@@ -22,7 +22,7 @@
             Overview
           </button>
           <button class="tab-button" data-tab="lessions">Lessons</button>
-          <button class="tab-button" data-tab="add">Add New</button>
+          <!-- <button class="tab-button" data-tab="add">Add New</button> -->
           <button class="tab-button" data-tab="list">Vocabularies</button>
         </div>
       </nav>
@@ -39,11 +39,8 @@
 
         <div class="overview-card">
           <div class="card-header">
-            <h2>Total Vocabularies</h2>
+            <h2>Learned</h2>
             <p class="total-vocab" id="total-vocab">0</p>
-          </div>
-          <div class="card-footer">
-            <p>Next Review: <span id="next-review-time">N/A</span></p>
           </div>
           <div class="word-level-table">
             <table>
@@ -97,6 +94,9 @@
               </tbody>
             </table>
           </div>
+          <div class="card-footer">
+          </div>
+          <p>Preparing for: <span id="next-review-time">N/A</span></p>
           <button id="learn-btn" class="start-learning-btn">
             Start Learning
           </button>
@@ -142,21 +142,6 @@
         <h1>Lessons</h1>
         <div id="lessons-container"></div>
       </section>
-
-      <!-- Popup Modal -->
-      <div class="modal-lession hidden">
-        <div class="modal-content">
-          <div class="modal-content-btn">
-            <button id="import-words-btn">Import all</button>
-            <button id="close-modal" width="30%" style="background-color: red">
-              Close
-            </button>
-          </div>
-          <h2 id="lesson-title"></h2>
-          <p id="lesson-description"></p>
-          <ul id="lesson-words"></ul>
-        </div>
-      </div>
 
       <section id="add" class="tab-content">
         <h1>Add New Vocabulary</h1>
@@ -235,10 +220,10 @@ Let’s start with "kidnap".
         <div class="button-container">
           <button id="import-btn">Import</button>
           <input
-            type="file"
-            id="import-file"
-            accept=".json"
-            style="display: none"
+          type="file"
+          id="import-file"
+          accept=".json"
+          style="display: none"
           />
           <button id="export-btn">Export</button>
         </div>
@@ -246,6 +231,7 @@ Let’s start with "kidnap".
           <label for="voice-selector">Select Voice:</label>
           <select id="voice-selector"></select>
         </div>
+        <button class="tab-button" data-tab="add">Add New</button>
         <div id="filters">
           <label for="filter-level">Filter by Level:</label>
           <select id="filter-level">
@@ -264,12 +250,28 @@ Let’s start with "kidnap".
       </section>
     </div>
 
+    <!-- Popup Modal -->
+    <div class="modal-lession hidden">
+      <div class="modal-content">
+        <div class="modal-content-btn">
+          <button id="import-words-btn">Import all</button>
+          <button id="close-modal" width="30%" style="background-color: red">
+            Close
+          </button>
+        </div>
+        <h2 id="lesson-title"></h2>
+        <p id="lesson-description"></p>
+        <ul id="lesson-words"></ul>
+      </div>
+    </div>
+
     <!-- Learning Modal -->
     <div id="learning-modal" class="modal">
       <div class="modal-content">
-        <button id="stop-review-btn" class="top-button">Stop Review</button>
+        
 
         <!-- Progress Bar -->
+        <button id="stop-review-btn" class="top-button">×</button>
         <div id="progress-bar-container">
           <div id="progress-bar"></div>
           <p id="progress-text">0/0</p>
@@ -307,13 +309,19 @@ Let’s start with "kidnap".
       </div>
     </div>
 
-    <div id="practice-badge" class="practice-badge">
-      <span id="review-count" class="review-count">0</span>
-      📝
+    <div class="fixed-menu">
+      <button id="fixed-add-button" data-tab="add" class="tab-button fixed-add-button">✚</button>
+      <button id="practice-badge" class="practice-badge">
+        <span id="review-count" class="review-count">0</span>
+        📝
+      </button>
+      <button id="reload-app" class="tab-button fixed-add-button">♻️</button>
     </div>
 
+
+
     <div id="app-version" class="version-display"></div>
-    <button id="reload-app" class="reload-btn">🔄</button>
+    <!-- <button id="reload-app" class="reload-btn">🔄</button> -->
 
     <script src="/index.js"></script>
     <script src="/app.js"></script>
@@ -330,7 +338,7 @@ Let’s start with "kidnap".
             const version = data.version; // Assuming the version field exists in manifest.json
             document.getElementById(
               "app-version"
-            ).textContent = `Version: ${version}`;
+            ).textContent = `v${version}`;
           })
           .catch((error) => {
             console.error("Error loading manifest.json:", error);
