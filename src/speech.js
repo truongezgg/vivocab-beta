@@ -1,7 +1,6 @@
 const synth = window.speechSynthesis; // Speech synthesis API
 
 let voices = [];
-let speechRate = 1.0;
 
 /* ------------------ Load Available Voices ------------------ */
 // Loads voices into memory and ensures compatibility across browsers
@@ -37,6 +36,7 @@ function speakText(text) {
   if (voices.length > 0) {
     utterance.voice = voices[selectedVoiceIndex || 0]; // Use the selected voice
   }
+  const speechRate = localStorage.getItem("speechRate") || 1.0;
 
   utterance.rate = speechRate;
 
@@ -44,13 +44,18 @@ function speakText(text) {
 }
 
 function speak(event) {
-  const text = event.target.getAttribute("data-word");
-  if (!text) return;
+  // Get the clicked element
+  const target = event.target;
 
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.voice = voices[localStorage.getItem("selectedVoiceIndex") || 0];
-  utterance.rate = speechRate;
-  synth.speak(utterance);
+  // Retrieve the word from the 'data-word' attribute
+  const word = target.dataset.word;
+
+  // Speak the word if it exists
+  if (word) {
+    speakText(word);
+  } else {
+    console.error("No 'data-word' attribute found on the clicked element.");
+  }
 }
 
 /* ------------------ Make Words Speakable ------------------ */
@@ -134,7 +139,6 @@ window.speak = speak;
 loadVoices();
 
 function updateSpeechRate(rate) {
-  speechRate = rate;
   localStorage.setItem("speechRate", rate);
 }
 
