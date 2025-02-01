@@ -204,11 +204,11 @@ Type: Verb
 Pronunciation: /ˈkɪd.næp/  
 Translations: Bắt cóc  
 Description: To take someone away illegally by force, often to demand something in return.  
-The criminals plan to kidnap the millionaire’s child.  
+The criminals plan to kidnap the millionaire's child.  
 The police arrested a gang that tried to kidnap a tourist.  
 It's a crime to kidnap anyone, regardless of their background.  
 
-Let’s start with "kidnap".
+Let's start with "kidnap".
           </textarea>
           <br />
           <button id="copy-button">Click to Copy</button>
@@ -220,10 +220,10 @@ Let’s start with "kidnap".
         <div class="button-container">
           <button id="import-btn">Import</button>
           <input
-          type="file"
-          id="import-file"
-          accept=".json"
-          style="display: none"
+            type="file"
+            id="import-file"
+            accept=".json"
+            style="display: none"
           />
           <button id="export-btn">Export</button>
         </div>
@@ -231,9 +231,18 @@ Let’s start with "kidnap".
           <label for="voice-selector">Select Voice:</label>
           <select id="voice-selector"></select>
         </div>
-        <button class="tab-button" data-tab="add">Add New</button>
-        <div id="filters">
-          <label for="filter-level">Filter by Level:</label>
+        <!-- <button class="tab-button" data-tab="add">Add New</button> -->
+
+        <div class="vocab-controls">
+          <div class="search-container">
+            <input 
+              type="text" 
+              id="vocab-search" 
+              placeholder="Search vocabularies..."
+              class="search-input"
+            />
+            <span class="search-icon">🔍</span>
+          </div>
           <select id="filter-level">
             <option value="">All Levels</option>
             <option value="1">Level 1</option>
@@ -245,8 +254,14 @@ Let’s start with "kidnap".
             <option value="7">Level 7</option>
           </select>
         </div>
-
+        
         <div id="vocab-list"></div>
+        
+        <div class="pagination-controls">
+          <button id="prev-page" class="pagination-btn">Previous</button>
+          <span id="page-info">Page <span id="current-page">1</span>/<span id="total-pages">1</span></span>
+          <button id="next-page" class="pagination-btn">Next</button>
+        </div>
       </section>
     </div>
 

@@ -32,6 +32,14 @@ document.addEventListener("DOMContentLoaded", () => {
   Store.load();
   updateOverview();
 
+  // Add these at the top with other constants
+  const ITEMS_PER_PAGE = 10;
+  let currentPage = 1;
+  let searchTerm = "";
+
+  // Add the search input constant
+  const searchInput = document.getElementById("vocab-search");
+
   /* ------------------ Tab Navigation ------------------ */
   tabs.forEach((tab) => {
     tab.onclick = () => {
@@ -144,15 +152,42 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectedLevel = filterLevel.value;
     let vocabList = [...Store.database.vocabularies];
 
+    // Apply level filter
     if (selectedLevel) {
       vocabList = vocabList.filter(
         (item) => item.level === parseInt(selectedLevel)
       );
     }
 
+    // Apply search filter
+    if (searchTerm) {
+      vocabList = vocabList.filter((item) =>
+        item.text.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    // Sort by creation date
     vocabList.sort((a, b) => b.createdAt - a.createdAt);
 
-    vocabListContainer.innerHTML = vocabList
+    // Calculate pagination
+    const totalItems = vocabList.length;
+    const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+
+    // Update pagination controls
+    document.getElementById("current-page").textContent = currentPage;
+    document.getElementById("total-pages").textContent = totalPages;
+    document.getElementById("prev-page").disabled = currentPage === 1;
+    document.getElementById("next-page").disabled = currentPage === totalPages;
+
+    // Get items for current page
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const paginatedList = vocabList.slice(
+      startIndex,
+      startIndex + ITEMS_PER_PAGE
+    );
+
+    // Render the items
+    vocabListContainer.innerHTML = paginatedList
       .map((vocab) => {
         const dataWord = `data-word="${vocab.text}"`;
         const description = vocab.description.split("\n")[0] || "";
@@ -194,7 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
       vocabListContainer.innerHTML = "<p>No vocabularies found.</p>";
     }
 
-    makeWordsSpeakable(); // Activate speakable words
+    makeWordsSpeakable();
     attachRemoveEventListeners();
   }
 
@@ -221,7 +256,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  filterLevel.addEventListener("change", renderVocabList);
+  filterLevel.addEventListener("change", () => {
+    currentPage = 1; // Reset to first page when filtering
+    renderVocabList();
+  });
+
+  // Add event listeners for search and pagination
+  searchInput.addEventListener("input", (e) => {
+    searchTerm = e.target.value;
+    currentPage = 1; // Reset to first page when searching
+    renderVocabList();
+  });
+
+  document.getElementById("prev-page").addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      renderVocabList();
+    }
+  });
+
+  document.getElementById("next-page").addEventListener("click", () => {
+    const totalPages = Math.ceil(
+      Store.database.vocabularies.length / ITEMS_PER_PAGE
+    );
+    if (currentPage < totalPages) {
+      currentPage++;
+      renderVocabList();
+    }
+  });
 
   /* ------------------ Import & Export ------------------ */
   document.getElementById("import-btn").addEventListener("click", () => {
