@@ -1367,3 +1367,147 @@ hr {
   background: #e0e0e0;
 }
 
+/* Update the lesson styles */
+.lesson-category {
+  margin: 20px 0;
+  padding: 15px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.lesson-category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: linear-gradient(135deg, #4c96d7, #7ab8f5);
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.lesson-category-header h2 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.lesson-category-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+  padding: 15px 0;
+}
+
+.sub-lesson-card {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 15px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.sub-lesson-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sub-lesson-card h3 {
+  margin: 0 0 10px 0;
+  color: #046bd2;
+}
+
+.sub-lesson-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.lesson-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* Vocabulary list in sub-lesson details */
+.vocab-list {
+  margin-top: 15px;
+}
+
+.vocab-item {
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.vocab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.vocab-text {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.vocab-translation {
+  color: #666;
+}
+
+.vocab-description {
+  font-size: 0.9rem;
+  color: #444;
+  white-space: pre-line;
+}
+
+/* Back button and title container */
+.lesson-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+/* Back button */
+.back-button {
+  background: linear-gradient(135deg, #4c96d7, #7ab8f5);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: auto;
+  min-width: 120px;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(4, 107, 210, 0.2);
+  margin: 0;
+}
+
+.back-button:hover {
+  background: linear-gradient(135deg, #3a7ab8, #6aa5e4);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(4, 107, 210, 0.3);
+}
+
+.back-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(4, 107, 210, 0.2);
+}
+
+/* Update title styles */
+.lesson-header h1 {
+  margin: 0;
+  flex: 1;
+}
+

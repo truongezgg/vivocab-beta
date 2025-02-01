@@ -42,33 +42,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ------------------ Tab Navigation ------------------ */
   tabs.forEach((tab) => {
-    tab.onclick = () => {
-      const target = tab.getAttribute("data-tab");
-      if (!target) return;
-
+    tab.addEventListener("click", () => {
       tabs.forEach((t) => t.classList.remove("active"));
       contents.forEach((c) => c.classList.remove("active"));
 
       tab.classList.add("active");
-      document.getElementById(target).classList.add("active");
+      const tabId = tab.getAttribute("data-tab");
+      document.getElementById(tabId).classList.add("active");
 
-      if (target === "add") {
+      if (tabId === "add") {
         fixedAddButton.style.display = "none";
       } else {
         fixedAddButton.style.display = "block";
       }
 
-      if (target === "overview") updateOverview();
-      if (target === "list") {
+      if (tabId === "overview") updateOverview();
+      if (tabId === "list") {
         renderVocabList();
         loadVoices(); // Ensure voices are loaded
       }
 
       // Update storage info when settings tab is opened
-      if (target === "settings") {
+      if (tabId === "settings") {
         updateStorageInfo();
       }
-    };
+
+      // Initialize lesson navigation when lessons tab is clicked
+      if (tabId === "lessons-tab") {
+        // The LessonNavigation class will handle its own initialization
+        // when the script loads
+      }
+    });
   });
 
   /* ------------------ Overview: Update Stats ------------------ */

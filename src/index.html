@@ -141,7 +141,9 @@
 
       <section id="lessions" class="tab-content">
         <h1>Lessons</h1>
-        <div id="lessons-container"></div>
+        <div id="lesson-container">
+          <!-- LessonNavigation will render content here -->
+        </div>
       </section>
 
       <section id="add" class="tab-content">
@@ -293,21 +295,6 @@ Let's start with "kidnap".
       </section>
     </div>
 
-    <!-- Popup Modal -->
-    <div class="modal-lession hidden">
-      <div class="modal-content">
-        <div class="modal-content-btn">
-          <button id="import-words-btn">Import all</button>
-          <button id="close-modal" width="30%" style="background-color: red">
-            Close
-          </button>
-        </div>
-        <h2 id="lesson-title"></h2>
-        <p id="lesson-description"></p>
-        <ul id="lesson-words"></ul>
-      </div>
-    </div>
-
     <!-- Learning Modal -->
     <div id="learning-modal" class="modal">
       <div class="modal-content">
@@ -369,10 +356,11 @@ Let's start with "kidnap".
     <!-- <button id="reload-app" class="reload-btn">🔄</button> -->
 
     <script src="/index.js"></script>
-    <script src="/app.js"></script>
+    <script src="lesson.js"></script>
+    <script src="components/LessonNavigation.js"></script>
+    <script src="app.js"></script>
     <script src="/speech.js"></script>
     <script src="/learn-progress.js"></script>
-    <script src="/lesson.js"></script>
 
     <script>
       // Function to get version from the manifest and display it

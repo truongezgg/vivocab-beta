@@ -134,35 +134,43 @@ class Vocab {
         return time - (time % timeToRound);
     }
     learn(vocab, isCorrect, rememberLevel = RememberLevel.OK) {
-        const data = Store.database.vocabularies.find((item) => item.id === vocab.id);
-        if (!data)
-            return this.add(vocab);
+        const currentLevel = vocab.level || 0;
         const currentTime = () => Date.now();
         // Reset to 1h after
-        data.level = (() => {
+        const level = (() => {
             if (!isCorrect)
                 return Level.ONE;
             if (rememberLevel === RememberLevel.BAD) {
-                return Math.max(data.level - 2, Level.ONE);
+                return Math.max(currentLevel - 2, Level.ONE);
             }
             if (rememberLevel === RememberLevel.POOR) {
-                return Math.max(data.level - 1, Level.ONE);
+                return Math.max(currentLevel - 1, Level.ONE);
             }
             if (rememberLevel === RememberLevel.GOOD) {
-                return Math.min(data.level + 2, MaxLevel);
+                return Math.min(currentLevel + 2, MaxLevel);
             }
             if (rememberLevel === RememberLevel.PERFECT) {
-                return Math.min(data.level + 3, MaxLevel);
+                return Math.min(currentLevel + 3, MaxLevel);
             }
-            return Math.min(data.level + 1, MaxLevel);
+            return Math.min(currentLevel + 1, MaxLevel);
         })();
-        data.lastReviewAt = currentTime();
+        const lastReviewAt = currentTime();
         /* -------------------------------------------------------------------------- */
         /*                                Rounded time                                */
         /* -------------------------------------------------------------------------- */
-        const time = this.getShouldReviewAt(data.level, currentTime());
+        const time = this.getShouldReviewAt(level, currentTime());
         // const timeToRound = 1000 * 60 * 15; // 15m
-        data.shouldReviewAfter = Vocab.roundTime(time);
+        const shouldReviewAfter = Vocab.roundTime(time);
+        const data = Store.database.vocabularies.find((item) => item.id === vocab.id);
+        if (!data) {
+            vocab.level = level;
+            vocab.lastReviewAt = lastReviewAt;
+            vocab.shouldReviewAfter = shouldReviewAfter;
+            return this.add(vocab);
+        }
+        data.level = level;
+        data.lastReviewAt = lastReviewAt;
+        data.shouldReviewAfter = shouldReviewAfter;
         Store.sync();
     }
     getShouldReviewAt(level, _time) {

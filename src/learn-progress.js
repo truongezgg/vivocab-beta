@@ -10,15 +10,17 @@ function shuffleArray(array) {
   return shuffled;
 }
 
-const handleLearning = function () {
+const handleLearning = function (_vocabularies) {
   const vocabInstance = new Vocab();
-  const vocabToReview = [
-    // ...Store.database.vocabularies.filter(
-    //   (vocab) => vocab.shouldReviewAfter < Date.now()
-    // ),
-    // ...Store.database.vocabularies.filter((vocab) => vocab),
-    ...vocabInstance.getVocabToReview().vocabularies,
-  ];
+  const vocabToReview = _vocabularies?.length
+    ? _vocabularies
+    : [
+        // ...Store.database.vocabularies.filter(
+        //   (vocab) => vocab.shouldReviewAfter < Date.now()
+        // ),
+        // ...Store.database.vocabularies.filter((vocab) => vocab),
+        ...vocabInstance.getVocabToReview().vocabularies,
+      ];
   const sessionData = {
     startTime: Date.now(),
     endTime: null,

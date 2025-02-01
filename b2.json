@@ -1,0 +1,2617 @@
+{
+  "id": "learn-vocab-b2",
+  "name": "B2",
+  "description": "Intermediate level vocabulary",
+  "subLessons": [
+    {
+      "id": "b2-1",
+      "name": "Academic Writing",
+      "description": "Formal vocabulary for academic papers and essays",
+      "vocabularies": [
+        {
+          "id": "b2-1-1",
+          "type": "verb",
+          "pronunciation": "/əˈnæl.aɪz/",
+          "text": "analyze",
+          "translations": ["phân tích"],
+          "description": "To study something in detail to understand it better.\nResearchers analyze data to draw conclusions.\nWe need to analyze the results carefully."
+        },
+        {
+          "id": "b2-1-2",
+          "type": "verb",
+          "pronunciation": "/ˈsɪn.θə.saɪz/",
+          "text": "synthesize",
+          "translations": ["tổng hợp"],
+          "description": "To combine different ideas or things to form a new whole.\nThe paper synthesizes findings from multiple studies.\nResearchers must synthesize information from various sources."
+        },
+        {
+          "id": "b2-1-3",
+          "type": "noun",
+          "pronunciation": "/ˈθɪə.ri/",
+          "text": "theory",
+          "translations": ["lý thuyết"],
+          "description": "A formal set of ideas intended to explain something.\nThis theory explains how planets move.\nHer theory was supported by the evidence."
+        },
+        {
+          "id": "b2-1-4",
+          "type": "noun",
+          "pronunciation": "/ˌhaɪˈpɒθ.ə.sɪs/",
+          "text": "hypothesis",
+          "translations": ["giả thuyết"],
+          "description": "An idea or explanation that is suggested but not yet proven.\nThe scientist developed a hypothesis about climate change.\nWe need to test this hypothesis."
+        },
+        {
+          "id": "b2-1-5",
+          "type": "noun",
+          "pronunciation": "/ˈmɛθ.əd/",
+          "text": "methodology",
+          "translations": ["phương pháp luận"],
+          "description": "A system of methods used in a particular area of study.\nThe research methodology was clearly explained.\nThey used a new methodology to collect data."
+        },
+        {
+          "id": "b2-1-6",
+          "type": "adjective",
+          "pronunciation": "/ɛmˈpɪr.ɪ.kəl/",
+          "text": "empirical",
+          "translations": ["thực nghiệm"],
+          "description": "Based on observation or experience rather than theory.\nThe study provides empirical evidence.\nWe need empirical data to support this claim."
+        },
+        {
+          "id": "b2-1-7",
+          "type": "verb",
+          "pronunciation": "/ˈkɒr.ə.leɪt/",
+          "text": "correlate",
+          "translations": ["tương quan"],
+          "description": "To have a mutual relationship or connection.\nThe two variables strongly correlate.\nResearchers tried to correlate the findings."
+        },
+        {
+          "id": "b2-1-8",
+          "type": "noun",
+          "pronunciation": "/ˈfaɪn.dɪŋz/",
+          "text": "findings",
+          "translations": ["kết quả nghiên cứu"],
+          "description": "Information discovered as the result of an inquiry or investigation.\nThe findings were published in a journal.\nPreliminary findings suggest a connection."
+        },
+        {
+          "id": "b2-1-9",
+          "type": "verb",
+          "pronunciation": "/ˈpɒs.tjʊ.leɪt/",
+          "text": "postulate",
+          "translations": ["giả định"],
+          "description": "To suggest or assume the existence or truth of something.\nThe theory postulates that all matter is made of atoms.\nScientists postulate a connection between the two phenomena."
+        },
+        {
+          "id": "b2-1-10",
+          "type": "noun",
+          "pronunciation": "/ˌɪm.plɪˈkeɪ.ʃən/",
+          "text": "implication",
+          "translations": ["ý nghĩa"],
+          "description": "A possible effect or result of an action or decision.\nThe study has important implications for future research.\nWe must consider the implications of these findings."
+        }
+      ]
+    },
+    {
+      "id": "b2-2",
+      "name": "Research Methods",
+      "description": "Terms related to conducting and analyzing research",
+      "vocabularies": [
+        {
+          "id": "b2-2-1",
+          "type": "noun",
+          "pronunciation": "/ˈvɛriəbəl/",
+          "text": "variable",
+          "translations": ["biến số"],
+          "description": "A factor that can change in an experiment.\nThe dependent variable is affected by the independent variable.\nResearchers must control all variables."
+        },
+        {
+          "id": "b2-2-2",
+          "type": "noun",
+          "pronunciation": "/ˈsæmpəl/",
+          "text": "sample",
+          "translations": ["mẫu"],
+          "description": "A group selected for research that represents a larger population.\nThe study used a random sample of 1000 participants.\nThe sample size affects the reliability of results."
+        },
+        {
+          "id": "b2-2-3",
+          "type": "noun",
+          "pronunciation": "/kənˈtrōl ˌgrüp/",
+          "text": "control group",
+          "translations": ["nhóm đối chứng"],
+          "description": "A group in an experiment that does not receive the treatment being tested.\nThe control group received a placebo.\nResults are compared with the control group."
+        },
+        {
+          "id": "b2-2-4",
+          "type": "noun",
+          "pronunciation": "/ˌkwɒn.tɪˈteɪ.tɪv/",
+          "text": "quantitative",
+          "translations": ["định lượng"],
+          "description": "Research involving numerical data and statistical analysis.\nThe study used quantitative methods.\nQuantitative data shows measurable changes."
+        },
+        {
+          "id": "b2-2-5",
+          "type": "noun",
+          "pronunciation": "/ˌkwɒl.ɪˈteɪ.tɪv/",
+          "text": "qualitative",
+          "translations": ["định tính"],
+          "description": "Research focusing on non-numerical data like observations and interviews.\nQualitative research explores personal experiences.\nThe study used qualitative methods."
+        },
+        {
+          "id": "b2-2-6",
+          "type": "verb",
+          "pronunciation": "/ˈreplɪkeɪt/",
+          "text": "replicate",
+          "translations": ["lặp lại"],
+          "description": "To repeat an experiment to verify results.\nOther scientists tried to replicate the findings.\nThe results could not be replicated."
+        },
+        {
+          "id": "b2-2-7",
+          "type": "noun",
+          "pronunciation": "/baɪˈæs/",
+          "text": "bias",
+          "translations": ["thiên vị"],
+          "description": "Prejudice that affects the validity of research.\nResearchers must avoid bias in their studies.\nSelection bias can affect results."
+        },
+        {
+          "id": "b2-2-8",
+          "type": "noun",
+          "pronunciation": "/rɪˈlaɪəbɪlɪti/",
+          "text": "reliability",
+          "translations": ["độ tin cậy"],
+          "description": "The consistency of research results over time.\nThe test has high reliability.\nReliability is crucial in research."
+        },
+        {
+          "id": "b2-2-9",
+          "type": "noun",
+          "pronunciation": "/vəˈlɪdɪti/",
+          "text": "validity",
+          "translations": ["tính hợp lệ"],
+          "description": "The accuracy and truthfulness of research findings.\nThe study has strong internal validity.\nExternal validity refers to generalizability."
+        },
+        {
+          "id": "b2-2-10",
+          "type": "noun",
+          "pronunciation": "/ˈdeɪtə/",
+          "text": "data",
+          "translations": ["dữ liệu"],
+          "description": "Facts and statistics collected for analysis.\nThe researchers collected data from surveys.\nRaw data must be processed and analyzed."
+        }
+      ]
+    },
+    {
+      "id": "b2-3",
+      "name": "Business Management",
+      "description": "Vocabulary for business administration and leadership",
+      "vocabularies": [
+        {
+          "id": "b2-3-1",
+          "type": "noun",
+          "pronunciation": "/ˈstræt.ə.dʒi/",
+          "text": "strategy",
+          "translations": ["chiến lược"],
+          "description": "A detailed plan for achieving success.\nThe company developed a new business strategy.\nTheir marketing strategy was very effective."
+        },
+        {
+          "id": "b2-3-2",
+          "type": "verb",
+          "pronunciation": "/ˈdel.ə.ɡeɪt/",
+          "text": "delegate",
+          "translations": ["ủy quyền"],
+          "description": "To give tasks and authority to others.\nManagers must learn to delegate effectively.\nShe delegated the project to her team."
+        },
+        {
+          "id": "b2-3-3",
+          "type": "noun",
+          "pronunciation": "/ˌɔr.ɡə.nəˈzeɪ.ʃən/",
+          "text": "organization",
+          "translations": ["tổ chức"],
+          "description": "A structured group working together for a purpose.\nThe organization has offices worldwide.\nImproving organizational efficiency is key."
+        },
+        {
+          "id": "b2-3-4",
+          "type": "verb",
+          "pronunciation": "/ˈmoʊ.tə.veɪt/",
+          "text": "motivate",
+          "translations": ["động viên"],
+          "description": "To encourage and inspire others to work well.\nGood leaders know how to motivate their team.\nIncentives can motivate employees."
+        },
+        {
+          "id": "b2-3-5",
+          "type": "noun",
+          "pronunciation": "/ˈpɝː.fɔr.məns/",
+          "text": "performance",
+          "translations": ["hiệu suất"],
+          "description": "How well a task is completed.\nEmployee performance is reviewed annually.\nThe company's performance exceeded expectations."
+        },
+        {
+          "id": "b2-3-6",
+          "type": "noun",
+          "pronunciation": "/ˈliː.dɚ.ʃɪp/",
+          "text": "leadership",
+          "translations": ["lãnh đạo"],
+          "description": "The ability to guide and inspire others.\nStrong leadership is essential for success.\nThe company needs better leadership."
+        },
+        {
+          "id": "b2-3-7",
+          "type": "verb",
+          "pronunciation": "/ˌɪm.pləˈment/",
+          "text": "implement",
+          "translations": ["thực hiện"],
+          "description": "To put a plan or system into action.\nWe will implement the new policy next month.\nThe strategy was successfully implemented."
+        },
+        {
+          "id": "b2-3-8",
+          "type": "noun",
+          "pronunciation": "/ɪˈfɪʃ.ən.si/",
+          "text": "efficiency",
+          "translations": ["hiệu quả"],
+          "description": "The ability to work well without wasting resources.\nImproving efficiency reduces costs.\nOperational efficiency is our priority."
+        },
+        {
+          "id": "b2-3-9",
+          "type": "verb",
+          "pronunciation": "/kəˈlæb.ə.reɪt/",
+          "text": "collaborate",
+          "translations": ["hợp tác"],
+          "description": "To work together with others.\nTeams must collaborate effectively.\nDepartments collaborate on major projects."
+        },
+        {
+          "id": "b2-3-10",
+          "type": "noun",
+          "pronunciation": "/ˌɪn.əˈveɪ.ʃən/",
+          "text": "innovation",
+          "translations": ["đổi mới"],
+          "description": "New ideas or methods in business.\nInnovation drives company growth.\nTechnological innovation changes markets."
+        }
+      ]
+    },
+    {
+      "id": "b2-4",
+      "name": "Financial Markets",
+      "description": "Terms related to stocks, investments and trading",
+      "vocabularies": [
+        {
+          "id": "b2-4-1",
+          "type": "noun",
+          "pronunciation": "/ˈstɑk/",
+          "text": "stock",
+          "translations": ["cổ phiếu"],
+          "description": "A share of ownership in a company.\nThe stock price increased by 10%.\nInvestors trade stocks on exchanges."
+        },
+        {
+          "id": "b2-4-2",
+          "type": "noun",
+          "pronunciation": "/ˈdɪvəˌdɛnd/",
+          "text": "dividend",
+          "translations": ["cổ tức"],
+          "description": "A payment made by a company to shareholders.\nThe company pays quarterly dividends.\nDividend yields vary by industry."
+        },
+        {
+          "id": "b2-4-3",
+          "type": "noun",
+          "pronunciation": "/ɪnˈvɛstmənt/",
+          "text": "investment",
+          "translations": ["đầu tư"],
+          "description": "Money committed to gain future returns.\nLong-term investments often yield better returns.\nDiversifying investments reduces risk."
+        },
+        {
+          "id": "b2-4-4",
+          "type": "noun",
+          "pronunciation": "/ˈbroʊkɚ/",
+          "text": "broker",
+          "translations": ["môi giới"],
+          "description": "A person who buys and sells stocks for clients.\nThe broker executed the trade.\nChoose a reliable broker for trading."
+        },
+        {
+          "id": "b2-4-5",
+          "type": "noun",
+          "pronunciation": "/pɔrtˈfoʊlioʊ/",
+          "text": "portfolio",
+          "translations": ["danh mục đầu tư"],
+          "description": "A collection of investments owned by an investor.\nDiversify your investment portfolio.\nThe portfolio performed well this year."
+        },
+        {
+          "id": "b2-4-6",
+          "type": "verb",
+          "pronunciation": "/treɪd/",
+          "text": "trade",
+          "translations": ["giao dịch"],
+          "description": "To buy and sell financial instruments.\nInvestors trade stocks daily.\nTrading volume was high today."
+        },
+        {
+          "id": "b2-4-7",
+          "type": "noun",
+          "pronunciation": "/ˈmɑrkət/",
+          "text": "market",
+          "translations": ["thị trường"],
+          "description": "The place where financial assets are traded.\nThe market is volatile today.\nBull markets show rising prices."
+        },
+        {
+          "id": "b2-4-8",
+          "type": "noun",
+          "pronunciation": "/rɪsk/",
+          "text": "risk",
+          "translations": ["rủi ro"],
+          "description": "The possibility of financial loss.\nHigh returns come with high risk.\nManage investment risks carefully."
+        },
+        {
+          "id": "b2-4-9",
+          "type": "noun",
+          "pronunciation": "/ˈkæpɪtəl/",
+          "text": "capital",
+          "translations": ["vốn"],
+          "description": "Money available for investment.\nThe company raised new capital.\nCapital gains are taxed differently."
+        },
+        {
+          "id": "b2-4-10",
+          "type": "noun",
+          "pronunciation": "/ˈlɪkwɪdəti/",
+          "text": "liquidity",
+          "translations": ["tính thanh khoản"],
+          "description": "The ease of converting assets to cash.\nHigh liquidity means easy trading.\nThe market lacks liquidity today."
+        }
+      ]
+    },
+    {
+      "id": "b2-5",
+      "name": "Marketing Strategy",
+      "description": "Advanced marketing and advertising terminology",
+      "vocabularies": [
+        {
+          "id": "b2-5-1",
+          "type": "noun",
+          "pronunciation": "/ˈbrændɪŋ/",
+          "text": "branding",
+          "translations": ["xây dựng thương hiệu"],
+          "description": "The process of creating a unique image for a product.\nStrong branding increases customer loyalty.\nThe company invested in branding."
+        },
+        {
+          "id": "b2-5-2",
+          "type": "noun",
+          "pronunciation": "/ˈtɑrgət ˌɔdiəns/",
+          "text": "target audience",
+          "translations": ["đối tượng mục tiêu"],
+          "description": "The specific group of consumers aimed at.\nIdentify your target audience first.\nThe campaign reached its target audience."
+        },
+        {
+          "id": "b2-5-3",
+          "type": "noun",
+          "pronunciation": "/ˌsɛgmɛnˈteɪʃən/",
+          "text": "segmentation",
+          "translations": ["phân khúc"],
+          "description": "Division of market into distinct groups.\nMarket segmentation improves targeting.\nDemographic segmentation is common."
+        },
+        {
+          "id": "b2-5-4",
+          "type": "noun",
+          "pronunciation": "/pəˈzɪʃənɪŋ/",
+          "text": "positioning",
+          "translations": ["định vị"],
+          "description": "How a product is presented to customers.\nBrand positioning affects perception.\nThe company changed its positioning strategy."
+        },
+        {
+          "id": "b2-5-5",
+          "type": "noun",
+          "pronunciation": "/ˈmɑrkət ˌʃɛr/",
+          "text": "market share",
+          "translations": ["thị phần"],
+          "description": "Percentage of total market sales.\nTheir market share increased.\nCompeting for market share."
+        },
+        {
+          "id": "b2-5-6",
+          "type": "noun",
+          "pronunciation": "/kəmˈpɛtətɪv əˈvæntɪdʒ/",
+          "text": "competitive advantage",
+          "translations": ["lợi thế cạnh tranh"],
+          "description": "Superior position over competitors.\nInnovation provides competitive advantage.\nMaintaining competitive advantage."
+        },
+        {
+          "id": "b2-5-7",
+          "type": "noun",
+          "pronunciation": "/ˈvæljuː ˌprɑpəˈzɪʃən/",
+          "text": "value proposition",
+          "translations": ["đề xuất giá trị"],
+          "description": "Promise of value to customers.\nClear value proposition is essential.\nDeveloping a strong value proposition."
+        },
+        {
+          "id": "b2-5-8",
+          "type": "noun",
+          "pronunciation": "/ˈkɑnˌvɝʒən ˌreɪt/",
+          "text": "conversion rate",
+          "translations": ["tỷ lệ chuyển đổi"],
+          "description": "Percentage of visitors who take desired action.\nImproving conversion rates.\nTracking conversion rates."
+        },
+        {
+          "id": "b2-5-9",
+          "type": "noun",
+          "pronunciation": "/ˈrɔɪ/",
+          "text": "ROI",
+          "translations": ["lợi nhuận đầu tư"],
+          "description": "Return on Investment - profit relative to cost.\nMeasuring ROI of campaigns.\nMaximizing marketing ROI."
+        },
+        {
+          "id": "b2-5-10",
+          "type": "noun",
+          "pronunciation": "/ˈkɑntɛnt ˌmɑrkətɪŋ/",
+          "text": "content marketing",
+          "translations": ["tiếp thị nội dung"],
+          "description": "Marketing through valuable content creation.\nContent marketing builds trust.\nEffective content marketing strategy."
+        }
+      ]
+    },
+    {
+      "id": "b2-6",
+      "name": "Information Technology",
+      "description": "Computer systems and software development terms",
+      "vocabularies": [
+        {
+          "id": "b2-6-1",
+          "type": "noun",
+          "pronunciation": "/ˈælgəˌrɪðəm/",
+          "text": "algorithm",
+          "translations": ["thuật toán"],
+          "description": "A set of steps to solve a problem.\nThe search algorithm is efficient.\nDeveloping new algorithms."
+        },
+        {
+          "id": "b2-6-2",
+          "type": "noun",
+          "pronunciation": "/ˈdeɪtəˌbeɪs/",
+          "text": "database",
+          "translations": ["cơ sở dữ liệu"],
+          "description": "Organized collection of data.\nDatabase management system.\nQuerying the database."
+        },
+        {
+          "id": "b2-6-3",
+          "type": "noun",
+          "pronunciation": "/ˈsɝvɝ/",
+          "text": "server",
+          "translations": ["máy chủ"],
+          "description": "Computer that provides services.\nThe server handles requests.\nServer maintenance required."
+        },
+        {
+          "id": "b2-6-4",
+          "type": "noun",
+          "pronunciation": "/ˈnɛtwɝk/",
+          "text": "network",
+          "translations": ["mạng"],
+          "description": "Connected computers sharing resources.\nNetwork security is crucial.\nBuilding reliable networks."
+        },
+        {
+          "id": "b2-6-5",
+          "type": "noun",
+          "pronunciation": "/ˈæpɪˌkeɪʃən/",
+          "text": "application",
+          "translations": ["ứng dụng"],
+          "description": "Software program for specific tasks.\nMobile application development.\nTesting applications."
+        },
+        {
+          "id": "b2-6-6",
+          "type": "noun",
+          "pronunciation": "/ˈɪntərˌfeɪs/",
+          "text": "interface",
+          "translations": ["giao diện"],
+          "description": "Connection between user and computer.\nUser interface design.\nImproving interface usability."
+        },
+        {
+          "id": "b2-6-7",
+          "type": "verb",
+          "pronunciation": "/dɪˈbʌg/",
+          "text": "debug",
+          "translations": ["gỡ lỗi"],
+          "description": "Find and fix software problems.\nDebugging the code.\nTroubleshooting issues."
+        },
+        {
+          "id": "b2-6-8",
+          "type": "noun",
+          "pronunciation": "/ˈprəʊtəkɒl/",
+          "text": "protocol",
+          "translations": ["giao thức"],
+          "description": "Rules for data communication.\nNetwork protocols.\nImplementing protocols."
+        },
+        {
+          "id": "b2-6-9",
+          "type": "noun",
+          "pronunciation": "/ˈkæʃ/",
+          "text": "cache",
+          "translations": ["bộ nhớ đệm"],
+          "description": "Temporary storage for quick access.\nClearing the cache.\nCache management."
+        },
+        {
+          "id": "b2-6-10",
+          "type": "noun",
+          "pronunciation": "/ˈfaɪərˌwɔl/",
+          "text": "firewall",
+          "translations": ["tường lửa"],
+          "description": "Security system for networks.\nConfiguring the firewall.\nFirewall protection."
+        }
+      ]
+    },
+    {
+      "id": "b2-7",
+      "name": "Artificial Intelligence",
+      "description": "AI, machine learning and automation vocabulary",
+      "vocabularies": [
+        {
+          "id": "b2-7-1",
+          "type": "noun",
+          "pronunciation": "/ˈməʃin ˈlɝnɪŋ/",
+          "text": "machine learning",
+          "translations": ["học máy"],
+          "description": "Systems that can learn from data.\nMachine learning improves performance.\nAdvanced machine learning algorithms."
+        },
+        {
+          "id": "b2-7-2",
+          "type": "noun",
+          "pronunciation": "/ˈnʊrəl ˈnɛtwɝk/",
+          "text": "neural network",
+          "translations": ["mạng nơ-ron"],
+          "description": "Computing system inspired by biological brains.\nTraining neural networks.\nDeep neural networks process data."
+        },
+        {
+          "id": "b2-7-3",
+          "type": "noun",
+          "pronunciation": "/ˈdeɪtə ˈmaɪnɪŋ/",
+          "text": "data mining",
+          "translations": ["khai thác dữ liệu"],
+          "description": "Finding patterns in large datasets.\nData mining reveals trends.\nUsing data mining techniques."
+        },
+        {
+          "id": "b2-7-4",
+          "type": "noun",
+          "pronunciation": "/ˌɔtəˈmeɪʃən/",
+          "text": "automation",
+          "translations": ["tự động hóa"],
+          "description": "Use of machines to perform tasks.\nProcess automation saves time.\nAutomation increases efficiency."
+        },
+        {
+          "id": "b2-7-5",
+          "type": "noun",
+          "pronunciation": "/ˈrɑbɑt/",
+          "text": "robot",
+          "translations": ["rô-bốt"],
+          "description": "Programmable machine that performs tasks.\nIndustrial robots in manufacturing.\nRobots assist humans."
+        },
+        {
+          "id": "b2-7-6",
+          "type": "noun",
+          "pronunciation": "/ˈælgərɪðəm/",
+          "text": "algorithm",
+          "translations": ["thuật toán"],
+          "description": "Step-by-step procedure for calculations.\nOptimizing algorithms.\nComplex algorithms process data."
+        },
+        {
+          "id": "b2-7-7",
+          "type": "noun",
+          "pronunciation": "/prɪˈdɪktɪv ˈænəˌlɪtɪks/",
+          "text": "predictive analytics",
+          "translations": ["phân tích dự đoán"],
+          "description": "Using data to predict future events.\nPredictive analytics in business.\nImproving predictive models."
+        },
+        {
+          "id": "b2-7-8",
+          "type": "noun",
+          "pronunciation": "/ˈnætʃərəl ˈlæŋgwɪdʒ ˌprɑsɛsɪŋ/",
+          "text": "natural language processing",
+          "translations": ["xử lý ngôn ngữ tự nhiên"],
+          "description": "AI processing of human language.\nNLP improves communication.\nAdvanced NLP systems."
+        },
+        {
+          "id": "b2-7-9",
+          "type": "noun",
+          "pronunciation": "/ˈdip ˈlɝnɪŋ/",
+          "text": "deep learning",
+          "translations": ["học sâu"],
+          "description": "Advanced machine learning technique.\nDeep learning models.\nTraining deep learning systems."
+        },
+        {
+          "id": "b2-7-10",
+          "type": "noun",
+          "pronunciation": "/ˈkɑmpjutər ˈvɪʒən/",
+          "text": "computer vision",
+          "translations": ["thị giác máy tính"],
+          "description": "Computers processing visual information.\nComputer vision technology.\nImage recognition systems."
+        }
+      ]
+    },
+    {
+      "id": "b2-8",
+      "name": "Climate Change",
+      "description": "Environmental science and climate terminology",
+      "vocabularies": [
+        {
+          "id": "b2-8-1",
+          "type": "noun",
+          "pronunciation": "/ˈgloʊbəl ˈwɔrmɪŋ/",
+          "text": "global warming",
+          "translations": ["sự nóng lên toàn cầu"],
+          "description": "Increase in Earth's average temperature.\nGlobal warming effects.\nCombating global warming."
+        },
+        {
+          "id": "b2-8-2",
+          "type": "noun",
+          "pronunciation": "/ˈkɑrbən ˈfʊtˌprɪnt/",
+          "text": "carbon footprint",
+          "translations": ["dấu chân carbon"],
+          "description": "Amount of carbon emissions produced.\nReducing carbon footprint.\nMeasuring environmental impact."
+        },
+        {
+          "id": "b2-8-3",
+          "type": "noun",
+          "pronunciation": "/ˈgrinhaʊs ɪˈfɛkt/",
+          "text": "greenhouse effect",
+          "translations": ["hiệu ứng nhà kính"],
+          "description": "Warming of Earth by trapped gases.\nGreenhouse gases trap heat.\nAtmospheric changes."
+        },
+        {
+          "id": "b2-8-4",
+          "type": "noun",
+          "pronunciation": "/dəˌfɑrəˈsteɪʃən/",
+          "text": "deforestation",
+          "translations": ["phá rừng"],
+          "description": "Clearing of forests on a large scale.\nPreventing deforestation.\nEnvironmental impact of deforestation."
+        },
+        {
+          "id": "b2-8-5",
+          "type": "noun",
+          "pronunciation": "/ˈklaɪmət ˈtʃeɪndʒ/",
+          "text": "climate change",
+          "translations": ["biến đổi khí hậu"],
+          "description": "Long-term changes in weather patterns.\nAddressing climate change.\nClimate change impacts."
+        },
+        {
+          "id": "b2-8-6",
+          "type": "noun",
+          "pronunciation": "/ˈoʊʃən ˌæsɪdɪfɪˈkeɪʃən/",
+          "text": "ocean acidification",
+          "translations": ["axit hóa đại dương"],
+          "description": "Decreasing pH of Earth's oceans.\nMarine ecosystem impacts.\nReducing ocean acidification."
+        },
+        {
+          "id": "b2-8-7",
+          "type": "noun",
+          "pronunciation": "/rɪˈnuəbəl ˈɛnɝdʒi/",
+          "text": "renewable energy",
+          "translations": ["năng lượng tái tạo"],
+          "description": "Energy from natural renewable sources.\nSolar and wind power.\nSustainable energy solutions."
+        },
+        {
+          "id": "b2-8-8",
+          "type": "noun",
+          "pronunciation": "/ˈɛkoʊˌsɪstəm/",
+          "text": "ecosystem",
+          "translations": ["hệ sinh thái"],
+          "description": "Community of interacting organisms.\nProtecting ecosystems.\nBalanced ecosystems."
+        },
+        {
+          "id": "b2-8-9",
+          "type": "noun",
+          "pronunciation": "/ˈbaɪoʊˌdaɪˌvɝsəti/",
+          "text": "biodiversity",
+          "translations": ["đa dạng sinh học"],
+          "description": "Variety of life in an ecosystem.\nPreserving biodiversity.\nThreatened biodiversity."
+        },
+        {
+          "id": "b2-8-10",
+          "type": "noun",
+          "pronunciation": "/səˈsteɪnəˌbɪləti/",
+          "text": "sustainability",
+          "translations": ["tính bền vững"],
+          "description": "Avoiding depletion of resources.\nSustainable practices.\nEnvironmental sustainability."
+        }
+      ]
+    },
+    {
+      "id": "b2-9",
+      "name": "Renewable Energy",
+      "description": "Sustainable energy and green technology terms",
+      "vocabularies": [
+        {
+          "id": "b2-9-1",
+          "type": "noun",
+          "pronunciation": "/ˈsoʊlɚ ˈpænəl/",
+          "text": "solar panel",
+          "translations": ["tấm pin mặt trời"],
+          "description": "Device converting sunlight to electricity.\nInstalling solar panels.\nEfficient solar energy."
+        },
+        {
+          "id": "b2-9-2",
+          "type": "noun",
+          "pronunciation": "/ˈwɪnd ˈtɝbaɪn/",
+          "text": "wind turbine",
+          "translations": ["tuabin gió"],
+          "description": "Device converting wind to electricity.\nWind farm construction.\nWind power generation."
+        },
+        {
+          "id": "b2-9-3",
+          "type": "noun",
+          "pronunciation": "/ˌhaɪdroʊɪˈlɛktrɪk/",
+          "text": "hydroelectric",
+          "translations": ["thủy điện"],
+          "description": "Electricity from water power.\nHydroelectric dams.\nWater power generation."
+        },
+        {
+          "id": "b2-9-4",
+          "type": "noun",
+          "pronunciation": "/dʒiˈoʊθɝməl/",
+          "text": "geothermal",
+          "translations": ["địa nhiệt"],
+          "description": "Earth's heat for power generation.\nGeothermal energy sources.\nHeat from Earth."
+        },
+        {
+          "id": "b2-9-5",
+          "type": "noun",
+          "pronunciation": "/ˈbaɪoʊˌfjuəl/",
+          "text": "biofuel",
+          "translations": ["nhiên liệu sinh học"],
+          "description": "Fuel from organic materials.\nBiofuel production.\nAlternative to fossil fuels."
+        },
+        {
+          "id": "b2-9-6",
+          "type": "noun",
+          "pronunciation": "/ˈɛnɝdʒi ˌɛfɪʃənsi/",
+          "text": "energy efficiency",
+          "translations": ["hiệu quả năng lượng"],
+          "description": "Using less energy for same result.\nImproving efficiency.\nEnergy-saving measures."
+        },
+        {
+          "id": "b2-9-7",
+          "type": "noun",
+          "pronunciation": "/ˈpæsɪv haʊs/",
+          "text": "passive house",
+          "translations": ["nhà thụ động"],
+          "description": "Ultra-low energy building.\nEnergy-efficient design.\nSustainable architecture."
+        },
+        {
+          "id": "b2-9-8",
+          "type": "noun",
+          "pronunciation": "/ˈsmart grɪd/",
+          "text": "smart grid",
+          "translations": ["lưới điện thông minh"],
+          "description": "Efficient electricity distribution.\nModern power infrastructure.\nGrid optimization."
+        },
+        {
+          "id": "b2-9-9",
+          "type": "noun",
+          "pronunciation": "/ˈbætəri ˈstɔrɪdʒ/",
+          "text": "battery storage",
+          "translations": ["lưu trữ pin"],
+          "description": "Energy storage technology.\nStoring renewable energy.\nBattery systems."
+        },
+        {
+          "id": "b2-9-10",
+          "type": "noun",
+          "pronunciation": "/ˈkɑrbən ˈnjutrəl/",
+          "text": "carbon neutral",
+          "translations": ["trung hòa carbon"],
+          "description": "Net zero carbon emissions.\nCarbon neutral goals.\nReducing emissions."
+        }
+      ]
+    },
+    {
+      "id": "b2-10",
+      "name": "Political Systems",
+      "description": "Government structures and political processes",
+      "vocabularies": [
+        {
+          "id": "b2-10-1",
+          "type": "noun",
+          "pronunciation": "/dɪˈmɑkrəsi/",
+          "text": "democracy",
+          "translations": ["dân chủ"],
+          "description": "Government by the people.\nDemocratic elections.\nVoter participation."
+        },
+        {
+          "id": "b2-10-2",
+          "type": "noun",
+          "pronunciation": "/ˈpɑrləmənt/",
+          "text": "parliament",
+          "translations": ["nghị viện"],
+          "description": "Legislative body of government.\nParliamentary debate.\nMaking laws."
+        },
+        {
+          "id": "b2-10-3",
+          "type": "noun",
+          "pronunciation": "/ˈkɑnstɪˌtuʃən/",
+          "text": "constitution",
+          "translations": ["hiến pháp"],
+          "description": "Fundamental law of a state.\nConstitutional rights.\nLegal framework."
+        },
+        {
+          "id": "b2-10-4",
+          "type": "noun",
+          "pronunciation": "/ˌbjuroʊˈkræsi/",
+          "text": "bureaucracy",
+          "translations": ["bộ máy hành chính"],
+          "description": "Administrative system of government.\nBureaucratic procedures.\nOfficial processes."
+        },
+        {
+          "id": "b2-10-5",
+          "type": "noun",
+          "pronunciation": "/ˈpɑləsi/",
+          "text": "policy",
+          "translations": ["chính sách"],
+          "description": "Course of action adopted.\nPolicy implementation.\nGovernment policies."
+        },
+        {
+          "id": "b2-10-6",
+          "type": "noun",
+          "pronunciation": "/ˈlɛdʒɪsˌleɪʃən/",
+          "text": "legislation",
+          "translations": ["pháp luật"],
+          "description": "Laws enacted by government.\nPassing legislation.\nLegal requirements."
+        },
+        {
+          "id": "b2-10-7",
+          "type": "noun",
+          "pronunciation": "/ˈdʒudɪʃəri/",
+          "text": "judiciary",
+          "translations": ["tư pháp"],
+          "description": "System of courts and judges.\nJudicial decisions.\nLegal system."
+        },
+        {
+          "id": "b2-10-8",
+          "type": "noun",
+          "pronunciation": "/ˈsʌvrənti/",
+          "text": "sovereignty",
+          "translations": ["chủ quyền"],
+          "description": "Supreme power or authority.\nNational sovereignty.\nIndependent control."
+        },
+        {
+          "id": "b2-10-9",
+          "type": "noun",
+          "pronunciation": "/ˈfɛdərəˌlɪzəm/",
+          "text": "federalism",
+          "translations": ["chế độ liên bang"],
+          "description": "Federal system of government.\nPower distribution.\nState rights."
+        },
+        {
+          "id": "b2-10-10",
+          "type": "noun",
+          "pronunciation": "/ɪˈlɛktərət/",
+          "text": "electorate",
+          "translations": ["cử tri"],
+          "description": "All people entitled to vote.\nVoting population.\nElectoral decisions."
+        }
+      ]
+    },
+    {
+      "id": "b2-11",
+      "name": "International Relations",
+      "description": "Diplomacy and global affairs vocabulary",
+      "vocabularies": [
+        {
+          "id": "b2-11-1",
+          "type": "noun",
+          "pronunciation": "/dɪˈploʊməsi/",
+          "text": "diplomacy",
+          "translations": ["ngoại giao"],
+          "description": "Management of international relations.\nDiplomatic negotiations.\nPeaceful conflict resolution."
+        },
+        {
+          "id": "b2-11-2",
+          "type": "noun",
+          "pronunciation": "/ˈtriːti/",
+          "text": "treaty",
+          "translations": ["hiệp ước"],
+          "description": "Formal agreement between nations.\nSigning the peace treaty.\nInternational treaties."
+        },
+        {
+          "id": "b2-11-3",
+          "type": "noun",
+          "pronunciation": "/ˈsæŋkʃən/",
+          "text": "sanction",
+          "translations": ["trừng phạt"],
+          "description": "Penalty for international law violation.\nEconomic sanctions.\nImposing trade sanctions."
+        },
+        {
+          "id": "b2-11-4",
+          "type": "noun",
+          "pronunciation": "/əˈlaɪəns/",
+          "text": "alliance",
+          "translations": ["liên minh"],
+          "description": "Agreement to cooperate between nations.\nMilitary alliance.\nStrategic partnerships."
+        },
+        {
+          "id": "b2-11-5",
+          "type": "noun",
+          "pronunciation": "/ˌdʒurɪsˈdɪkʃən/",
+          "text": "jurisdiction",
+          "translations": ["quyền tài phán"],
+          "description": "Legal authority over territory.\nTerritorial jurisdiction.\nLegal boundaries."
+        },
+        {
+          "id": "b2-11-6",
+          "type": "noun",
+          "pronunciation": "/ˈsʌmɪt/",
+          "text": "summit",
+          "translations": ["hội nghị thượng đỉnh"],
+          "description": "Meeting of heads of state.\nInternational summit.\nDiplomatic meetings."
+        },
+        {
+          "id": "b2-11-7",
+          "type": "noun",
+          "pronunciation": "/ˌɪmjuˈnɪti/",
+          "text": "immunity",
+          "translations": ["quyền miễn trừ"],
+          "description": "Exemption from legal prosecution.\nDiplomatic immunity.\nLegal protection."
+        },
+        {
+          "id": "b2-11-8",
+          "type": "noun",
+          "pronunciation": "/ˈprɑtəkɑl/",
+          "text": "protocol",
+          "translations": ["nghi thức"],
+          "description": "Diplomatic rules and customs.\nDiplomatic protocol.\nOfficial procedures."
+        },
+        {
+          "id": "b2-11-9",
+          "type": "noun",
+          "pronunciation": "/ˈɛmbəsi/",
+          "text": "embassy",
+          "translations": ["đại sứ quán"],
+          "description": "Diplomatic mission headquarters.\nEmbassy staff.\nConsular services."
+        },
+        {
+          "id": "b2-11-10",
+          "type": "noun",
+          "pronunciation": "/ˌæmbæˈsædər/",
+          "text": "ambassador",
+          "translations": ["đại sứ"],
+          "description": "Official diplomatic representative.\nAppointing ambassadors.\nDiplomatic relations."
+        }
+      ]
+    },
+    {
+      "id": "b2-12",
+      "name": "Social Media",
+      "description": "Digital communication and social networking terms",
+      "vocabularies": [
+        {
+          "id": "b2-12-1",
+          "type": "noun",
+          "pronunciation": "/ˈvaɪrəl/",
+          "text": "viral",
+          "translations": ["lan truyền"],
+          "description": "Content spreading rapidly online.\nViral marketing.\nViral content strategy."
+        },
+        {
+          "id": "b2-12-2",
+          "type": "noun",
+          "pronunciation": "/ˈhaʃtæg/",
+          "text": "hashtag",
+          "translations": ["thẻ đánh dấu"],
+          "description": "Word or phrase preceded by #.\nTrending hashtags.\nHashtag campaigns."
+        },
+        {
+          "id": "b2-12-3",
+          "type": "verb",
+          "pronunciation": "/ˈʃɛr/",
+          "text": "share",
+          "translations": ["chia sẻ"],
+          "description": "Distribute content to others.\nSharing posts.\nContent sharing."
+        },
+        {
+          "id": "b2-12-4",
+          "type": "noun",
+          "pronunciation": "/ˈfɑloʊər/",
+          "text": "follower",
+          "translations": ["người theo dõi"],
+          "description": "Person subscribing to updates.\nGaining followers.\nFollower engagement."
+        },
+        {
+          "id": "b2-12-5",
+          "type": "noun",
+          "pronunciation": "/ˈproʊfaɪl/",
+          "text": "profile",
+          "translations": ["hồ sơ"],
+          "description": "User's online presence.\nProfile optimization.\nSocial media profiles."
+        },
+        {
+          "id": "b2-12-6",
+          "type": "verb",
+          "pronunciation": "/ˈɛngɪdʒ/",
+          "text": "engage",
+          "translations": ["tương tác"],
+          "description": "Interact with content or users.\nUser engagement.\nEngaging content."
+        },
+        {
+          "id": "b2-12-7",
+          "type": "noun",
+          "pronunciation": "/ˈtrɛndɪŋ/",
+          "text": "trending",
+          "translations": ["xu hướng"],
+          "description": "Currently popular topics.\nTrending topics.\nViral trends."
+        },
+        {
+          "id": "b2-12-8",
+          "type": "noun",
+          "pronunciation": "/ˈmɛnʃən/",
+          "text": "mention",
+          "translations": ["đề cập"],
+          "description": "Reference to another user.\nMentioning users.\nSocial mentions."
+        },
+        {
+          "id": "b2-12-9",
+          "type": "noun",
+          "pronunciation": "/ˈfidˌbæk/",
+          "text": "feedback",
+          "translations": ["phản hồi"],
+          "description": "User responses and comments.\nCustomer feedback.\nOnline reviews."
+        },
+        {
+          "id": "b2-12-10",
+          "type": "noun",
+          "pronunciation": "/ˈɪnfluənsər/",
+          "text": "influencer",
+          "translations": ["người ảnh hưởng"],
+          "description": "Person with large social following.\nInfluencer marketing.\nSocial media influence."
+        }
+      ]
+    },
+    {
+      "id": "b2-13",
+      "name": "Journalism",
+      "description": "News reporting and media production vocabulary",
+      "vocabularies": [
+        {
+          "id": "b2-13-1",
+          "type": "noun",
+          "pronunciation": "/ˈdɛdlaɪn/",
+          "text": "deadline",
+          "translations": ["thời hạn"],
+          "description": "Time limit for submission.\nMeeting deadlines.\nPublication schedule."
+        },
+        {
+          "id": "b2-13-2",
+          "type": "noun",
+          "pronunciation": "/ˈbaɪlaɪn/",
+          "text": "byline",
+          "translations": ["dòng tên tác giả"],
+          "description": "Writer's name in article.\nByline credit.\nAuthor attribution."
+        },
+        {
+          "id": "b2-13-3",
+          "type": "noun",
+          "pronunciation": "/ˈhɛdlaɪn/",
+          "text": "headline",
+          "translations": ["tiêu đề"],
+          "description": "Title of news story.\nCatchy headlines.\nHeadline writing."
+        },
+        {
+          "id": "b2-13-4",
+          "type": "noun",
+          "pronunciation": "/ˈsɔrs/",
+          "text": "source",
+          "translations": ["nguồn tin"],
+          "description": "Origin of information.\nReliable sources.\nSource verification."
+        },
+        {
+          "id": "b2-13-5",
+          "type": "noun",
+          "pronunciation": "/ˈɛdɪtɔr/",
+          "text": "editor",
+          "translations": ["biên tập viên"],
+          "description": "Person who reviews content.\nChief editor.\nEditorial decisions."
+        },
+        {
+          "id": "b2-13-6",
+          "type": "noun",
+          "pronunciation": "/ˈkʌvərɪdʒ/",
+          "text": "coverage",
+          "translations": ["phạm vi đưa tin"],
+          "description": "Extent of reporting on topic.\nNews coverage.\nMedia coverage."
+        },
+        {
+          "id": "b2-13-7",
+          "type": "noun",
+          "pronunciation": "/ˈfitʃər/",
+          "text": "feature",
+          "translations": ["bài đặc sắc"],
+          "description": "Detailed article or story.\nFeature writing.\nIn-depth features."
+        },
+        {
+          "id": "b2-13-8",
+          "type": "noun",
+          "pronunciation": "/ˈɪntərˌvju/",
+          "text": "interview",
+          "translations": ["phỏng vấn"],
+          "description": "Formal questioning for information.\nConducting interviews.\nInterview techniques."
+        },
+        {
+          "id": "b2-13-9",
+          "type": "noun",
+          "pronunciation": "/ˈprɛsˌris/",
+          "text": "press release",
+          "translations": ["thông cáo báo chí"],
+          "description": "Official statement to media.\nWriting press releases.\nMedia announcements."
+        },
+        {
+          "id": "b2-13-10",
+          "type": "noun",
+          "pronunciation": "/ˈfæktˌtʃɛk/",
+          "text": "fact-check",
+          "translations": ["kiểm chứng"],
+          "description": "Verify accuracy of information.\nFact-checking process.\nAccuracy verification."
+        }
+      ]
+    },
+    {
+      "id": "b2-14",
+      "name": "Fine Arts",
+      "description": "Visual arts and artistic techniques terminology",
+      "vocabularies": [
+        {
+          "id": "b2-14-1",
+          "type": "noun",
+          "pronunciation": "/ˈkæn.vəs/",
+          "text": "canvas",
+          "translations": ["vải canvas"],
+          "description": "Material for painting.\nBlank canvas.\nPainting surface."
+        },
+        {
+          "id": "b2-14-2",
+          "type": "noun",
+          "pronunciation": "/ˈpæl.ət/",
+          "text": "palette",
+          "translations": ["bảng màu"],
+          "description": "Surface for mixing colors.\nColor palette.\nArtist's palette."
+        },
+        {
+          "id": "b2-14-3",
+          "type": "noun",
+          "pronunciation": "/ˈtɛkstʃər/",
+          "text": "texture",
+          "translations": ["kết cấu"],
+          "description": "Surface quality in art.\nTextural elements.\nVisual texture."
+        },
+        {
+          "id": "b2-14-4",
+          "type": "noun",
+          "pronunciation": "/kəmˈpoʊ.zɪ.ʃən/",
+          "text": "composition",
+          "translations": ["bố cục"],
+          "description": "Arrangement of elements.\nBalanced composition.\nVisual arrangement."
+        },
+        {
+          "id": "b2-14-5",
+          "type": "noun",
+          "pronunciation": "/ˈpɝˌspɛktɪv/",
+          "text": "perspective",
+          "translations": ["phối cảnh"],
+          "description": "Representation of depth.\nLinear perspective.\nDepth perception."
+        },
+        {
+          "id": "b2-14-6",
+          "type": "noun",
+          "pronunciation": "/ˈʃeɪdɪŋ/",
+          "text": "shading",
+          "translations": ["tô bóng"],
+          "description": "Showing light and shadow.\nGradual shading.\nShadow techniques."
+        },
+        {
+          "id": "b2-14-7",
+          "type": "noun",
+          "pronunciation": "/ˈskɛtʃ/",
+          "text": "sketch",
+          "translations": ["phác thảo"],
+          "description": "Quick drawing.\nPreliminary sketch.\nRough drawing."
+        },
+        {
+          "id": "b2-14-8",
+          "type": "noun",
+          "pronunciation": "/ˈmjurəl/",
+          "text": "mural",
+          "translations": ["tranh tường"],
+          "description": "Wall painting.\nLarge-scale murals.\nPublic art."
+        },
+        {
+          "id": "b2-14-9",
+          "type": "noun",
+          "pronunciation": "/ˈskulptʃər/",
+          "text": "sculpture",
+          "translations": ["điêu khắc"],
+          "description": "Three-dimensional artwork.\nBronze sculpture.\nSculptural form."
+        },
+        {
+          "id": "b2-14-10",
+          "type": "noun",
+          "pronunciation": "/ˈæbˌstrækt/",
+          "text": "abstract",
+          "translations": ["trừu tượng"],
+          "description": "Non-representational art.\nAbstract expression.\nNon-objective art."
+        }
+      ]
+    },
+    {
+      "id": "b2-15",
+      "name": "Classical Music",
+      "description": "Musical theory and composition vocabulary",
+      "vocabularies": [
+        {
+          "id": "b2-15-1",
+          "type": "noun",
+          "pronunciation": "/ˈhɑrməni/",
+          "text": "harmony",
+          "translations": ["hòa âm"],
+          "description": "Combination of musical notes.\nHarmonic progression.\nMusical harmony."
+        },
+        {
+          "id": "b2-15-2",
+          "type": "noun",
+          "pronunciation": "/ˈmɛlədi/",
+          "text": "melody",
+          "translations": ["giai điệu"],
+          "description": "Sequence of musical notes.\nMain melody.\nMelodic line."
+        },
+        {
+          "id": "b2-15-3",
+          "type": "noun",
+          "pronunciation": "/ˈrɪðəm/",
+          "text": "rhythm",
+          "translations": ["nhịp điệu"],
+          "description": "Pattern of musical beats.\nRhythmic pattern.\nTempo and rhythm."
+        },
+        {
+          "id": "b2-15-4",
+          "type": "noun",
+          "pronunciation": "/ˈsɪmfəni/",
+          "text": "symphony",
+          "translations": ["giao hưởng"],
+          "description": "Extended orchestral composition.\nSymphonic orchestra.\nClassical symphony."
+        },
+        {
+          "id": "b2-15-5",
+          "type": "noun",
+          "pronunciation": "/kənˈdʌktər/",
+          "text": "conductor",
+          "translations": ["nhạc trưởng"],
+          "description": "Orchestra leader.\nOrchestra conductor.\nMusical direction."
+        },
+        {
+          "id": "b2-15-6",
+          "type": "noun",
+          "pronunciation": "/ˈkɑnsɝtoʊ/",
+          "text": "concerto",
+          "translations": ["협주곡"],
+          "description": "Solo instrument with orchestra.\nPiano concerto.\nViolin concerto."
+        },
+        {
+          "id": "b2-15-7",
+          "type": "noun",
+          "pronunciation": "/ˈsɔnətə/",
+          "text": "sonata",
+          "translations": ["奏鸣曲"],
+          "description": "Musical composition for solo instrument.\nPiano sonata.\nClassical sonata."
+        },
+        {
+          "id": "b2-15-8",
+          "type": "noun",
+          "pronunciation": "/ˈɔpərə/",
+          "text": "opera",
+          "translations": ["歌剧"],
+          "description": "Musical drama.\nGrand opera.\nOperatic performance."
+        },
+        {
+          "id": "b2-15-9",
+          "type": "noun",
+          "pronunciation": "/ˈɑrkəstrə/",
+          "text": "orchestra",
+          "translations": ["管弦乐队"],
+          "description": "Large musical ensemble.\nSymphony orchestra.\nOrchestral music."
+        },
+        {
+          "id": "b2-15-10",
+          "type": "noun",
+          "pronunciation": "/ˈkɔrəs/",
+          "text": "chorus",
+          "translations": ["合唱团"],
+          "description": "Group of singers.\nChoral music.\nVocal ensemble."
+        }
+      ]
+    },
+    {
+      "id": "b2-16",
+      "name": "Theater Arts",
+      "description": "Stage performance and dramatic arts terms",
+      "vocabularies": [
+        {
+          "id": "b2-16-1",
+          "type": "noun",
+          "pronunciation": "/rɪˈhɝsəl/",
+          "text": "rehearsal",
+          "translations": ["tập dượt"],
+          "description": "Practice session for performance.\nDress rehearsal.\nRehearsing lines."
+        },
+        {
+          "id": "b2-16-2",
+          "type": "noun",
+          "pronunciation": "/ˈmɑnəˌlɔg/",
+          "text": "monologue",
+          "translations": ["độc thoại"],
+          "description": "Speech by single character.\nDramatic monologue.\nDelivering monologues."
+        },
+        {
+          "id": "b2-16-3",
+          "type": "noun",
+          "pronunciation": "/ˈdaɪəˌlɔg/",
+          "text": "dialogue",
+          "translations": ["đối thoại"],
+          "description": "Conversation between characters.\nWriting dialogue.\nNatural dialogue."
+        },
+        {
+          "id": "b2-16-4",
+          "type": "noun",
+          "pronunciation": "/ˈprɑps/",
+          "text": "props",
+          "translations": ["đạo cụ"],
+          "description": "Objects used in performance.\nStage props.\nProp management."
+        },
+        {
+          "id": "b2-16-5",
+          "type": "noun",
+          "pronunciation": "/ˈkɑstjum/",
+          "text": "costume",
+          "translations": ["trang phục"],
+          "description": "Clothes worn by performers.\nPeriod costumes.\nCostume design."
+        },
+        {
+          "id": "b2-16-6",
+          "type": "noun",
+          "pronunciation": "/ˈsɛtɪŋ/",
+          "text": "setting",
+          "translations": ["bối cảnh"],
+          "description": "Time and place of story.\nStage setting.\nDramatic setting."
+        },
+        {
+          "id": "b2-16-7",
+          "type": "noun",
+          "pronunciation": "/ˈkærɪktɚ/",
+          "text": "character",
+          "translations": ["nhân vật"],
+          "description": "Person in a play.\nCharacter development.\nPortraying characters."
+        },
+        {
+          "id": "b2-16-8",
+          "type": "noun",
+          "pronunciation": "/ˈplɑt/",
+          "text": "plot",
+          "translations": ["cốt truyện"],
+          "description": "Main story events.\nPlot development.\nStory structure."
+        },
+        {
+          "id": "b2-16-9",
+          "type": "noun",
+          "pronunciation": "/dəˈrɛktɚ/",
+          "text": "director",
+          "translations": ["đạo diễn"],
+          "description": "Person who guides production.\nStage director.\nDirectorial vision."
+        },
+        {
+          "id": "b2-16-10",
+          "type": "noun",
+          "pronunciation": "/ˈɔdiəns/",
+          "text": "audience",
+          "translations": ["khán giả"],
+          "description": "People watching performance.\nLive audience.\nAudience reaction."
+        }
+      ]
+    },
+    {
+      "id": "b2-17",
+      "name": "Film Production",
+      "description": "Cinema and movie-making terminology",
+      "vocabularies": [
+        {
+          "id": "b2-17-1",
+          "type": "noun",
+          "pronunciation": "/ˈskript/",
+          "text": "script",
+          "translations": ["kịch bản"],
+          "description": "Written text of film.\nScreenplay writing.\nScript development."
+        },
+        {
+          "id": "b2-17-2",
+          "type": "noun",
+          "pronunciation": "/ˈʃutɪŋ/",
+          "text": "shooting",
+          "translations": ["quay phim"],
+          "description": "Filming process.\nLocation shooting.\nFilm production."
+        },
+        {
+          "id": "b2-17-3",
+          "type": "noun",
+          "pronunciation": "/ˈɛdətɪŋ/",
+          "text": "editing",
+          "translations": ["biên tập"],
+          "description": "Process of cutting film.\nPost-production editing.\nFilm editing."
+        },
+        {
+          "id": "b2-17-4",
+          "type": "noun",
+          "pronunciation": "/ˈsaʊndtræk/",
+          "text": "soundtrack",
+          "translations": ["nhạc phim"],
+          "description": "Music in film.\nOriginal soundtrack.\nFilm score."
+        },
+        {
+          "id": "b2-17-5",
+          "type": "noun",
+          "pronunciation": "/ˈspɛʃəl ɪˈfɛkts/",
+          "text": "special effects",
+          "translations": ["hiệu ứng đặc biệt"],
+          "description": "Visual or sound effects.\nCGI effects.\nVisual effects."
+        },
+        {
+          "id": "b2-17-6",
+          "type": "noun",
+          "pronunciation": "/ˈkæmərə ˈæŋgəl/",
+          "text": "camera angle",
+          "translations": ["góc máy"],
+          "description": "Position of camera view.\nHigh angle shot.\nCamera positioning."
+        },
+        {
+          "id": "b2-17-7",
+          "type": "noun",
+          "pronunciation": "/ˈlaɪtɪŋ/",
+          "text": "lighting",
+          "translations": ["ánh sáng"],
+          "description": "Use of light in film.\nMood lighting.\nLighting design."
+        },
+        {
+          "id": "b2-17-8",
+          "type": "noun",
+          "pronunciation": "/ˈstʌntmən/",
+          "text": "stuntman",
+          "translations": ["diễn viên đóng thế"],
+          "description": "Person performing dangerous scenes.\nStunt coordination.\nAction sequences."
+        },
+        {
+          "id": "b2-17-9",
+          "type": "noun",
+          "pronunciation": "/ˈprɑdʌkʃən/",
+          "text": "production",
+          "translations": ["sản xuất"],
+          "description": "Process of making film.\nFilm production.\nMovie making."
+        },
+        {
+          "id": "b2-17-10",
+          "type": "noun",
+          "pronunciation": "/ˈkæstɪŋ/",
+          "text": "casting",
+          "translations": ["tuyển chọn diễn viên"],
+          "description": "Process of choosing actors.\nCasting decisions.\nRole selection."
+        }
+      ]
+    },
+    {
+      "id": "b2-18",
+      "name": "Psychology",
+      "description": "Mental processes and behavioral terms",
+      "vocabularies": [
+        {
+          "id": "b2-18-1",
+          "type": "noun",
+          "pronunciation": "/bɪˈheɪvyɚ/",
+          "text": "behavior",
+          "translations": ["hành vi"],
+          "description": "Way person acts or conducts oneself.\nHuman behavior.\nBehavioral patterns."
+        },
+        {
+          "id": "b2-18-2",
+          "type": "noun",
+          "pronunciation": "/ˈkɑgnəʃən/",
+          "text": "cognition",
+          "translations": ["nhận thức"],
+          "description": "Mental process of understanding.\nCognitive development.\nThinking processes."
+        },
+        {
+          "id": "b2-18-3",
+          "type": "noun",
+          "pronunciation": "/ɪˈmoʊʃən/",
+          "text": "emotion",
+          "translations": ["cảm xúc"],
+          "description": "Strong feeling.\nEmotional response.\nManaging emotions."
+        },
+        {
+          "id": "b2-18-4",
+          "type": "noun",
+          "pronunciation": "/ˈmɛməri/",
+          "text": "memory",
+          "translations": ["ký ức"],
+          "description": "Ability to remember.\nMemory formation.\nRecall ability."
+        },
+        {
+          "id": "b2-18-5",
+          "type": "noun",
+          "pronunciation": "/pɚˈsɛpʃən/",
+          "text": "perception",
+          "translations": ["tri giác"],
+          "description": "Way of understanding something.\nSensory perception.\nPerceptual processing."
+        },
+        {
+          "id": "b2-18-6",
+          "type": "noun",
+          "pronunciation": "/ˌmotəˈveɪʃən/",
+          "text": "motivation",
+          "translations": ["động lực"],
+          "description": "Reason for acting.\nIntrinsic motivation.\nMotivational factors."
+        },
+        {
+          "id": "b2-18-7",
+          "type": "noun",
+          "pronunciation": "/pɚsəˈnæləti/",
+          "text": "personality",
+          "translations": ["tính cách"],
+          "description": "Individual's character traits.\nPersonality types.\nCharacter development."
+        },
+        {
+          "id": "b2-18-8",
+          "type": "noun",
+          "pronunciation": "/ˈæŋzaɪəti/",
+          "text": "anxiety",
+          "translations": ["lo âu"],
+          "description": "Feeling of worry.\nAnxiety disorders.\nStress management."
+        },
+        {
+          "id": "b2-18-9",
+          "type": "noun",
+          "pronunciation": "/dɪˈprɛʃən/",
+          "text": "depression",
+          "translations": ["trầm cảm"],
+          "description": "Mental health condition.\nClinical depression.\nMood disorder."
+        },
+        {
+          "id": "b2-18-10",
+          "type": "noun",
+          "pronunciation": "/ˈθɛrəpi/",
+          "text": "therapy",
+          "translations": ["liệu pháp"],
+          "description": "Treatment of mental issues.\nPsychological therapy.\nCounseling sessions."
+        }
+      ]
+    },
+    {
+      "id": "b2-19",
+      "name": "Sociology",
+      "description": "Social structures and human society vocabulary",
+      "vocabularies": [
+        {
+          "id": "b2-19-1",
+          "type": "noun",
+          "pronunciation": "/səˈsaɪəti/",
+          "text": "society",
+          "translations": ["xã hội"],
+          "description": "Community of people.\nSocial structure.\nSocietal norms."
+        },
+        {
+          "id": "b2-19-2",
+          "type": "noun",
+          "pronunciation": "/ˈkʌltʃɚ/",
+          "text": "culture",
+          "translations": ["văn hóa"],
+          "description": "Customs of people.\nCultural values.\nSocial traditions."
+        },
+        {
+          "id": "b2-19-3",
+          "type": "noun",
+          "pronunciation": "/ˈsəʊʃəl ˈklɑs/",
+          "text": "social class",
+          "translations": ["giai cấp xã hội"],
+          "description": "Position in society.\nClass structure.\nSocial hierarchy."
+        },
+        {
+          "id": "b2-19-4",
+          "type": "noun",
+          "pronunciation": "/ˈdʒɛndɚ/",
+          "text": "gender",
+          "translations": ["giới tính"],
+          "description": "Social identity.\nGender roles.\nGender equality."
+        },
+        {
+          "id": "b2-19-5",
+          "type": "noun",
+          "pronunciation": "/ˈfæməli/",
+          "text": "family",
+          "translations": ["gia đình"],
+          "description": "Basic social unit.\nFamily structure.\nKinship relations."
+        },
+        {
+          "id": "b2-19-6",
+          "type": "noun",
+          "pronunciation": "/ˌɪnstɪˈtuʃən/",
+          "text": "institution",
+          "translations": ["thể chế"],
+          "description": "Established organization.\nSocial institutions.\nInstitutional structure."
+        },
+        {
+          "id": "b2-19-7",
+          "type": "noun",
+          "pronunciation": "/ˌsəʊʃəlaɪˈzeɪʃən/",
+          "text": "socialization",
+          "translations": ["xã hội hóa"],
+          "description": "Learning social norms.\nCultural learning.\nSocial development."
+        },
+        {
+          "id": "b2-19-8",
+          "type": "noun",
+          "pronunciation": "/ˈdɛvɪəns/",
+          "text": "deviance",
+          "translations": ["hành vi lệch lạc"],
+          "description": "Behavior against norms.\nSocial deviation.\nNonconformity."
+        },
+        {
+          "id": "b2-19-9",
+          "type": "noun",
+          "pronunciation": "/ˈstætəs/",
+          "text": "status",
+          "translations": ["địa vị"],
+          "description": "Social position.\nSocial ranking.\nStatus symbols."
+        },
+        {
+          "id": "b2-19-10",
+          "type": "noun",
+          "pronunciation": "/ˈroʊl/",
+          "text": "role",
+          "translations": ["vai trò"],
+          "description": "Expected behavior pattern.\nSocial roles.\nRole expectations."
+        }
+      ]
+    },
+    {
+      "id": "b2-20",
+      "name": "Medical Science",
+      "description": "Healthcare and medical terminology",
+      "vocabularies": [
+        {
+          "id": "b2-20-1",
+          "type": "noun",
+          "pronunciation": "/daɪəgˈnoʊsɪs/",
+          "text": "diagnosis",
+          "translations": ["chẩn đoán"],
+          "description": "Identification of illness.\nMedical diagnosis.\nDiagnostic process."
+        },
+        {
+          "id": "b2-20-2",
+          "type": "noun",
+          "pronunciation": "/ˈtritmənt/",
+          "text": "treatment",
+          "translations": ["điều trị"],
+          "description": "Medical care provided.\nTreatment options.\nTherapeutic approach."
+        },
+        {
+          "id": "b2-20-3",
+          "type": "noun",
+          "pronunciation": "/ˈsɪmptəm/",
+          "text": "symptom",
+          "translations": ["triệu chứng"],
+          "description": "Sign of illness.\nDisease symptoms.\nClinical signs."
+        },
+        {
+          "id": "b2-20-4",
+          "type": "noun",
+          "pronunciation": "/prɪˈskrɪpʃən/",
+          "text": "prescription",
+          "translations": ["đơn thuốc"],
+          "description": "Medical instruction.\nPrescribed medication.\nDrug prescription."
+        },
+        {
+          "id": "b2-20-5",
+          "type": "noun",
+          "pronunciation": "/ˈpræktɪs/",
+          "text": "practice",
+          "translations": ["thực hành"],
+          "description": "Professional work.\nMedical practice.\nClinical practice."
+        },
+        {
+          "id": "b2-20-6",
+          "type": "noun",
+          "pronunciation": "/ˈpeɪʃənt/",
+          "text": "patient",
+          "translations": ["bệnh nhân"],
+          "description": "Person receiving care.\nPatient care.\nMedical records."
+        },
+        {
+          "id": "b2-20-7",
+          "type": "noun",
+          "pronunciation": "/ˈhɑspɪtl/",
+          "text": "hospital",
+          "translations": ["bệnh viện"],
+          "description": "Medical facility.\nHospital care.\nMedical center."
+        },
+        {
+          "id": "b2-20-8",
+          "type": "noun",
+          "pronunciation": "/ˈsɝdʒəri/",
+          "text": "surgery",
+          "translations": ["phẫu thuật"],
+          "description": "Medical operation.\nSurgical procedure.\nOperating room."
+        },
+        {
+          "id": "b2-20-9",
+          "type": "noun",
+          "pronunciation": "/ˈrɛkəvəri/",
+          "text": "recovery",
+          "translations": ["hồi phục"],
+          "description": "Return to health.\nRecovery period.\nHealing process."
+        },
+        {
+          "id": "b2-20-10",
+          "type": "noun",
+          "pronunciation": "/ˈvæksɪn/",
+          "text": "vaccine",
+          "translations": ["vắc-xin"],
+          "description": "Preventive medicine.\nVaccination program.\nImmune protection."
+        }
+      ]
+    },
+    {
+      "id": "b2-21",
+      "name": "Public Health",
+      "description": "Community health and epidemiology terms",
+      "vocabularies": [
+        {
+          "id": "b2-21-1",
+          "type": "noun",
+          "pronunciation": "/ˌɛpɪˈdiːmiˌɑlədʒi/",
+          "text": "epidemiology",
+          "translations": ["dịch tễ học"],
+          "description": "Study of disease patterns.\nEpidemiological research.\nDisease tracking."
+        },
+        {
+          "id": "b2-21-2",
+          "type": "noun",
+          "pronunciation": "/prɪˈvɛnʃən/",
+          "text": "prevention",
+          "translations": ["phòng ngừa"],
+          "description": "Disease prevention measures.\nPreventive care.\nHealth protection."
+        },
+        {
+          "id": "b2-21-3",
+          "type": "noun",
+          "pronunciation": "/ˈaʊtˌbreɪk/",
+          "text": "outbreak",
+          "translations": ["bùng phát dịch"],
+          "description": "Sudden disease occurrence.\nDisease outbreak.\nContainment measures."
+        },
+        {
+          "id": "b2-21-4",
+          "type": "noun",
+          "pronunciation": "/ˌɪmjuˈnaɪˈzeɪʃən/",
+          "text": "immunization",
+          "translations": ["tiêm chủng"],
+          "description": "Protection against disease.\nVaccination programs.\nImmune protection."
+        },
+        {
+          "id": "b2-21-5",
+          "type": "noun",
+          "pronunciation": "/ˈsænɪˌteɪʃən/",
+          "text": "sanitation",
+          "translations": ["vệ sinh"],
+          "description": "Hygiene conditions.\nPublic sanitation.\nCleanliness standards."
+        },
+        {
+          "id": "b2-21-6",
+          "type": "noun",
+          "pronunciation": "/ˈskriːnɪŋ/",
+          "text": "screening",
+          "translations": ["sàng lọc"],
+          "description": "Testing for disease.\nHealth screening.\nPreventive testing."
+        },
+        {
+          "id": "b2-21-7",
+          "type": "noun",
+          "pronunciation": "/ˌkwɑrənˈtiːn/",
+          "text": "quarantine",
+          "translations": ["cách ly"],
+          "description": "Isolation to prevent spread.\nQuarantine measures.\nDisease control."
+        },
+        {
+          "id": "b2-21-8",
+          "type": "noun",
+          "pronunciation": "/ˈhaɪˌdʒiːn/",
+          "text": "hygiene",
+          "translations": ["vệ sinh"],
+          "description": "Cleanliness practices.\nPersonal hygiene.\nPublic health."
+        },
+        {
+          "id": "b2-21-9",
+          "type": "noun",
+          "pronunciation": "/ˈpændɛmɪk/",
+          "text": "pandemic",
+          "translations": ["đại dịch"],
+          "description": "Global disease outbreak.\nPandemic response.\nWorldwide spread."
+        },
+        {
+          "id": "b2-21-10",
+          "type": "noun",
+          "pronunciation": "/ˈwɛlnəs/",
+          "text": "wellness",
+          "translations": ["sức khỏe tổng thể"],
+          "description": "Overall health state.\nWellness programs.\nHealth promotion."
+        }
+      ]
+    },
+    {
+      "id": "b2-22",
+      "name": "Biology",
+      "description": "Life sciences and biological systems vocabulary",
+      "vocabularies": [
+        {
+          "id": "b2-22-1",
+          "type": "noun",
+          "pronunciation": "/ˈsɛljulɚ/",
+          "text": "cellular",
+          "translations": ["tế bào"],
+          "description": "Related to cells.\nCellular structure.\nCell biology."
+        },
+        {
+          "id": "b2-22-2",
+          "type": "noun",
+          "pronunciation": "/dʒəˈnɛtɪks/",
+          "text": "genetics",
+          "translations": ["di truyền học"],
+          "description": "Study of genes.\nGenetic research.\nDNA structure."
+        },
+        {
+          "id": "b2-22-3",
+          "type": "noun",
+          "pronunciation": "/ˌfotoʊˈsɪnθəsɪs/",
+          "text": "photosynthesis",
+          "translations": ["quang hợp"],
+          "description": "Plant energy production.\nSolar energy conversion.\nPlant nutrition."
+        },
+        {
+          "id": "b2-22-4",
+          "type": "noun",
+          "pronunciation": "/ˈmɛtəˌbɑlɪzəm/",
+          "text": "metabolism",
+          "translations": ["trao đổi chất"],
+          "description": "Chemical life processes.\nMetabolic rate.\nEnergy conversion."
+        },
+        {
+          "id": "b2-22-5",
+          "type": "noun",
+          "pronunciation": "/ˈɔrgənɪzəm/",
+          "text": "organism",
+          "translations": ["sinh vật"],
+          "description": "Living being.\nBiological organism.\nLiving systems."
+        },
+        {
+          "id": "b2-22-6",
+          "type": "noun",
+          "pronunciation": "/ˌrɛprəˈdʌkʃən/",
+          "text": "reproduction",
+          "translations": ["sinh sản"],
+          "description": "Process of creating offspring.\nCell reproduction.\nSpecies continuation."
+        },
+        {
+          "id": "b2-22-7",
+          "type": "noun",
+          "pronunciation": "/ˈmjuˌteɪʃən/",
+          "text": "mutation",
+          "translations": ["đột biến"],
+          "description": "Genetic change.\nDNA mutation.\nEvolutionary change."
+        },
+        {
+          "id": "b2-22-8",
+          "type": "noun",
+          "pronunciation": "/ˈprəʊtiːn/",
+          "text": "protein",
+          "translations": ["protein"],
+          "description": "Biological molecule.\nProtein synthesis.\nCell structure."
+        },
+        {
+          "id": "b2-22-9",
+          "type": "noun",
+          "pronunciation": "/ˈɛnzaɪm/",
+          "text": "enzyme",
+          "translations": ["enzyme"],
+          "description": "Biological catalyst.\nEnzyme activity.\nMetabolic processes."
+        },
+        {
+          "id": "b2-22-10",
+          "type": "noun",
+          "pronunciation": "/ˈtɪʃu/",
+          "text": "tissue",
+          "translations": ["mô"],
+          "description": "Group of similar cells.\nBody tissue.\nOrganic structure."
+        }
+      ]
+    },
+    {
+      "id": "b2-23",
+      "name": "Chemistry",
+      "description": "Chemical compounds and reactions terminology",
+      "vocabularies": [
+        {
+          "id": "b2-23-1",
+          "type": "noun",
+          "pronunciation": "/riˈækʃən/",
+          "text": "reaction",
+          "translations": ["phản ứng"],
+          "description": "Chemical change process.\nChemical reaction.\nMolecular change."
+        },
+        {
+          "id": "b2-23-2",
+          "type": "noun",
+          "pronunciation": "/ˈɛləmənt/",
+          "text": "element",
+          "translations": ["nguyên tố"],
+          "description": "Pure chemical substance.\nPeriodic elements.\nChemical properties."
+        },
+        {
+          "id": "b2-23-3",
+          "type": "noun",
+          "pronunciation": "/ˈkɑmpaʊnd/",
+          "text": "compound",
+          "translations": ["hợp chất"],
+          "description": "Combined elements.\nChemical compound.\nMolecular structure."
+        },
+        {
+          "id": "b2-23-4",
+          "type": "noun",
+          "pronunciation": "/ˈsɑlvənt/",
+          "text": "solvent",
+          "translations": ["dung môi"],
+          "description": "Dissolving substance.\nChemical solvent.\nSolution component."
+        },
+        {
+          "id": "b2-23-5",
+          "type": "noun",
+          "pronunciation": "/ˈkætəlɪst/",
+          "text": "catalyst",
+          "translations": ["chất xúc tác"],
+          "description": "Reaction accelerator.\nCatalytic process.\nReaction speed."
+        },
+        {
+          "id": "b2-23-6",
+          "type": "noun",
+          "pronunciation": "/ˌdɪstɪˈleɪʃən/",
+          "text": "distillation",
+          "translations": ["chưng cất"],
+          "description": "Separation process.\nPurification method.\nLiquid separation."
+        },
+        {
+          "id": "b2-23-7",
+          "type": "noun",
+          "pronunciation": "/ˌpɑlɪməraɪˈzeɪʃən/",
+          "text": "polymerization",
+          "translations": ["trùng hợp"],
+          "description": "Molecule combination.\nPolymer formation.\nChemical bonding."
+        },
+        {
+          "id": "b2-23-8",
+          "type": "noun",
+          "pronunciation": "/ˈæsɪd/",
+          "text": "acid",
+          "translations": ["axit"],
+          "description": "Corrosive substance.\nAcidic solution.\npH level."
+        },
+        {
+          "id": "b2-23-9",
+          "type": "noun",
+          "pronunciation": "/ˈbeɪs/",
+          "text": "base",
+          "translations": ["bazơ"],
+          "description": "Alkaline substance.\nBasic solution.\npH balance."
+        },
+        {
+          "id": "b2-23-10",
+          "type": "noun",
+          "pronunciation": "/ˌɑksɪˈdeɪʃən/",
+          "text": "oxidation",
+          "translations": ["oxy hóa"],
+          "description": "Oxygen combination.\nOxidation process.\nChemical change."
+        }
+      ]
+    },
+    {
+      "id": "b2-24",
+      "name": "Physics",
+      "description": "Physical sciences and natural laws vocabulary",
+      "vocabularies": [
+        {
+          "id": "b2-24-1",
+          "type": "noun",
+          "pronunciation": "/ˌgrævɪˈteɪʃən/",
+          "text": "gravitation",
+          "translations": ["trọng lực"],
+          "description": "Force of attraction.\nGravitational pull.\nPhysical force."
+        },
+        {
+          "id": "b2-24-2",
+          "type": "noun",
+          "pronunciation": "/məˈmɛntəm/",
+          "text": "momentum",
+          "translations": ["động lượng"],
+          "description": "Motion quantity.\nPhysical momentum.\nMovement force."
+        },
+        {
+          "id": "b2-24-3",
+          "type": "noun",
+          "pronunciation": "/ˈvɛlɑsəti/",
+          "text": "velocity",
+          "translations": ["vận tốc"],
+          "description": "Speed with direction.\nObject velocity.\nMotion measure."
+        },
+        {
+          "id": "b2-24-4",
+          "type": "noun",
+          "pronunciation": "/ˌæksɛləˈreɪʃən/",
+          "text": "acceleration",
+          "translations": ["gia tốc"],
+          "description": "Speed increase rate.\nVelocity change.\nMotion change."
+        },
+        {
+          "id": "b2-24-5",
+          "type": "noun",
+          "pronunciation": "/ˈfɔrs/",
+          "text": "force",
+          "translations": ["lực"],
+          "description": "Physical influence.\nApplied force.\nEnergy transfer."
+        },
+        {
+          "id": "b2-24-6",
+          "type": "noun",
+          "pronunciation": "/ˈɛnɚdʒi/",
+          "text": "energy",
+          "translations": ["năng lượng"],
+          "description": "Capacity for work.\nEnergy transfer.\nPower source."
+        },
+        {
+          "id": "b2-24-7",
+          "type": "noun",
+          "pronunciation": "/ˈfrɪkʃən/",
+          "text": "friction",
+          "translations": ["ma sát"],
+          "description": "Resistance force.\nSurface friction.\nMotion resistance."
+        },
+        {
+          "id": "b2-24-8",
+          "type": "noun",
+          "pronunciation": "/ˈtɔrk/",
+          "text": "torque",
+          "translations": ["mô-men xoắn"],
+          "description": "Rotational force.\nAngular force.\nTwisting force."
+        },
+        {
+          "id": "b2-24-9",
+          "type": "noun",
+          "pronunciation": "/ˈkwɑntəm/",
+          "text": "quantum",
+          "translations": ["lượng tử"],
+          "description": "Smallest unit.\nQuantum physics.\nAtomic level."
+        },
+        {
+          "id": "b2-24-10",
+          "type": "noun",
+          "pronunciation": "/ˌɛlɛktroʊmægˈnɛtɪk/",
+          "text": "electromagnetic",
+          "translations": ["điện từ"],
+          "description": "Electric and magnetic.\nElectromagnetic waves.\nRadiation type."
+        }
+      ]
+    },
+    {
+      "id": "b2-25",
+      "name": "Astronomy",
+      "description": "Space science and celestial objects terms",
+      "vocabularies": [
+        {
+          "id": "b2-25-1",
+          "type": "noun",
+          "pronunciation": "/ˈgæləksi/",
+          "text": "galaxy",
+          "translations": ["thiên hà"],
+          "description": "Star system.\nMilky Way galaxy.\nCelestial structure."
+        },
+        {
+          "id": "b2-25-2",
+          "type": "noun",
+          "pronunciation": "/ˈnjubjələ/",
+          "text": "nebula",
+          "translations": ["tinh vân"],
+          "description": "Space gas cloud.\nStar formation.\nCosmic dust."
+        },
+        {
+          "id": "b2-25-3",
+          "type": "noun",
+          "pronunciation": "/ˈblæk hoʊl/",
+          "text": "black hole",
+          "translations": ["hố đen"],
+          "description": "Space phenomenon.\nGravitational force.\nLight absorption."
+        },
+        {
+          "id": "b2-25-4",
+          "type": "noun",
+          "pronunciation": "/ˈkɑzmɑs/",
+          "text": "cosmos",
+          "translations": ["vũ trụ"],
+          "description": "The universe.\nSpace exploration.\nCelestial bodies."
+        },
+        {
+          "id": "b2-25-5",
+          "type": "noun",
+          "pronunciation": "/ˈɔrbɪt/",
+          "text": "orbit",
+          "translations": ["quỹ đạo"],
+          "description": "Path around object.\nPlanetary orbit.\nCelestial motion."
+        },
+        {
+          "id": "b2-25-6",
+          "type": "noun",
+          "pronunciation": "/ˈsætəlaɪt/",
+          "text": "satellite",
+          "translations": ["vệ tinh"],
+          "description": "Orbiting object.\nArtificial satellite.\nSpace technology."
+        },
+        {
+          "id": "b2-25-7",
+          "type": "noun",
+          "pronunciation": "/ˈsupɚˌnoʊvə/",
+          "text": "supernova",
+          "translations": ["siêu tân tinh"],
+          "description": "Star explosion.\nStellar death.\nSpace phenomenon."
+        },
+        {
+          "id": "b2-25-8",
+          "type": "noun",
+          "pronunciation": "/ˈæstəˌrɔɪd/",
+          "text": "asteroid",
+          "translations": ["tiểu hành tinh"],
+          "description": "Space rock.\nOrbiting object.\nCelestial body."
+        },
+        {
+          "id": "b2-25-9",
+          "type": "noun",
+          "pronunciation": "/ˈkɑmət/",
+          "text": "comet",
+          "translations": ["sao chổi"],
+          "description": "Ice and rock body.\nOrbital path.\nTail formation."
+        },
+        {
+          "id": "b2-25-10",
+          "type": "noun",
+          "pronunciation": "/ˈtɛləˌskoʊp/",
+          "text": "telescope",
+          "translations": ["kính thiên văn"],
+          "description": "Viewing instrument.\nSpace observation.\nAstronomical tool."
+        }
+      ]
+    },
+    {
+      "id": "b2-26",
+      "name": "Geography",
+      "description": "Physical features and earth science terminology",
+      "vocabularies": [
+        {
+          "id": "b2-26-1",
+          "type": "noun",
+          "pronunciation": "/təˈpɑgrəfi/",
+          "text": "topography",
+          "translations": ["địa hình"],
+          "description": "Physical features of land.\nTopographical maps.\nTerrain features."
+        },
+        {
+          "id": "b2-26-2",
+          "type": "noun",
+          "pronunciation": "/ˈklaɪmət/",
+          "text": "climate",
+          "translations": ["khí hậu"],
+          "description": "Weather conditions.\nClimatic zones.\nWeather patterns."
+        },
+        {
+          "id": "b2-26-3",
+          "type": "noun",
+          "pronunciation": "/ˈwɔtɚˌʃɛd/",
+          "text": "watershed",
+          "translations": ["lưu vực"],
+          "description": "Drainage basin.\nWater systems.\nRiver networks."
+        },
+        {
+          "id": "b2-26-4",
+          "type": "noun",
+          "pronunciation": "/ˈplætoʊ/",
+          "text": "plateau",
+          "translations": ["cao nguyên"],
+          "description": "Elevated flat land.\nHigh plains.\nTable mountains."
+        },
+        {
+          "id": "b2-26-5",
+          "type": "noun",
+          "pronunciation": "/ˈdɛltə/",
+          "text": "delta",
+          "translations": ["đồng bằng"],
+          "description": "River mouth formation.\nSediment deposits.\nRiver deltas."
+        },
+        {
+          "id": "b2-26-6",
+          "type": "noun",
+          "pronunciation": "/ˈvæli/",
+          "text": "valley",
+          "translations": ["thung lũng"],
+          "description": "Low area between hills.\nRiver valleys.\nGlacial valleys."
+        },
+        {
+          "id": "b2-26-7",
+          "type": "noun",
+          "pronunciation": "/ˈkoʊstlaɪn/",
+          "text": "coastline",
+          "translations": ["đường bờ biển"],
+          "description": "Shore boundary.\nCoastal features.\nShoreline."
+        },
+        {
+          "id": "b2-26-8",
+          "type": "noun",
+          "pronunciation": "/ˈvɑlkeɪnoʊ/",
+          "text": "volcano",
+          "translations": ["núi lửa"],
+          "description": "Mountain vent.\nVolcanic activity.\nEruption site."
+        },
+        {
+          "id": "b2-26-9",
+          "type": "noun",
+          "pronunciation": "/ˈgleiʃɚ/",
+          "text": "glacier",
+          "translations": ["sông băng"],
+          "description": "Ice mass.\nGlacial movement.\nIce formation."
+        },
+        {
+          "id": "b2-26-10",
+          "type": "noun",
+          "pronunciation": "/ˈtɛktɑnɪks/",
+          "text": "tectonics",
+          "translations": ["kiến tạo"],
+          "description": "Earth crust movement.\nPlate tectonics.\nGeological processes."
+        }
+      ]
+    },
+    {
+      "id": "b2-27",
+      "name": "Urban Planning",
+      "description": "City development and infrastructure terms",
+      "vocabularies": [
+        {
+          "id": "b2-27-1",
+          "type": "noun",
+          "pronunciation": "/ˌɪnfrəˈstrʌktʃɚ/",
+          "text": "infrastructure",
+          "translations": ["cơ sở hạ tầng"],
+          "description": "Basic facilities.\nUrban infrastructure.\nPublic works."
+        },
+        {
+          "id": "b2-27-2",
+          "type": "noun",
+          "pronunciation": "/ˈzoʊnɪŋ/",
+          "text": "zoning",
+          "translations": ["phân vùng"],
+          "description": "Land use regulation.\nZoning laws.\nUrban planning."
+        },
+        {
+          "id": "b2-27-3",
+          "type": "noun",
+          "pronunciation": "/ˈdɛnsəti/",
+          "text": "density",
+          "translations": ["mật độ"],
+          "description": "Population concentration.\nUrban density.\nHousing density."
+        },
+        {
+          "id": "b2-27-4",
+          "type": "noun",
+          "pronunciation": "/ˈtrænzɪt/",
+          "text": "transit",
+          "translations": ["vận chuyển"],
+          "description": "Public transportation.\nMass transit.\nTransit systems."
+        },
+        {
+          "id": "b2-27-5",
+          "type": "noun",
+          "pronunciation": "/rɪˈdɛvələpmənt/",
+          "text": "redevelopment",
+          "translations": ["tái phát triển"],
+          "description": "Urban renewal.\nArea improvement.\nCity renovation."
+        },
+        {
+          "id": "b2-27-6",
+          "type": "noun",
+          "pronunciation": "/ˈskaɪlaɪn/",
+          "text": "skyline",
+          "translations": ["đường chân trời"],
+          "description": "City silhouette.\nUrban profile.\nBuilding outline."
+        },
+        {
+          "id": "b2-27-7",
+          "type": "noun",
+          "pronunciation": "/ˈgrinfild/",
+          "text": "greenfield",
+          "translations": ["đất chưa phát triển"],
+          "description": "Undeveloped land.\nNew development.\nVirgin sites."
+        },
+        {
+          "id": "b2-27-8",
+          "type": "noun",
+          "pronunciation": "/ˈbraʊnfild/",
+          "text": "brownfield",
+          "translations": ["đất tái phát triển"],
+          "description": "Previously developed land.\nIndustrial sites.\nRedevelopment areas."
+        },
+        {
+          "id": "b2-27-9",
+          "type": "noun",
+          "pronunciation": "/ˈmæstɚ plæn/",
+          "text": "master plan",
+          "translations": ["quy hoạch tổng thể"],
+          "description": "Development blueprint.\nUrban planning.\nCity design."
+        },
+        {
+          "id": "b2-27-10",
+          "type": "noun",
+          "pronunciation": "/ˈsʌstənəbəl/",
+          "text": "sustainable",
+          "translations": ["bền vững"],
+          "description": "Environmentally sound.\nSustainable development.\nGreen planning."
+        }
+      ]
+    },
+    {
+      "id": "b2-28",
+      "name": "Architecture",
+      "description": "Building design and construction vocabulary",
+      "vocabularies": [
+        {
+          "id": "b2-28-1",
+          "type": "noun",
+          "pronunciation": "/ˈfəʊndeɪʃən/",
+          "text": "foundation",
+          "translations": ["nền móng"],
+          "description": "Building base.\nStructural support.\nGround preparation."
+        },
+        {
+          "id": "b2-28-2",
+          "type": "noun",
+          "pronunciation": "/ˈfəsɑd/",
+          "text": "facade",
+          "translations": ["mặt tiền"],
+          "description": "Building front.\nExterior face.\nArchitectural design."
+        },
+        {
+          "id": "b2-28-3",
+          "type": "noun",
+          "pronunciation": "/ˈkɑləm/",
+          "text": "column",
+          "translations": ["cột"],
+          "description": "Vertical support.\nArchitectural element.\nStructural pillar."
+        },
+        {
+          "id": "b2-28-4",
+          "type": "noun",
+          "pronunciation": "/ˈbeɪm/",
+          "text": "beam",
+          "translations": ["dầm"],
+          "description": "Horizontal support.\nStructural member.\nLoad-bearing element."
+        },
+        {
+          "id": "b2-28-5",
+          "type": "noun",
+          "pronunciation": "/ˈvɔlt/",
+          "text": "vault",
+          "translations": ["vòm"],
+          "description": "Arched ceiling.\nCurved structure.\nArchitectural span."
+        },
+        {
+          "id": "b2-28-6",
+          "type": "noun",
+          "pronunciation": "/ˈdoʊm/",
+          "text": "dome",
+          "translations": ["mái vòm"],
+          "description": "Rounded roof.\nSpherical structure.\nArchitectural feature."
+        },
+        {
+          "id": "b2-28-7",
+          "type": "noun",
+          "pronunciation": "/ˈskɛtʃ/",
+          "text": "sketch",
+          "translations": ["bản phác thảo"],
+          "description": "Preliminary drawing.\nDesign concept.\nArchitectural drawing."
+        },
+        {
+          "id": "b2-28-8",
+          "type": "noun",
+          "pronunciation": "/ˈrɛndɚrɪŋ/",
+          "text": "rendering",
+          "translations": ["phối cảnh"],
+          "description": "Visual representation.\nArchitectural illustration.\nDesign visualization."
+        },
+        {
+          "id": "b2-28-9",
+          "type": "noun",
+          "pronunciation": "/ˈmɑdyulɚ/",
+          "text": "modular",
+          "translations": ["mô-đun"],
+          "description": "Standardized units.\nPrefabricated components.\nModular construction."
+        },
+        {
+          "id": "b2-28-10",
+          "type": "noun",
+          "pronunciation": "/ˈrɛtrəʊfɪt/",
+          "text": "retrofit",
+          "translations": ["cải tạo"],
+          "description": "Building upgrade.\nModernization work.\nStructural improvement."
+        }
+      ]
+    },
+    {
+      "id": "b2-29",
+      "name": "Engineering",
+      "description": "Technical and mechanical engineering terms",
+      "vocabularies": [
+        {
+          "id": "b2-29-1",
+          "type": "noun",
+          "pronunciation": "/məˈkænɪkəl/",
+          "text": "mechanical",
+          "translations": ["cơ khí"],
+          "description": "Machine-related.\nMechanical systems.\nEngineering discipline."
+        },
+        {
+          "id": "b2-29-2",
+          "type": "noun",
+          "pronunciation": "/ɪˈlɛktrɪkəl/",
+          "text": "electrical",
+          "translations": ["điện"],
+          "description": "Power systems.\nElectrical circuits.\nPower engineering."
+        },
+        {
+          "id": "b2-29-3",
+          "type": "noun",
+          "pronunciation": "/ˈsɪvəl/",
+          "text": "civil",
+          "translations": ["xây dựng"],
+          "description": "Infrastructure design.\nStructural engineering.\nConstruction planning."
+        },
+        {
+          "id": "b2-29-4",
+          "type": "noun",
+          "pronunciation": "/ˈkɛmɪkəl/",
+          "text": "chemical",
+          "translations": ["hóa học"],
+          "description": "Process engineering.\nChemical plants.\nMaterial processing."
+        },
+        {
+          "id": "b2-29-5",
+          "type": "noun",
+          "pronunciation": "/ˈsɑftwɛr/",
+          "text": "software",
+          "translations": ["phần mềm"],
+          "description": "Computer programs.\nSoftware development.\nSystem design."
+        },
+        {
+          "id": "b2-29-6",
+          "type": "noun",
+          "pronunciation": "/ˈhɑrdwɛr/",
+          "text": "hardware",
+          "translations": ["phần cứng"],
+          "description": "Physical equipment.\nComputer components.\nTechnical devices."
+        },
+        {
+          "id": "b2-29-7",
+          "type": "noun",
+          "pronunciation": "/ˈsɪstəm/",
+          "text": "system",
+          "translations": ["hệ thống"],
+          "description": "Organized structure.\nIntegrated components.\nOperating framework."
+        },
+        {
+          "id": "b2-29-8",
+          "type": "noun",
+          "pronunciation": "/prəˈsɛs/",
+          "text": "process",
+          "translations": ["quy trình"],
+          "description": "Systematic procedure.\nOperational sequence.\nMethodical approach."
+        },
+        {
+          "id": "b2-29-9",
+          "type": "noun",
+          "pronunciation": "/dɪˈzaɪn/",
+          "text": "design",
+          "translations": ["thiết kế"],
+          "description": "Technical planning.\nEngineering design.\nSystem architecture."
+        },
+        {
+          "id": "b2-29-10",
+          "type": "noun",
+          "pronunciation": "/ˈtɛstɪŋ/",
+          "text": "testing",
+          "translations": ["kiểm thử"],
+          "description": "Quality verification.\nSystem evaluation.\nPerformance testing."
+        }
+      ]
+    },
+    {
+      "id": "b2-30",
+      "name": "Agriculture",
+      "description": "Farming and crop production terminology",
+      "vocabularies": [
+        {
+          "id": "b2-30-1",
+          "type": "noun",
+          "pronunciation": "/ˈkʌltəˌveɪʃən/",
+          "text": "cultivation",
+          "translations": ["canh tác"],
+          "description": "Crop growing.\nSoil preparation.\nFarming practices."
+        },
+        {
+          "id": "b2-30-2",
+          "type": "noun",
+          "pronunciation": "/ˈɪrəˌgeɪʃən/",
+          "text": "irrigation",
+          "translations": ["tưới tiêu"],
+          "description": "Water supply.\nCrop watering.\nWater management."
+        },
+        {
+          "id": "b2-30-3",
+          "type": "noun",
+          "pronunciation": "/ˈfɝtəˌlaɪzɚ/",
+          "text": "fertilizer",
+          "translations": ["phân bón"],
+          "description": "Soil nutrient.\nCrop nutrition.\nPlant food."
+        },
+        {
+          "id": "b2-30-4",
+          "type": "noun",
+          "pronunciation": "/ˈpɛstəˌsaɪd/",
+          "text": "pesticide",
+          "translations": ["thuốc trừ sâu"],
+          "description": "Pest control.\nCrop protection.\nChemical treatment."
+        },
+        {
+          "id": "b2-30-5",
+          "type": "noun",
+          "pronunciation": "/ˈhɑrvəst/",
+          "text": "harvest",
+          "translations": ["thu hoạch"],
+          "description": "Crop collection.\nYield gathering.\nProduction collection."
+        },
+        {
+          "id": "b2-30-6",
+          "type": "noun",
+          "pronunciation": "/ˈroʊˌteɪʃən/",
+          "text": "rotation",
+          "translations": ["luân canh"],
+          "description": "Crop alternation.\nField management.\nSoil conservation."
+        },
+        {
+          "id": "b2-30-7",
+          "type": "noun",
+          "pronunciation": "/ˈhaɪdrəˌpɑnɪks/",
+          "text": "hydroponics",
+          "translations": ["thủy canh"],
+          "description": "Soilless growing.\nWater cultivation.\nNutrient solution."
+        },
+        {
+          "id": "b2-30-8",
+          "type": "noun",
+          "pronunciation": "/ˈgrinhаʊs/",
+          "text": "greenhouse",
+          "translations": ["nhà kính"],
+          "description": "Protected growing.\nControlled environment.\nPlant shelter."
+        },
+        {
+          "id": "b2-30-9",
+          "type": "noun",
+          "pronunciation": "/ˈlаɪvstɑk/",
+          "text": "livestock",
+          "translations": ["gia súc"],
+          "description": "Farm animals.\nAnimal husbandry.\nCattle raising."
+        },
+        {
+          "id": "b2-30-10",
+          "type": "noun",
+          "pronunciation": "/ˈɔrgænɪk/",
+          "text": "organic",
+          "translations": ["hữu cơ"],
+          "description": "Natural farming.\nChemical-free.\nEcological agriculture."
+        }
+      ]
+    }
+  ]
+}
