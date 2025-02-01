@@ -1115,3 +1115,86 @@ hr {
   display: inline-block;
 }
 
+/* Settings Styles */
+.settings-section {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.settings-section h2 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.setting-item {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.setting-item label {
+  min-width: 120px;
+  font-weight: 500;
+}
+
+.setting-item select {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.setting-item select:focus {
+  border-color: #046bd2;
+  outline: none;
+}
+
+.speech-rate-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.speech-rate-control input[type="range"] {
+  flex: 1;
+  height: 4px;
+  background: #ddd;
+  border-radius: 2px;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.speech-rate-control input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #046bd2;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.speech-rate-control input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #046bd2;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+#speech-rate-value {
+  min-width: 45px;
+  color: #666;
+  font-size: 0.9rem;
+}
+

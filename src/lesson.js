@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     viewButtons.forEach((button) => {
       button.addEventListener("click", (e) => {
         const lessonId = e.target.getAttribute("data-id");
-        const lesson = LessionStore.lessons.find((l) => l.id === lessonId);
+        const lesson = LessonStore.lessons.find((l) => l.id === lessonId);
 
         if (lesson) openLessonModal(lesson);
       });
@@ -71,8 +71,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Load Lessons into the List
   function renderLessons() {
     try {
-      LessionStore.loadFromFile();
-      const lessons = LessionStore.getLessions();
+      LessonStore.loadFromFile();
+      const lessons = LessonStore.getLessons();
 
       const lessonsContainer = document.getElementById("lessons-container");
       lessonsContainer.innerHTML = lessons
@@ -103,17 +103,17 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener("click", renderLessons);
 });
 
-class LessionStore {
+class LessonStore {
   static loadFromFile() {
     // const response = await fetch(url);
     // if (!response.ok) {
     //   throw new Error("Failed to load lessons.");
     // }
     // this.lessons = await response.json();
-    this.lessons = this.getLessions();
+    this.lessons = this.getLessons();
   }
 
-  static getLessions() {
+  static getLessons() {
     return [
       {
         id: "1",
@@ -344,7 +344,7 @@ class LessionStore {
             text: "cry",
             translations: ["khóc"],
             description:
-              "To shed tears.\nI cry when I’m sad.\nShe cries silently.\nThey cry together.",
+              "To shed tears.\nI cry when I'm sad.\nShe cries silently.\nThey cry together.",
             createdAt: 1691234577895,
             level: 1,
             lastReviewAt: 1691234577895,
@@ -1339,7 +1339,7 @@ class LessionStore {
             text: "cry",
             translations: ["khóc"],
             description:
-              "To shed tears.\nI cry when I’m sad.\nShe cries during movies.\nThey cry together.",
+              "To shed tears.\nI cry when I'm sad.\nShe cries during movies.\nThey cry together.",
           },
           {
             id: "906",
@@ -2270,7 +2270,7 @@ class LessionStore {
           {
             id: "1901",
             type: "verb",
-            pronunciation: "/ˈtraːvəl/",
+            pronunciation: "/ˈtrævəl/",
             text: "travel",
             translations: ["du lịch"],
             description:
@@ -2279,7 +2279,7 @@ class LessionStore {
           {
             id: "1902",
             type: "verb",
-            pronunciation: "/ˈdɹɪv/",
+            pronunciation: "/draɪv/",
             text: "drive",
             translations: ["lái xe"],
             description:
@@ -2288,7 +2288,7 @@ class LessionStore {
           {
             id: "1903",
             type: "verb",
-            pronunciation: "/ˈflɑɪ/",
+            pronunciation: "/flaɪ/",
             text: "fly",
             translations: ["bay"],
             description:
@@ -2306,7 +2306,7 @@ class LessionStore {
           {
             id: "1905",
             type: "verb",
-            pronunciation: "/ˈkætʃ/",
+            pronunciation: "/bɔːrd/",
             text: "board",
             translations: ["lên tàu"],
             description:
@@ -2315,7 +2315,7 @@ class LessionStore {
           {
             id: "1906",
             type: "verb",
-            pronunciation: "/ˈvækɪˌeɪt/",
+            pronunciation: "/ˈveɪkeɪt/",
             text: "vacate",
             translations: ["rời đi"],
             description:
@@ -2324,7 +2324,7 @@ class LessionStore {
           {
             id: "1907",
             type: "verb",
-            pronunciation: "/ˈrɪdə/",
+            pronunciation: "/raɪd/",
             text: "ride",
             translations: ["cưỡi"],
             description:
@@ -2333,7 +2333,7 @@ class LessionStore {
           {
             id: "1908",
             type: "verb",
-            pronunciation: "/ˈwɛɪt/",
+            pronunciation: "/weɪt/",
             text: "wait",
             translations: ["chờ đợi"],
             description:
@@ -2342,7 +2342,7 @@ class LessionStore {
           {
             id: "1909",
             type: "verb",
-            pronunciation: "/ˈɛntər/",
+            pronunciation: "/ˈentər/",
             text: "enter",
             translations: ["vào"],
             description:
@@ -2351,7 +2351,7 @@ class LessionStore {
           {
             id: "1910",
             type: "verb",
-            pronunciation: "/ˈɛɡzɪt/",
+            pronunciation: "/ˈɛgzɪt/",
             text: "exit",
             translations: ["thoát ra"],
             description:
@@ -2385,7 +2385,7 @@ class LessionStore {
           {
             id: "2003",
             type: "verb",
-            pronunciation: "/ˈtiːk/",
+            pronunciation: "/ˈtaɪdi/",
             text: "tidy",
             translations: ["dọn dẹp"],
             description:
@@ -2403,7 +2403,7 @@ class LessionStore {
           {
             id: "2005",
             type: "verb",
-            pronunciation: "/ˈʃɒp/",
+            pronunciation: "/ʃɑːp/",
             text: "shop",
             translations: ["mua sắm"],
             description:
@@ -2421,7 +2421,7 @@ class LessionStore {
           {
             id: "2007",
             type: "verb",
-            pronunciation: "/ˈbaθ/",
+            pronunciation: "/beɪð/",
             text: "bathe",
             translations: ["tắm"],
             description:
@@ -2430,7 +2430,7 @@ class LessionStore {
           {
             id: "2008",
             type: "verb",
-            pronunciation: "/ˈflɒss/",
+            pronunciation: "/flɑːs/",
             text: "floss",
             translations: ["xỉa răng"],
             description:
@@ -2439,7 +2439,7 @@ class LessionStore {
           {
             id: "2009",
             type: "verb",
-            pronunciation: "/ˈwɑʃ/",
+            pronunciation: "/wɑːʃ/",
             text: "wash",
             translations: ["giặt"],
             description:
