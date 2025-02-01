@@ -134,12 +134,17 @@ class Vocab {
         return time - (time % timeToRound);
     }
     learn(vocab, isCorrect, rememberLevel = RememberLevel.OK) {
-        const currentLevel = vocab.level || 0;
+        const data = Store.database.vocabularies.find((item) => item.id === vocab.id);
+        const currentLevel = Math.max(vocab.level || 0, (data === null || data === void 0 ? void 0 : data.level) || 0);
         const currentTime = () => Date.now();
         // Reset to 1h after
         const level = (() => {
             if (!isCorrect)
                 return Level.ONE;
+            // If time to review is not passed, return current level.
+            if ((data === null || data === void 0 ? void 0 : data.shouldReviewAfter) && currentTime() < data.shouldReviewAfter) {
+                return currentLevel;
+            }
             if (rememberLevel === RememberLevel.BAD) {
                 return Math.max(currentLevel - 2, Level.ONE);
             }
@@ -161,7 +166,6 @@ class Vocab {
         const time = this.getShouldReviewAt(level, currentTime());
         // const timeToRound = 1000 * 60 * 15; // 15m
         const shouldReviewAfter = Vocab.roundTime(time);
-        const data = Store.database.vocabularies.find((item) => item.id === vocab.id);
         if (!data) {
             vocab.level = level;
             vocab.lastReviewAt = lastReviewAt;

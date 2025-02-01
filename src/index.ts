@@ -196,13 +196,18 @@ class Vocab {
     const data = Store.database.vocabularies.find(
       (item) => item.id === vocab.id
     );
-    const currentLevel = Math.min(vocab.level || 0, data?.level || 0);
+    const currentLevel = Math.max(vocab.level || 0, data?.level || 0);
 
     const currentTime = () => Date.now();
 
     // Reset to 1h after
     const level = (() => {
       if (!isCorrect) return Level.ONE;
+
+      // If time to review is not passed, return current level.
+      if (data?.shouldReviewAfter && currentTime() < data.shouldReviewAfter) {
+        return currentLevel;
+      }
 
       if (rememberLevel === RememberLevel.BAD) {
         return Math.max(currentLevel - 2, Level.ONE);
