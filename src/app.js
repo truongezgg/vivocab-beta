@@ -63,6 +63,11 @@ document.addEventListener("DOMContentLoaded", () => {
         renderVocabList();
         loadVoices(); // Ensure voices are loaded
       }
+
+      // Update storage info when settings tab is opened
+      if (target === "settings") {
+        updateStorageInfo();
+      }
     };
   });
 
@@ -187,43 +192,142 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     // Render the items
-    vocabListContainer.innerHTML = paginatedList
+    const vocabHTML = paginatedList
       .map((vocab) => {
         const dataWord = `data-word="${vocab.text}"`;
         const description = vocab.description.split("\n")[0] || "";
         return `
-          <div class="vocab-item">
-            <p>
-              <span onclick="speak(event)">
-                <b class="speak-icon" ${dataWord}>${vocab.text}</b>
-                     ${vocab.type ? `<span>(${vocab.type})</span>` : ``}
-                <span class="speak-icon" ${dataWord}>🔊</span>
-                ${
-                  vocab.pronunciation
-                    ? `<span>(${vocab.pronunciation})</span>`
-                    : ``
-                }
-                <span>:</span>
-                <span>${vocab.translations.join(", ")}</span>
-              </span>
-            </p>
-            <p><strong>Level:</strong> ${vocab.level}</p>
-            <p>
-              <strong>Description:</strong>
-              <span class="speak-icon" onclick="speak(event)" data-word="${description}">🔊</span>
-              ${description}
-            </p>
-            <p><strong>Next review:</strong> ${
-              vocab.shouldReviewAfter
-                ? getTimeLeft(Vocab.roundTime(vocab.shouldReviewAfter))
-                : "N/A"
-            }</p>
-            <button class="remove-vocab-btn" data-id="${vocab.id}">X</button>
-          </div>
-          <hr />
-        `;
+            <div class="vocab-item">
+              <div class="vocab-actions">
+                <button class="edit-vocab-btn" data-id="${vocab.id}">✏️</button>
+                <button class="remove-vocab-btn" data-id="${
+                  vocab.id
+                }">❌</button>
+              </div>
+              <div class="vocab-content">
+                <p>
+                  <span onclick="speak(event)">
+                    <b class="speak-icon" ${dataWord}>${vocab.text}</b>
+                    ${vocab.type ? `<span>(${vocab.type})</span>` : ``}
+                    <span class="speak-icon" ${dataWord}>🔊</span>
+                    ${
+                      vocab.pronunciation
+                        ? `<span>(${vocab.pronunciation})</span>`
+                        : ``
+                    }
+                    <span>:</span>
+                    <span>${vocab.translations.join(", ")}</span>
+                  </span>
+                </p>
+                <p><strong>Level:</strong> ${vocab.level}</p>
+                <p>
+                  <strong>Description:</strong>
+                  <span class="speak-icon" onclick="speak(event)" data-word="${description}">🔊</span>
+                  ${description}
+                </p>
+                <p><strong>Next review:</strong> ${
+                  vocab.shouldReviewAfter
+                    ? getTimeLeft(Vocab.roundTime(vocab.shouldReviewAfter))
+                    : "N/A"
+                }</p>
+              </div>
+            </div>
+          `;
       })
       .join("");
+
+    vocabListContainer.innerHTML = vocabHTML;
+
+    // Add the edit handler function
+    function handleEditVocab(e) {
+      const vocabId = e.target.dataset.id;
+      const vocab = Store.database.vocabularies.find((v) => v.id === vocabId);
+
+      if (!vocab) return;
+
+      // Create and show edit modal
+      const editModal = document.createElement("div");
+      editModal.className = "modal edit-vocab-modal";
+      editModal.innerHTML = `
+    <div class="modal-content">
+      <h2>Edit Vocabulary</h2>
+      <form id="edit-vocab-form">
+        <input type="text" id="edit-text" value="${
+          vocab.text
+        }" placeholder="Text" required>
+        <input type="text" id="edit-pronunciation" value="${
+          vocab.pronunciation || ""
+        }" placeholder="Pronunciation">
+        <input type="text" id="edit-type" value="${
+          vocab.type || ""
+        }" placeholder="Type">
+        <input type="text" id="edit-translations" value="${vocab.translations.join(
+          ", "
+        )}" placeholder="Translations" required>
+        <textarea id="edit-description" placeholder="Description">${
+          vocab.description || ""
+        }</textarea>
+        <div class="modal-buttons">
+          <button type="submit" class="save-btn">Save</button>
+          <button type="button" class="cancel-btn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  `;
+
+      document.body.appendChild(editModal);
+
+      // Handle form submission
+      const editForm = document.getElementById("edit-vocab-form");
+      editForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const updatedVocab = {
+          text: document.getElementById("edit-text").value,
+          pronunciation: document.getElementById("edit-pronunciation").value,
+          type: document.getElementById("edit-type").value,
+          translations: document
+            .getElementById("edit-translations")
+            .value.split(",")
+            .map((t) => t.trim()),
+          description: document.getElementById("edit-description").value,
+        };
+
+        // Update the vocabulary
+        vocab.text = updatedVocab.text;
+        vocab.pronunciation = updatedVocab.pronunciation;
+        vocab.type = updatedVocab.type;
+        vocab.translations = updatedVocab.translations;
+        vocab.description = updatedVocab.description;
+
+        Store.sync();
+
+        // Add closing animation
+        editModal.classList.add("closing");
+
+        editModal.remove();
+        // Reset to first page and clear search when updating
+        currentPage = 1;
+        searchTerm = "";
+        document.getElementById("vocab-search").value = "";
+        document.getElementById("filter-level").value = "";
+
+        // Update both the list and overview
+        renderVocabList();
+        updateOverview();
+      });
+
+      // Handle cancel button
+      editModal.querySelector(".cancel-btn").addEventListener("click", () => {
+        editModal.classList.add("closing");
+        editModal.remove();
+      });
+    }
+
+    // Add event listeners for both edit and delete buttons
+    document.querySelectorAll(".edit-vocab-btn").forEach((button) => {
+      button.addEventListener("click", handleEditVocab);
+    });
 
     if (vocabList.length === 0) {
       vocabListContainer.innerHTML = "<p>No vocabularies found.</p>";
@@ -364,6 +468,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ------------------ Initial Load ------------------ */
   setInterval(() => updateOverview(), 1_000);
+
+  // Add this function to calculate storage usage
+  function updateStorageInfo() {
+    let total = 0;
+    for (let key in localStorage) {
+      if (localStorage.hasOwnProperty(key)) {
+        total += localStorage[key].length * 2; // Multiply by 2 for UTF-16 encoding
+      }
+    }
+
+    // Convert to MB
+    const usedMB = (total / (1024 * 1024)).toFixed(2);
+    const limitMB = 5; // Browser typically limits at 5-10MB
+    const percentage = Math.min((usedMB / limitMB) * 100, 100);
+
+    // Update the UI
+    document.getElementById("storage-used").textContent = usedMB;
+    document.getElementById("storage-limit").textContent = limitMB;
+    document.getElementById("storage-progress").style.width = `${percentage}%`;
+
+    // Add warning if storage is getting full
+    if (percentage > 80) {
+      document.getElementById("storage-text").style.color = "#d32f2f";
+    }
+  }
+
+  // Initial update
+  updateStorageInfo();
 });
 
 function getTimeLeft(timeMs) {

@@ -268,7 +268,7 @@ Let's start with "kidnap".
             <select id="voice-selector"></select>
           </div>
           <div class="setting-item">
-            <label for="speech-rate">Speech Rate:</label>
+            <label for="speech-rate">Speed:</label>
             <div class="speech-rate-control">
               <input 
                 type="range" 
@@ -281,6 +281,14 @@ Let's start with "kidnap".
               <span id="speech-rate-value">1.0x</span>
             </div>
           </div>
+        </div>
+
+        <div class="storage-info">
+          <h3>Storage Usage</h3>
+          <div class="storage-bar">
+            <div id="storage-progress" class="storage-progress"></div>
+          </div>
+          <p id="storage-text">Used: <span id="storage-used">0</span> / <span id="storage-limit">5</span> MB</p>
         </div>
       </section>
     </div>

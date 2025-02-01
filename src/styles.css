@@ -151,19 +151,40 @@ h1 {
 }
 
 .vocab-item {
-  padding: 10px;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   position: relative;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
 }
 
-.remove-vocab-btn {
+.vocab-actions {
   position: absolute;
-  bottom: -10px;
-  right: 0;
-  width: 30px;
-  background-color: red;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.edit-vocab-btn,
+.remove-vocab-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.edit-vocab-btn:hover,
+.remove-vocab-btn:hover {
+  background: #f0f0f0;
+}
+
+.vocab-content {
+  padding-right: 80px; /* Make space for the action buttons */
 }
 
 .vocab-item img {
@@ -1196,5 +1217,128 @@ hr {
   min-width: 45px;
   color: #666;
   font-size: 0.9rem;
+}
+
+.storage-info {
+  margin: 20px 0;
+  padding: 15px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.storage-bar {
+  width: 100%;
+  height: 20px;
+  background: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.storage-progress {
+  height: 100%;
+  background: #046bd2;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+#storage-text {
+  font-size: 0.9rem;
+  color: #666;
+  text-align: right;
+}
+
+.edit-vocab-modal {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.edit-vocab-modal.closing {
+  opacity: 0;
+}
+
+.edit-vocab-modal .modal-content {
+  position: relative;
+  background: white;
+  margin: 20px auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.edit-vocab-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.edit-vocab-modal input,
+.edit-vocab-modal textarea {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.edit-vocab-modal textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.save-btn {
+  background: #046bd2;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.vocab-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.edit-vocab-btn {
+  background: #f0f0f0;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.edit-vocab-btn:hover {
+  background: #e0e0e0;
 }
 
