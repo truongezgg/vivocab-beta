@@ -1,4 +1,4 @@
-const version = "0.0.11";
+const version = "0.0.35";
 const cacheName = `vivocab@${version}`;
 const assets = [
   "/",
@@ -19,6 +19,8 @@ const assets = [
 ];
 
 self.addEventListener("install", (e) => {
+  // Forces the new service worker to activate immediately
+  e.waitUntil(self.skipWaiting()); // Skip the waiting state
   e.waitUntil(
     caches.open(cacheName).then((cache) => {
       cache
@@ -39,6 +41,9 @@ self.addEventListener("fetch", (fetchEvent) => {
 
 const activateHandler = (e) => {
   e.waitUntil(
+    self.clients.claim() // Take control of all pages
+  );
+  e.waitUntil(
     caches.keys().then((names) => {
       const invalidNames = names.filter((name) => name !== cacheName);
       if (!invalidNames.length) return;
@@ -48,3 +53,9 @@ const activateHandler = (e) => {
 };
 
 self.addEventListener("activate", activateHandler);
+
+self.addEventListener("message", (event) => {
+  if (event.data.action === "skipWaiting") {
+    self.skipWaiting();
+  }
+});

@@ -10,6 +10,14 @@ var Level;
     Level[Level["SIX"] = 6] = "SIX";
     Level[Level["SEVEN"] = 7] = "SEVEN";
 })(Level || (Level = {}));
+var RememberLevel;
+(function (RememberLevel) {
+    RememberLevel[RememberLevel["BAD"] = 0] = "BAD";
+    RememberLevel[RememberLevel["POOR"] = 1] = "POOR";
+    RememberLevel[RememberLevel["OK"] = 2] = "OK";
+    RememberLevel[RememberLevel["GOOD"] = 3] = "GOOD";
+    RememberLevel[RememberLevel["PERFECT"] = 4] = "PERFECT";
+})(RememberLevel || (RememberLevel = {}));
 const MaxLevel = Level.SEVEN;
 class Store {
     static getKey() {
@@ -70,6 +78,12 @@ class Vocab {
         if (vocab.type) {
             vocab.type = vocab.type.toLowerCase();
         }
+        if (vocab.description) {
+            vocab.description = vocab.description
+                .split("\n")
+                .filter(Boolean)
+                .join("\n");
+        }
         Store.database.vocabularies.push(vocab);
         Store.sync();
     }
@@ -119,13 +133,29 @@ class Vocab {
         // return time - (time % timeToRound) - timeToRound;
         return time - (time % timeToRound);
     }
-    learn(vocab, isCorrect) {
+    learn(vocab, isCorrect, rememberLevel = RememberLevel.OK) {
         const data = Store.database.vocabularies.find((item) => item.id === vocab.id);
         if (!data)
             return this.add(vocab);
         const currentTime = () => Date.now();
         // Reset to 1h after
-        data.level = isCorrect ? Math.min(data.level + 1, MaxLevel) : Level.ZERO;
+        data.level = (() => {
+            if (!isCorrect)
+                return Level.ONE;
+            if (rememberLevel === RememberLevel.BAD) {
+                return Math.max(data.level - 2, Level.ONE);
+            }
+            if (rememberLevel === RememberLevel.POOR) {
+                return Math.max(data.level - 1, Level.ONE);
+            }
+            if (rememberLevel === RememberLevel.GOOD) {
+                return Math.min(data.level + 2, MaxLevel);
+            }
+            if (rememberLevel === RememberLevel.PERFECT) {
+                return Math.min(data.level + 3, MaxLevel);
+            }
+            return Math.min(data.level + 1, MaxLevel);
+        })();
         data.lastReviewAt = currentTime();
         /* -------------------------------------------------------------------------- */
         /*                                Rounded time                                */

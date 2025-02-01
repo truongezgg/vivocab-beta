@@ -288,9 +288,11 @@ Let’s start with "kidnap".
 
         <!-- Answer Options -->
         <div id="answer-options"></div>
-
+        
         <!-- Submit Button -->
         <button id="submit-answer-btn">Submit</button>
+        
+        <div id="remember-levels"></div>
       </div>
     </div>
 
@@ -310,11 +312,11 @@ Let’s start with "kidnap".
     </div>
 
     <div class="fixed-menu">
-      <button id="fixed-add-button" data-tab="add" class="tab-button fixed-add-button">✚</button>
       <button id="practice-badge" class="practice-badge">
         <span id="review-count" class="review-count">0</span>
         📝
       </button>
+      <button id="fixed-add-button" data-tab="add" class="tab-button fixed-add-button">✚</button>
       <button id="reload-app" class="tab-button fixed-add-button">♻️</button>
     </div>
 
@@ -348,33 +350,50 @@ Let’s start with "kidnap".
       // Call the function to display the version
       displayAppVersion();
 
+      // Register PWA
+      function checkForUpdate() {
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.register("/sw.js").then((registration) => {
+            registration.addEventListener("updatefound", () => {
+              const newWorker = registration.installing;
+      
+              newWorker.addEventListener("statechange", () => {
+                if (newWorker.state === "installed") {
+                  if (navigator.serviceWorker.controller) {
+                    // New content is available, refresh the page
+                    newWorker.postMessage({ action: "skipWaiting" });
+                    alert("🚀 A new version of the app is available! Reload now to enjoy the latest features and improvements")
+                  }
+                }
+              });
+            });
+          });
+      
+          // Listen for controlling new service worker
+          // let refreshing = false;
+          // navigator.serviceWorker.addEventListener("controllerchange", () => {
+          //  if (!refreshing) {
+          //    refreshing = true;
+          //    window.location.reload(); // Reload the page when new SW takes control
+          //  }
+          // });
+        }
+      }
+
+      checkForUpdate();
+
       // Reload Button functionality
       document
-        .getElementById("reload-app")
-        .addEventListener("click", async () => {
-          if (navigator.onLine) {
-            window.location.reload(true); // Force reload from server
-          } else {
-            alert("You are offline. Cannot clear cache at this time.");
-          }
-        });
+      .getElementById("reload-app")
+      .addEventListener("click", async () => {
+        if (navigator.onLine) {
+          window.location.reload(true); // Force reload from server
+        } else {
+          alert("You are offline. Cannot clear cache at this time.");
+        }
+      });
+      
 
-      // Register PWA
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("/sw.js")
-            .then((registration) => {
-              console.log(
-                "Service Worker registered with scope:",
-                registration.scope
-              );
-            })
-            .catch((error) => {
-              console.error("Service Worker registration failed:", error);
-            });
-        });
-      }
     </script>
   </body>
 </html>

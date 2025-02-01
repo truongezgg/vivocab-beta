@@ -76,9 +76,13 @@ const handleLearning = function () {
     const vocab = vocabToReview[currentIndex];
     if (!vocab) return;
 
-    const vocabText = vocab.pronunciation
-      ? `${vocab.text} (${vocab.pronunciation})`
-      : vocab.text;
+    const vocabText = (() => {
+      const pronunciation = vocab.pronunciation
+        ? `(${vocab.pronunciation})`
+        : "";
+      const type = vocab.type ? `[${vocab.type}]` : "";
+      return `${vocab.text}${pronunciation}${type}`;
+    })();
 
     vocabTextEl.innerHTML = `<span class="speak-icon" onclick="speak(event)" data-word="${vocab.text}">${vocabText}🔊</span>`;
 
@@ -117,15 +121,53 @@ const handleLearning = function () {
 
     const shuffledOptions = Array.from(options).sort(() => Math.random() - 0.5);
 
-    answerOptionsEl.innerHTML = shuffledOptions
-      .map(
-        (option, index) =>
-          `<button class="answer-btn" data-answer="${option}">${String.fromCharCode(
-            65 + index
-          )}. ${option}</button>`
-      )
-      .join("");
+    // Set answer options HTML
+    answerOptionsEl.innerHTML = `
+      ${shuffledOptions
+        .map(
+          (option, index) =>
+            `<button class="answer-btn" data-answer="${option}">${String.fromCharCode(
+              65 + index
+            )}. ${option}</button>`
+        )
+        .join("")}
+    `;
 
+    // Add remember level section to remember-levels div
+    document.getElementById("remember-levels").innerHTML = `
+      <div class="remember-level-container">
+        <div class="remember-level-title">How well did you remember this word?</div>
+        <div class="remember-level-options">
+          <div class="level-btn-wrapper">
+            <button class="remember-level-btn remember-level-1" data-level="0">Bad</button>
+            <span class="level-info-icon">ℹ️</span>
+            <span class="level-label">Had no idea</span>
+          </div>
+          <div class="level-btn-wrapper">
+            <button class="remember-level-btn remember-level-2" data-level="1">Poor</button>
+            <span class="level-info-icon">ℹ️</span>
+            <span class="level-label">Barely remembered</span>
+          </div>
+          <div class="level-btn-wrapper">
+            <button class="remember-level-btn remember-level-3" data-level="2" data-selected="true">OK</button>
+            <span class="level-info-icon">ℹ️</span>
+            <span class="level-label">Somewhat knew it</span>
+          </div>
+          <div class="level-btn-wrapper">
+            <button class="remember-level-btn remember-level-4" data-level="3">Good</button>
+            <span class="level-info-icon">ℹ️</span>
+            <span class="level-label">Knew it well</span>
+          </div>
+          <div class="level-btn-wrapper">
+            <button class="remember-level-btn remember-level-5" data-level="4">Great</button>
+            <span class="level-info-icon">ℹ️</span>
+            <span class="level-label">Knew it perfectly</span>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Add click handlers for answer buttons
     document.querySelectorAll(".answer-btn").forEach((btn) => {
       btn.onclick = (e) => {
         document
@@ -133,6 +175,37 @@ const handleLearning = function () {
           .forEach((b) => b.classList.remove("selected"));
         e.target.classList.add("selected");
       };
+    });
+
+    // Add click handlers for remember level buttons
+    document.querySelectorAll(".remember-level-btn").forEach((btn) => {
+      if (btn.dataset.selected) {
+        btn.classList.add("selected");
+      }
+      btn.onclick = (e) => {
+        document
+          .querySelectorAll(".remember-level-btn")
+          .forEach((b) => b.classList.remove("selected"));
+        e.target.classList.add("selected");
+      };
+    });
+
+    // Add after the existing click handlers
+    document.querySelectorAll(".level-info-icon").forEach((icon) => {
+      icon.addEventListener("click", (e) => {
+        // Remove active class from all labels
+        document.querySelectorAll(".level-label").forEach((label) => {
+          label.classList.remove("active");
+        });
+        // Add active class to clicked button's label
+        const label = e.target.nextElementSibling;
+        label.classList.add("active");
+
+        // Hide label after 2 seconds
+        setTimeout(() => {
+          label.classList.remove("active");
+        }, 2000);
+      });
     });
   }
 
@@ -147,16 +220,23 @@ const handleLearning = function () {
 
     const userAnswer = selectedOption.dataset.answer;
     const correctAnswer = vocabToReview[currentIndex].translations.join(",");
+    const selectedRememberLevel = document.querySelector(
+      ".remember-level-btn.selected"
+    );
+    const rememberLevel = selectedRememberLevel
+      ? parseInt(selectedRememberLevel.dataset.level)
+      : RememberLevel.DEFAULT;
 
     const isCorrect = userAnswer === correctAnswer;
     sessionData.wordsReviewed.push({
       word: vocabToReview[currentIndex].text,
       isCorrect,
       level: isCorrect ? vocabToReview[currentIndex].level + 1 : 1,
+      rememberLevel,
     });
 
     const vocab = new Vocab();
-    vocab.learn(vocabToReview[currentIndex], isCorrect);
+    vocab.learn(vocabToReview[currentIndex], isCorrect, rememberLevel);
 
     if (isCorrect) {
       totalReviewed++;

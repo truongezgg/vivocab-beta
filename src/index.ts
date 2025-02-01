@@ -8,6 +8,13 @@ enum Level {
   SIX = 6,
   SEVEN = 7,
 }
+enum RememberLevel {
+  BAD = 0,
+  POOR = 1,
+  OK = 2,
+  GOOD = 3,
+  PERFECT = 4,
+}
 const MaxLevel = Level.SEVEN;
 
 interface IVocabulary {
@@ -181,7 +188,11 @@ class Vocab {
     return time - (time % timeToRound);
   }
 
-  learn(vocab: IVocabulary, isCorrect: boolean) {
+  learn(
+    vocab: IVocabulary,
+    isCorrect: boolean,
+    rememberLevel: RememberLevel = RememberLevel.OK
+  ) {
     const data = Store.database.vocabularies.find(
       (item) => item.id === vocab.id
     );
@@ -190,7 +201,28 @@ class Vocab {
     const currentTime = () => Date.now();
 
     // Reset to 1h after
-    data.level = isCorrect ? Math.min(data.level + 1, MaxLevel) : Level.ZERO;
+    data.level = (() => {
+      if (!isCorrect) return Level.ONE;
+
+      if (rememberLevel === RememberLevel.BAD) {
+        return Math.max(data.level - 2, Level.ONE);
+      }
+
+      if (rememberLevel === RememberLevel.POOR) {
+        return Math.max(data.level - 1, Level.ONE);
+      }
+
+      if (rememberLevel === RememberLevel.GOOD) {
+        return Math.min(data.level + 2, MaxLevel);
+      }
+
+      if (rememberLevel === RememberLevel.PERFECT) {
+        return Math.min(data.level + 3, MaxLevel);
+      }
+
+      return Math.min(data.level + 1, MaxLevel);
+    })();
+
     data.lastReviewAt = currentTime();
 
     /* -------------------------------------------------------------------------- */
