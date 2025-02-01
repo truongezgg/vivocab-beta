@@ -150,16 +150,9 @@ h1 {
   margin-bottom: 15px;
 }
 
-.vocab-item {
-  position: relative;
-  padding: 15px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  margin-bottom: 15px;
-}
-
-.vocab-actions {
+/* Common styles for action buttons (both vocab and word items) */
+.vocab-actions,
+.word-actions {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -167,24 +160,55 @@ h1 {
   gap: 8px;
 }
 
+/* Common button styles */
 .edit-vocab-btn,
-.remove-vocab-btn {
+.remove-vocab-btn,
+.edit-word-btn,
+.delete-word-btn {
   background: none;
   border: none;
   font-size: 1.2rem;
   cursor: pointer;
-  padding: 4px;
+  padding: 4px 8px;
   border-radius: 4px;
   transition: background-color 0.2s;
+  width: auto !important;
+  min-width: auto !important;
 }
 
+/* Hover effects */
 .edit-vocab-btn:hover,
-.remove-vocab-btn:hover {
+.remove-vocab-btn:hover,
+.edit-word-btn:hover,
+.delete-word-btn:hover {
   background: #f0f0f0;
 }
 
+/* Button colors */
+.edit-vocab-btn,
+.edit-word-btn {
+  color: #046bd2;
+}
+
+.remove-vocab-btn,
+.delete-word-btn {
+  color: #dc3545;
+}
+
+/* Container positioning */
+.vocab-item,
+.word-item {
+  position: relative;
+  padding: 15px;
+  padding-right: 80px;  /* Make space for buttons */
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Remove old styles */
 .vocab-content {
-  padding-right: 80px; /* Make space for the action buttons */
+  /* Remove padding-right since it's handled by the container */
 }
 
 .vocab-item img {
