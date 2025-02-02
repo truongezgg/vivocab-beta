@@ -1507,9 +1507,9 @@ hr {
 
 /* Back button and title container */
 .lesson-header {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+  /* display: flex; */
+  /* align-items: center; */
+  /* gap: 15px; */
   margin-bottom: 20px;
 }
 

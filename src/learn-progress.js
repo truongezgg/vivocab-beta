@@ -273,12 +273,14 @@ const handleLearning = function (_vocabularies) {
     const breakdownList = document.getElementById("performance-breakdown");
     breakdownList.innerHTML = "";
     sessionData.wordsReviewed.forEach((wordData) => {
+      if (!wordData.isCorrect) return; // Only show correct words
+
       const listItem = document.createElement("li");
       const pronunciation = wordData.pronunciation
         ? `(${wordData.pronunciation})`
         : "";
-      const correct = wordData.isCorrect ? "Correct" : "Incorrect";
-      listItem.innerHTML = `<span class="speak-icon" onclick="speak(event)" data-word="${wordData.word}">${wordData.word}</span>${pronunciation} - ${correct} (Level: ${wordData.level})`;
+      // const correct = wordData.isCorrect ? "Correct" : "Incorrect";
+      listItem.innerHTML = `<span class="speak-icon" onclick="speak(event)" data-word="${wordData.word}">${wordData.word}</span>${pronunciation}(Level: ${wordData.level})`;
       breakdownList.appendChild(listItem);
     });
 
