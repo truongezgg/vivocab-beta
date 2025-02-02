@@ -1,4 +1,4 @@
-const version = "0.0.47";
+const version = "0.0.48";
 const cacheName = `vivocab@${version}`;
 const assets = [
   "/",
@@ -12,6 +12,7 @@ const assets = [
   "/offline.html",
   "/styles.css",
   "/manifest.json",
+  "/components/LessonNavigation.js",
 
   "/icons/icon-192x192.png",
   "/icons/icon-512x512.png",
