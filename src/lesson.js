@@ -34,4 +34,22 @@ class LessonStore {
       return [];
     }
   }
+
+  static isLessonLearned(lessonId) {
+    return Store?.database?.learnedLessons?.includes(lessonId) || false;
+  }
+
+  static toggleLessonLearned(lessonId) {
+    if (!Store.database.learnedLessons) {
+      Store.database.learnedLessons = [];
+    }
+
+    const index = Store.database.learnedLessons.indexOf(lessonId);
+    if (index === -1) {
+      Store.database.learnedLessons.push(lessonId);
+    } else {
+      Store.database.learnedLessons.splice(index, 1);
+    }
+    Store.sync();
+  }
 }

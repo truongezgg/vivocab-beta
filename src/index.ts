@@ -37,6 +37,7 @@ interface IVocabulary {
 interface IDatabase {
   version: string;
   vocabularies: Array<IVocabulary>;
+  learnedLessons: string[];
 }
 
 class Store {
@@ -48,6 +49,7 @@ class Store {
   static defaultData: IDatabase = {
     version: "0.1",
     vocabularies: [],
+    learnedLessons: [],
   };
 
   static getKey() {
@@ -70,15 +72,16 @@ class Store {
   }
 
   static set(value: IDatabase) {
-    const backupKey = this.getBackupKey();
-    localStorage.setItem(backupKey, JSON.stringify(this.get()));
-
     const key = this.getKey();
     localStorage.setItem(key, JSON.stringify(value));
   }
 
   static sync() {
+    this.database.learnedLessons = this.database.learnedLessons || [];
     this.set(this.database);
+
+    const backupKey = this.getBackupKey();
+    localStorage.removeItem(backupKey);
   }
 }
 
@@ -92,22 +95,8 @@ class Vocab {
     const id = Store.database.vocabularies.find((item) => item.id === vocab.id);
     if (id) return;
 
-    const text = Store.database.vocabularies.find((item) => {
-      if (
-        (item.text || "").toLowerCase() !== (vocab.text || "").toLowerCase()
-      ) {
-        return false;
-      }
-
-      if (
-        (item.type || "").toLowerCase() !== (vocab.type || "").toLowerCase()
-      ) {
-        return false;
-      }
-
-      return true;
-    });
-    if (text) return;
+    const isExist = this.isExist(vocab);
+    if (isExist) return;
 
     if (vocab.shouldReviewAfter) {
       vocab.shouldReviewAfter = Vocab.roundTime(vocab.shouldReviewAfter);
@@ -125,6 +114,33 @@ class Vocab {
 
     Store.database.vocabularies.push(vocab);
     Store.sync();
+  }
+
+  isExist(vocab: IVocabulary) {
+    const isExist = Store.database.vocabularies.find((item) => {
+      if (
+        (item.text || "").toLowerCase() !== (vocab.text || "").toLowerCase()
+      ) {
+        return false;
+      }
+
+      if (
+        (item.type || "").toLowerCase() !== (vocab.type || "").toLowerCase()
+      ) {
+        return false;
+      }
+
+      if (
+        item.translations.join(",").toLowerCase() !==
+        vocab.translations.join(",").toLowerCase()
+      ) {
+        return false;
+      }
+
+      return true;
+    });
+
+    return isExist;
   }
 
   update(id: string, vocab: Partial<IVocabulary>) {
@@ -184,6 +200,7 @@ class Vocab {
 
   // -30m
   static roundTime(time: number, timeToRound = 30 * 60 * 1000) {
+    if (!time) return 0;
     // return time - (time % timeToRound) - timeToRound;
     return time - (time % timeToRound);
   }

@@ -1400,6 +1400,7 @@ hr {
 }
 
 .sub-lesson-card {
+  position: relative;  /* Add this to make absolute positioning work */
   background: #f8f9fa;
   border: 1px solid #e9ecef;
   border-radius: 6px;
@@ -1452,13 +1453,50 @@ hr {
   margin-bottom: 10px;
 }
 
-.vocab-text {
-  font-size: 1.1rem;
+.vocab-header-left {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.add-vocab-btn {
+  background: #046bd2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: auto;
+  transition: all 0.2s ease;
+}
+
+.add-vocab-btn:hover {
+  background: #034c91;
+}
+
+.add-vocab-btn.added {
+  background: #28a745;
+  cursor: default;
+}
+
+.plus-icon {
+  font-size: 1.2rem;
   font-weight: bold;
+  line-height: 1;
+}
+
+.vocab-text {
+  font-weight: 500;
+  cursor: pointer;
 }
 
 .vocab-translation {
   color: #666;
+  font-size: 0.9rem;
 }
 
 .vocab-description {
@@ -1509,5 +1547,157 @@ hr {
 .lesson-header h1 {
   margin: 0;
   flex: 1;
+}
+
+.lesson-controls {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.show-learned-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #666;
+  font-size: 0.9rem;
+  width: 100%;
+}
+.show-learned-toggle > input[type="checkbox"] {
+  width: auto;
+}
+
+.lesson-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.lesson-checkbox {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #666;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.sub-lesson-card.learned {
+  opacity: 0.7;
+  background-color: #f8f9fa;
+}
+
+.mark-learned-checkbox {
+  cursor: pointer;
+}
+
+.lesson-detail-header {
+  position: relative;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.lesson-detail-header p {
+  margin: 0;
+  padding-right: 40px; /* Make room for checkbox */
+}
+
+.lesson-detail-header .lesson-checkbox {
+  top: 10px;
+  right: 10px;
+}
+
+.lesson-detail-checkbox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  padding: 8px 12px;
+  background: white;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.lesson-detail-checkbox span {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.lesson-checkbox-hint {
+  font-size: 0.75rem;
+  color: #666;
+  font-style: italic;
+}
+
+.lesson-detail-checkbox input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+/* Lesson card checkbox (in grid view) */
+.lesson-checkbox {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #666;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* Lesson detail completion status */
+.detail-completion-status {
+  margin: 20px 0;
+  width: 100%;
+}
+
+.detail-completion-status label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 12px 16px;
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Container for checkbox and main text */
+.detail-completion-status label > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-completion-status span {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.completion-hint {
+  font-size: 0.75rem;
+  color: #666;
+  font-style: italic;
+  margin-top: 4px;
+  margin-left: 24px;
+}
+
+.detail-completion-status input[type="checkbox"] {
+  margin: 0;
+  width: auto;
 }
 
