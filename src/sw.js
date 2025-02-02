@@ -1,4 +1,4 @@
-const version = "0.0.45";
+const version = "0.0.47";
 const cacheName = `vivocab@${version}`;
 const assets = [
   "/",
@@ -16,6 +16,9 @@ const assets = [
   "/icons/icon-192x192.png",
   "/icons/icon-512x512.png",
   "/icons/favicon.ico",
+
+  // data
+  "/data/oxford-3000-a1.json",
 ];
 
 self.addEventListener("install", (e) => {

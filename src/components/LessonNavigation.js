@@ -11,24 +11,24 @@ class LessonNavigation {
     this.attachEventListeners();
   }
 
-  render() {
+  async render() {
     const container = document.querySelector("#lesson-container");
 
     switch (this.currentView) {
       case "categories":
-        container.innerHTML = this.renderCategories();
+        container.innerHTML = await this.renderCategories();
         break;
       case "subLessons":
-        container.innerHTML = this.renderSubLessons();
+        container.innerHTML = await this.renderSubLessons();
         break;
       case "lessonDetail":
-        container.innerHTML = this.renderLessonDetail();
+        container.innerHTML = await this.renderLessonDetail();
         break;
     }
   }
 
-  renderCategories() {
-    const categories = LessonStore.getLessonCategories();
+  async renderCategories() {
+    const categories = await LessonStore.getLessonCategories();
     return `
       <h1>Choose a Category</h1>
       ${categories
@@ -120,11 +120,13 @@ class LessonNavigation {
         const startButton = e.target.closest(".start-learning-btn");
 
         if (categoryEl) {
-          this.currentCategory = LessonStore.getLessonCategory(
-            categoryEl.dataset.categoryId
+          LessonStore.getLessonCategory(categoryEl.dataset.categoryId).then(
+            (result) => {
+              this.currentCategory = result;
+              this.currentView = "subLessons";
+              this.render();
+            }
           );
-          this.currentView = "subLessons";
-          this.render();
         } else if (subLessonEl) {
           this.currentSubLesson = this.currentCategory.subLessons.find(
             (lesson) => lesson.id === subLessonEl.dataset.lessonId
