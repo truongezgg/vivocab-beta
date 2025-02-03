@@ -1,3 +1,13 @@
+const sessionData = {
+  startTime: Date.now(),
+  endTime: null,
+  wordsReviewed: [],
+  totalReviewed: 0,
+  totalToReview: 0,
+  currentIndex: 0,
+  vocabToReview: [],
+};
+
 function shuffleArray(array) {
   // Create a copy of the array to avoid mutating the original
   const shuffled = [...array];
@@ -10,25 +20,27 @@ function shuffleArray(array) {
   return shuffled;
 }
 
-const handleLearning = function (_vocabularies) {
+const handleLearning = (_vocabularies) => {
   const vocabInstance = new Vocab();
-  const vocabToReview = _vocabularies?.length
-    ? _vocabularies
-    : [
-        // ...Store.database.vocabularies.filter(
-        //   (vocab) => vocab.shouldReviewAfter < Date.now()
-        // ),
-        // ...Store.database.vocabularies.filter((vocab) => vocab),
-        ...vocabInstance.getVocabToReview().vocabularies,
-      ];
-  const sessionData = {
-    startTime: Date.now(),
-    endTime: null,
-    wordsReviewed: [],
+  const getVocabToReview = () => {
+    return _vocabularies?.length
+      ? [..._vocabularies]
+      : [
+          // ...Store.database.vocabularies.filter(
+          //   (vocab) => vocab.shouldReviewAfter < Date.now()
+          // ),
+          // ...Store.database.vocabularies.filter((vocab) => vocab),
+          ...vocabInstance.getVocabToReview().vocabularies,
+        ];
   };
-  let totalReviewed = 0;
-  const totalToReview = vocabToReview.length;
-  let currentIndex = 0;
+  sessionData.vocabToReview = getVocabToReview();
+
+  sessionData.startTime = Date.now();
+  sessionData.endTime = null;
+  sessionData.wordsReviewed = [];
+  sessionData.totalReviewed = 0;
+  sessionData.totalToReview = sessionData.vocabToReview.length;
+  sessionData.currentIndex = 0;
 
   const modal = document.getElementById("learning-modal");
   const progressBar = document.getElementById("progress-bar");
@@ -75,14 +87,17 @@ const handleLearning = function (_vocabularies) {
   });
 
   // Update progress bar
-  function updateProgress() {
-    const progressPercent = (totalReviewed / totalToReview) * 100;
+  const updateProgress = () => {
+    const progressPercent =
+      (sessionData.totalReviewed / sessionData.totalToReview) * 100;
     progressBar.style.width = `${progressPercent}%`;
-    progressText.textContent = `${totalReviewed}/${totalToReview}`;
-  }
+    progressText.textContent = `${sessionData.totalReviewed}/${sessionData.totalToReview}`;
+  };
 
   // Display vocabulary
-  function displayVocab() {
+  const displayVocab = () => {
+    const vocabToReview = sessionData.vocabToReview;
+    const currentIndex = sessionData.currentIndex;
     submitAnswerBtn.style.display = "block";
     if (vocabToReview.length === 0) {
       vocabTextEl.innerHTML = `<p>No vocabulary to review!</p>`;
@@ -167,17 +182,16 @@ const handleLearning = function (_vocabularies) {
 
     generateAnswerOptions(vocab, { maskedWord: maskedWord });
     if (vocab.text) speakText(vocab.text);
-  }
+  };
 
-  function generateAnswerOptions(vocab, params) {
-    if (!vocab || !vocabToReview.length) return;
+  const generateAnswerOptions = (vocab, params) => {
+    if (!vocab || !sessionData.vocabToReview.length) return;
 
     // Move answer mode toggle to settings container
     const settingsContainer = document.getElementById(
       "learning-settings-container"
     );
     const { mode, current } = SettingStore.getDisplayMode();
-    console.log("1", { mode, current });
 
     // Update the settings container HTML with better labels
     settingsContainer.innerHTML = `
@@ -207,7 +221,7 @@ const handleLearning = function (_vocabularies) {
 
     // Add event listeners for mode toggle buttons with settings persistence
     document.getElementById("multiple-choice-mode").onclick = () => {
-      if (current === "multiple-choice") return; // Skip if already in this mode
+      // if (current === "multiple-choice") return; // Skip if already in this mode
       updateActiveMode("multiple-choice");
       SettingStore.setDisplayMode("multiple-choice");
       showMultipleChoice(vocab, answerOptionsEl);
@@ -215,7 +229,7 @@ const handleLearning = function (_vocabularies) {
     };
 
     document.getElementById("text-input-mode").onclick = () => {
-      if (current === "write-translation") return; // Skip if already in this mode
+      // if (current === "write-translation") return; // Skip if already in this mode
       updateActiveMode("write-translation");
       SettingStore.setDisplayMode("write-translation");
       showTextInput(vocab, answerOptionsEl);
@@ -223,7 +237,7 @@ const handleLearning = function (_vocabularies) {
     };
 
     document.getElementById("word-completion-mode").onclick = () => {
-      if (current === "word-completion") return; // Skip if already in this mode
+      // if (current === "word-completion") return; // Skip if already in this mode
       updateActiveMode("word-completion");
       SettingStore.setDisplayMode("word-completion");
       showWordCompletion(vocab, answerOptionsEl, params?.maskedWord);
@@ -231,7 +245,7 @@ const handleLearning = function (_vocabularies) {
     };
 
     document.getElementById("random-mode").onclick = () => {
-      if (current === "random") return;
+      // if (current === "random") return;
       updateActiveMode("random");
       SettingStore.setDisplayMode("random");
       displayVocab();
@@ -341,9 +355,9 @@ const handleLearning = function (_vocabularies) {
         }, 2000);
       });
     });
-  }
+  };
 
-  function showMultipleChoice(vocab, container) {
+  const showMultipleChoice = (vocab, container) => {
     // document
     //   .querySelectorAll(".mode-btn")
     //   .forEach((btn) => btn.classList.remove("active"));
@@ -386,9 +400,9 @@ const handleLearning = function (_vocabularies) {
         e.target.classList.add("selected");
       };
     });
-  }
+  };
 
-  function showTextInput(vocab, container) {
+  const showTextInput = (vocab, container) => {
     container.classList.add("text-input");
     container.classList.remove("multiple-choice", "word-completion");
 
@@ -431,9 +445,9 @@ const handleLearning = function (_vocabularies) {
         handleSubmitAnswer();
       }
     });
-  }
+  };
 
-  function showWordCompletion(vocab, container, _maskedWord) {
+  const showWordCompletion = (vocab, container, _maskedWord) => {
     const maskedWord = _maskedWord || generateMaskedWord(vocab.text);
 
     container.classList.add("word-completion");
@@ -523,7 +537,7 @@ const handleLearning = function (_vocabularies) {
         handleSubmitAnswer();
       }
     });
-  }
+  };
 
   function generateMaskedWord(word) {
     const letters = word.split("");
@@ -574,7 +588,9 @@ const handleLearning = function (_vocabularies) {
   }
 
   // Handle submit answer
-  function handleSubmitAnswer() {
+  const handleSubmitAnswer = () => {
+    const vocabToReview = sessionData.vocabToReview;
+    const currentIndex = sessionData.currentIndex;
     const { mode } = SettingStore.getDisplayMode();
     let userAnswer;
     let isCorrect;
@@ -637,20 +653,20 @@ const handleLearning = function (_vocabularies) {
     const vocab = new Vocab();
     vocab.learn(vocabToReview[currentIndex], isCorrect, rememberLevel);
 
-    totalReviewed++;
-    currentIndex++;
+    sessionData.totalReviewed++;
+    sessionData.currentIndex++;
 
-    if (currentIndex < totalToReview) {
+    if (sessionData.currentIndex < sessionData.totalToReview) {
       displayVocab();
       updateProgress();
     } else {
       updateProgress();
       showOverview();
     }
-  }
+  };
 
   // Show the overview modal
-  function showOverview() {
+  const showOverview = () => {
     sessionData.endTime = Date.now();
 
     document.getElementById("total-reviewed").textContent =
@@ -678,7 +694,7 @@ const handleLearning = function (_vocabularies) {
     });
 
     overviewModal.style.display = "flex";
-  }
+  };
 
   // Stop review button
   const stopReviewBtn = document.getElementById("stop-review-btn");
