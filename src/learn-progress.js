@@ -407,13 +407,22 @@ const handleLearning = (_vocabularies) => {
     container.classList.remove("multiple-choice", "word-completion");
 
     // Create pattern hint from translations
-    const patternHint = vocab.translations[0]
-      .split("") // Split into individual characters
-      .map((char) => {
+    const letters = vocab.translations[0].split("");
+    const patternHint = letters
+      .map((char, index) => {
         // Keep only specific punctuation and spaces
         if (char.match(/[,.:;]|\s/)) {
           return char;
         }
+
+        if (index === 0) {
+          return char;
+        }
+
+        if (letters[index - 1] === " ") {
+          return char;
+        }
+
         // Mask everything else
         return "*";
       })
