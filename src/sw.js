@@ -1,4 +1,4 @@
-const version = "0.0.50";
+const version = "0.0.51";
 const cacheName = `vivocab@${version}`;
 const assets = [
   "/",

@@ -19,6 +19,11 @@ var RememberLevel;
     RememberLevel[RememberLevel["PERFECT"] = 4] = "PERFECT";
 })(RememberLevel || (RememberLevel = {}));
 const MaxLevel = Level.SEVEN;
+const DisplayVocabModes = [
+    "multiple-choice",
+    "write-translation",
+    "word-completion",
+];
 class Store {
     static getKey() {
         return `${this.key}@${this.version}`;
@@ -42,6 +47,7 @@ class Store {
     }
     static sync() {
         this.database.learnedLessons = this.database.learnedLessons || [];
+        this.database.settings = this.database.settings || {};
         this.set(this.database);
         const backupKey = this.getBackupKey();
         localStorage.removeItem(backupKey);
@@ -53,6 +59,7 @@ Store.defaultData = {
     version: "0.1",
     vocabularies: [],
     learnedLessons: [],
+    settings: {},
 };
 class Vocab {
     add(vocab) {
@@ -239,6 +246,52 @@ class Vocab {
     }
     export() {
         return Store.database;
+    }
+}
+class SettingStore {
+    static getDisplayMode(isResetRandom) {
+        var _a, _b;
+        const [currentMode, currentRandom, displayVocabModes] = [
+            ((_a = Store.database.settings) === null || _a === void 0 ? void 0 : _a.displayVocabMode) || "multiple-choice",
+            ((_b = Store.database.settings) === null || _b === void 0 ? void 0 : _b.displayVocabModeRandom) || "multiple-choice",
+            this.getDisplayModeModes(),
+        ];
+        const mode = (() => {
+            if (currentMode !== "random")
+                return currentMode;
+            if (!isResetRandom)
+                return currentRandom;
+            const modes = (displayVocabModes === null || displayVocabModes === void 0 ? void 0 : displayVocabModes.length)
+                ? displayVocabModes
+                : DisplayVocabModes;
+            const randomMode = modes[Math.floor(Math.random() * modes.length)];
+            this.setDisplayModeRandom(randomMode);
+            return randomMode;
+        })();
+        return {
+            mode,
+            current: currentMode,
+        };
+    }
+    static getDisplayModeModes() {
+        var _a;
+        const modes = (_a = Store.database.settings) === null || _a === void 0 ? void 0 : _a.displayVocabModes;
+        if (modes === null || modes === void 0 ? void 0 : modes.length)
+            return modes;
+        return DisplayVocabModes;
+    }
+    static setDisplayMode(mode) {
+        Store.database.settings = Store.database.settings || {};
+        Store.database.settings.displayVocabMode = mode;
+        return Store.sync();
+    }
+    static setDisplayModeRandom(mode) {
+        Store.database.settings.displayVocabModeRandom = mode;
+        return Store.sync();
+    }
+    static setDisplayModeModes(modes) {
+        Store.database.settings.displayVocabModes = modes;
+        return Store.sync();
     }
 }
 Store.load();

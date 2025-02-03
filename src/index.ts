@@ -34,10 +34,28 @@ interface IVocabulary {
   isSendNotification: boolean;
   // payload: {};
 }
+
+const DisplayVocabModes = [
+  "multiple-choice",
+  "write-translation",
+  "word-completion",
+];
+
+interface ISettings {
+  displayVocabModes?: typeof DisplayVocabModes;
+  displayVocabMode?:
+    | "multiple-choice"
+    | "write-translation"
+    | "word-completion"
+    | "random";
+  displayVocabModeRandom?: string;
+}
+
 interface IDatabase {
   version: string;
   vocabularies: Array<IVocabulary>;
   learnedLessons: string[];
+  settings: ISettings;
 }
 
 class Store {
@@ -50,6 +68,7 @@ class Store {
     version: "0.1",
     vocabularies: [],
     learnedLessons: [],
+    settings: {},
   };
 
   static getKey() {
@@ -78,6 +97,7 @@ class Store {
 
   static sync() {
     this.database.learnedLessons = this.database.learnedLessons || [];
+    this.database.settings = this.database.settings || {};
     this.set(this.database);
 
     const backupKey = this.getBackupKey();
@@ -338,6 +358,62 @@ class Vocab {
 
   export() {
     return Store.database;
+  }
+}
+
+class SettingStore {
+  static getDisplayMode(isResetRandom?: boolean): {
+    mode: string;
+    current: string;
+  } {
+    const [currentMode, currentRandom, displayVocabModes] = [
+      Store.database.settings?.displayVocabMode || "multiple-choice",
+      Store.database.settings?.displayVocabModeRandom || "multiple-choice",
+      this.getDisplayModeModes(),
+    ];
+
+    const mode = (() => {
+      if (currentMode !== "random") return currentMode;
+      if (!isResetRandom) return currentRandom;
+
+      const modes = displayVocabModes?.length
+        ? displayVocabModes
+        : DisplayVocabModes;
+      const randomMode = modes[Math.floor(Math.random() * modes.length)];
+
+      this.setDisplayModeRandom(randomMode);
+
+      return randomMode;
+    })();
+
+    return {
+      mode,
+      current: currentMode,
+    };
+  }
+
+  static getDisplayModeModes(): string[] {
+    const modes = Store.database.settings?.displayVocabModes;
+    if (modes?.length) return modes;
+    return DisplayVocabModes;
+  }
+
+  static setDisplayMode(
+    mode: "multiple-choice" | "write-translation" | "word-completion" | "random"
+  ): void {
+    Store.database.settings = Store.database.settings || {};
+    Store.database.settings.displayVocabMode = mode;
+    return Store.sync();
+  }
+
+  static setDisplayModeRandom(mode: string): void {
+    Store.database.settings.displayVocabModeRandom = mode;
+    return Store.sync();
+  }
+
+  static setDisplayModeModes(modes: string[]): void {
+    Store.database.settings.displayVocabModes = modes;
+    return Store.sync();
   }
 }
 
