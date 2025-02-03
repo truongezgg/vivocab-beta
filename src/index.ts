@@ -367,7 +367,7 @@ class SettingStore {
     current: string;
   } {
     const [currentMode, currentRandom, displayVocabModes] = [
-      Store.database.settings?.displayVocabMode || "multiple-choice",
+      Store.database.settings?.displayVocabMode || "random",
       Store.database.settings?.displayVocabModeRandom || "multiple-choice",
       this.getDisplayModeModes(),
     ];

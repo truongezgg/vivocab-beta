@@ -252,7 +252,7 @@ class SettingStore {
     static getDisplayMode(isResetRandom) {
         var _a, _b;
         const [currentMode, currentRandom, displayVocabModes] = [
-            ((_a = Store.database.settings) === null || _a === void 0 ? void 0 : _a.displayVocabMode) || "multiple-choice",
+            ((_a = Store.database.settings) === null || _a === void 0 ? void 0 : _a.displayVocabMode) || "random",
             ((_b = Store.database.settings) === null || _b === void 0 ? void 0 : _b.displayVocabModeRandom) || "multiple-choice",
             this.getDisplayModeModes(),
         ];
