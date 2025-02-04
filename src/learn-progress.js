@@ -6,6 +6,7 @@ const sessionData = {
   totalToReview: 0,
   currentIndex: 0,
   vocabToReview: [],
+  isShowTranslation: false,
 };
 
 function shuffleArray(array) {
@@ -21,6 +22,8 @@ function shuffleArray(array) {
 }
 
 const handleLearning = (_vocabularies) => {
+  sessionData.isShowTranslation = !!_vocabularies?.length;
+
   const vocabInstance = new Vocab();
   const getVocabToReview = () => {
     return _vocabularies?.length
@@ -161,7 +164,21 @@ const handleLearning = (_vocabularies) => {
         })
         .join("<br>");
     } else {
-      vocabTextEl.innerHTML = `<span class="speak-icon" onclick="speak(event)" data-word="${vocab.text}">${vocabText}🔊</span>`;
+      // vocabTextEl.innerHTML = `<span class="speak-icon" onclick="speak(event)" data-word="${vocab.text}">${vocabText}🔊</span>`;
+      const translation = vocab.translations.join(", ");
+      vocabTextEl.innerHTML = `
+      <div class="word-completion-display">
+        <span class="speak-icon" onclick="speak(event)" data-word="${
+          vocab.text
+        }">
+          ${vocabText}🔊
+        </span>
+        ${
+          sessionData.isShowTranslation
+            ? `<div class="translation">${translation}</div>`
+            : ""
+        }
+      </div>`;
 
       vocabDescriptionEl.innerHTML = vocab.description
         .split("\n")
