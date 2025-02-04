@@ -612,9 +612,9 @@ const handleLearning = (_vocabularies) => {
       }
       userAnswer = selectedOption.dataset.answer;
       // Check against translations for multiple choice
-      const correctAnswers = vocabToReview[currentIndex].translations.map((t) =>
-        t.toLowerCase()
-      );
+      const correctAnswers = vocabToReview[currentIndex].translations
+        .join(",")
+        .toLowerCase();
       isCorrect = correctAnswers.includes(userAnswer.toLowerCase());
     } else if (mode === "word-completion") {
       const textInput = document.getElementById("completion-answer-input");
