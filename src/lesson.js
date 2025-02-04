@@ -20,11 +20,19 @@ class LessonStore {
 
   static async loadLessons() {
     if (this.lessons.length > 0) return;
-    const [oxford3000A1, oxford3000A2] = await Promise.all([
-      this._fetchOxford3000A1(),
-      this._fetchOxford3000A2(),
-    ]);
-    this.lessons = [...oxford3000A1, ...oxford3000A2];
+    const [oxford3000A1, oxford3000A2, oxford3000B1, oxford3000B2] =
+      await Promise.all([
+        this._fetchOxford3000A1(),
+        this._fetchOxford3000A2(),
+        this._fetchOxford3000B1(),
+        this._fetchOxford3000B2(),
+      ]);
+    this.lessons = [
+      ...oxford3000A1,
+      ...oxford3000A2,
+      ...oxford3000B1,
+      ...oxford3000B2,
+    ];
   }
 
   static async _fetchOxford3000A1() {
@@ -36,6 +44,18 @@ class LessonStore {
       console.error(error);
       return [];
     }
+  }
+
+  static async _fetchOxford3000B1() {
+    const response = await fetch("/data/oxford-3000-b1.json");
+    const data = await response.json();
+    return data;
+  }
+
+  static async _fetchOxford3000B2() {
+    const response = await fetch("/data/oxford-3000-b2.json");
+    const data = await response.json();
+    return data;
   }
 
   static async _fetchOxford3000A2() {
