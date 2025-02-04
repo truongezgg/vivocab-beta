@@ -239,7 +239,7 @@ class Vocab {
 
     // Reset to 1h after
     const level = (() => {
-      if (!isCorrect) return Level.ONE;
+      if (!isCorrect) return Level.ZERO;
 
       // If time to review is not passed, return current level.
       if (data?.shouldReviewAfter && currentTime() < data.shouldReviewAfter) {
