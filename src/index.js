@@ -286,10 +286,12 @@ class SettingStore {
         return Store.sync();
     }
     static setDisplayModeRandom(mode) {
+        Store.database.settings = Store.database.settings || {};
         Store.database.settings.displayVocabModeRandom = mode;
         return Store.sync();
     }
     static setDisplayModeModes(modes) {
+        Store.database.settings = Store.database.settings || {};
         Store.database.settings.displayVocabModes = modes;
         return Store.sync();
     }
