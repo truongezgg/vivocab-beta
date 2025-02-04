@@ -1,0 +1,18 @@
+Each sub lesson has 10 words.
+Each word has: id, type, pronunciation(US), text, translations, description.
+Description first line is the definition, the rest are examples(only 2 for save time).
+
+1. Get data English words from oxford-3000-a2.txt
+EX: add
+```
+{
+  "id": "oxford-3000-a2-101",
+  "type": "verb",
+  "pronunciation": "/æd/",
+  "text": "add",
+  "translations": ["thêm vào"],
+  "description": "To put something with another thing.\nAdd salt to taste.\nPlease add my name to the list.\nCan you add these numbers?"
+}
+```
+2. Get all words from each part. You help me double check is data correct with my oxford-3000-a2.txt before create json.
+3. Report for me you get data from which lines. Triple check again

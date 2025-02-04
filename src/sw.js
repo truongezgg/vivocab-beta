@@ -1,4 +1,4 @@
-const version = "0.0.56";
+const version = "0.0.57";
 const cacheName = `vivocab@${version}`;
 const assets = [
   "/",
@@ -20,6 +20,7 @@ const assets = [
 
   // data
   "/data/oxford-3000-a1.json",
+  "/data/oxford-3000-a2.json",
 ];
 
 self.addEventListener("install", (e) => {
