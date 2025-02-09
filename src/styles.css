@@ -110,7 +110,6 @@ h1 {
   align-items: flex-start;
   z-index: 1000;
   overflow-y: auto;
-  padding: 20px 0;
 }
 
 .modal-content {
@@ -120,6 +119,7 @@ h1 {
   max-width: 500px;
   text-align: center;
   width: 100%;
+  min-height: 100%;
   position: relative;
 }
 
@@ -2156,7 +2156,6 @@ hr {
 /* Performance breakdown section */
 #performance-breakdown {
   margin-top: 24px;
-  padding: 16px;
   background: white;
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);

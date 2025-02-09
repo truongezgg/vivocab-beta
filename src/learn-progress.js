@@ -740,23 +740,30 @@ const handleLearning = (params) => {
 
     const breakdownList = document.getElementById("performance-breakdown");
     breakdownList.innerHTML = "";
-    sessionData.wordsReviewed.forEach((wordData) => {
-      if (!wordData.isCorrect && !wordData.isSkip) return; // Only show correct words
+    sessionData.wordsReviewed
+      .sort((a, b) => {
+        // If skip, show at the end, if not skip, keep the original order
+        if (a.isSkip) return 1;
+        if (b.isSkip) return -1;
+        return 0;
+      })
+      .forEach((wordData) => {
+        if (!wordData.isCorrect && !wordData.isSkip) return; // Only show correct words
 
-      const listItem = document.createElement("li");
-      const pronunciation = wordData.pronunciation
-        ? `(${wordData.pronunciation})`
-        : "";
-      const translations = wordData.translations
-        ? `: ${wordData.translations.join(", ")}`
-        : "";
+        const listItem = document.createElement("li");
+        const pronunciation = wordData.pronunciation
+          ? `(${wordData.pronunciation})`
+          : "";
+        const translations = wordData.translations
+          ? `: ${wordData.translations.join(", ")}`
+          : "";
 
-      // Add skipped class if word was skipped
-      if (wordData.isSkip) {
-        listItem.classList.add("skipped-word");
-      }
+        // Add skipped class if word was skipped
+        if (wordData.isSkip) {
+          listItem.classList.add("skipped-word");
+        }
 
-      listItem.innerHTML = `
+        listItem.innerHTML = `
         <span class="speak-icon" onclick="speak(event)" data-word="${
           wordData.word
         }">
@@ -768,8 +775,8 @@ const handleLearning = (params) => {
           ${wordData.isSkip ? "(Skipped)" : `(Level: ${wordData.level})`}
         </span>
       `;
-      breakdownList.appendChild(listItem);
-    });
+        breakdownList.appendChild(listItem);
+      });
 
     overviewModal.style.display = "flex";
   };
