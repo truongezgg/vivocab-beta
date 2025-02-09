@@ -7,6 +7,7 @@ const sessionData = {
   currentIndex: 0,
   vocabToReview: [],
   isShowTranslation: false,
+  isAllowSkip: false,
 };
 
 function shuffleArray(array) {
@@ -23,7 +24,7 @@ function shuffleArray(array) {
 
 const handleLearning = (_vocabularies) => {
   sessionData.isShowTranslation = !!_vocabularies?.length;
-
+  sessionData.isAllowSkip = !!_vocabularies?.length;
   const vocabInstance = new Vocab();
   const getVocabToReview = () => {
     return _vocabularies?.length
@@ -53,6 +54,7 @@ const handleLearning = (_vocabularies) => {
   const vocabImageEl = document.getElementById("vocab-image");
   const answerOptionsEl = document.getElementById("answer-options");
   const submitAnswerBtn = document.getElementById("submit-answer-btn");
+  const skipAnswerBtn = document.getElementById("skip-answer-btn");
   const overviewModal = document.getElementById("overview-modal");
 
   // Add settings button and container
@@ -298,39 +300,45 @@ const handleLearning = (_vocabularies) => {
         showMultipleChoice(vocab, answerOptionsEl);
     }
 
-    // Add remember level section to remember-levels div
-    document.getElementById("remember-levels").innerHTML = `
-      <div class="remember-level-container">
-        <div class="remember-level-title">How well did you remember this word?</div>
-        <div class="remember-level-options">
-          <div class="level-btn-wrapper">
-            <button class="remember-level-btn remember-level-1" data-level="0">Bad</button>
-            <span class="level-info-icon">ℹ️</span>
-            <span class="level-label">Had no idea</span>
-          </div>
-          <div class="level-btn-wrapper">
-            <button class="remember-level-btn remember-level-2" data-level="1">Poor</button>
-            <span class="level-info-icon">ℹ️</span>
-            <span class="level-label">Barely remembered</span>
-          </div>
-          <div class="level-btn-wrapper">
-            <button class="remember-level-btn remember-level-3" data-level="2" data-selected="true">OK</button>
-            <span class="level-info-icon">ℹ️</span>
-            <span class="level-label">Somewhat knew it</span>
-          </div>
-          <div class="level-btn-wrapper">
-            <button class="remember-level-btn remember-level-4" data-level="3">Good</button>
-            <span class="level-info-icon">ℹ️</span>
-            <span class="level-label">Knew it well</span>
-          </div>
-          <div class="level-btn-wrapper">
-            <button class="remember-level-btn remember-level-5" data-level="4">Great</button>
-            <span class="level-info-icon">ℹ️</span>
-            <span class="level-label">Knew it perfectly</span>
+    // Add remember level section to remember-levels div only if level >= 4
+    const rememberLevelsHtml = (() => {
+      if (vocab.level < 4) return "";
+
+      return `
+        <div class="remember-level-container">
+          <div class="remember-level-title">How well did you remember this word?</div>
+          <div class="remember-level-options">
+            <div class="level-btn-wrapper">
+              <button class="remember-level-btn remember-level-1" data-level="0">Bad</button>
+              <span class="level-info-icon">ℹ️</span>
+              <span class="level-label">Had no idea</span>
+            </div>
+            <div class="level-btn-wrapper">
+              <button class="remember-level-btn remember-level-2" data-level="1">Poor</button>
+              <span class="level-info-icon">ℹ️</span>
+              <span class="level-label">Barely remembered</span>
+            </div>
+            <div class="level-btn-wrapper">
+              <button class="remember-level-btn remember-level-3" data-level="2" data-selected="true">OK</button>
+              <span class="level-info-icon">ℹ️</span>
+              <span class="level-label">Somewhat knew it</span>
+            </div>
+            <div class="level-btn-wrapper">
+              <button class="remember-level-btn remember-level-4" data-level="3">Good</button>
+              <span class="level-info-icon">ℹ️</span>
+              <span class="level-label">Knew it well</span>
+            </div>
+            <div class="level-btn-wrapper">
+              <button class="remember-level-btn remember-level-5" data-level="4">Great</button>
+              <span class="level-info-icon">ℹ️</span>
+              <span class="level-label">Knew it perfectly</span>
+            </div>
           </div>
         </div>
-      </div>
-    `;
+      `;
+    })();
+
+    document.getElementById("remember-levels").innerHTML = rememberLevelsHtml;
 
     // Add click handlers for answer buttons
     document.querySelectorAll(".answer-btn").forEach((btn) => {
@@ -566,6 +574,8 @@ const handleLearning = (_vocabularies) => {
   };
 
   function generateMaskedWord(word) {
+    if (sessionData.isShowTranslation) return word;
+
     const letters = word.split("");
     const len = letters.length;
 
@@ -614,70 +624,82 @@ const handleLearning = (_vocabularies) => {
   }
 
   // Handle submit answer
-  const handleSubmitAnswer = () => {
+  const handleSubmitAnswer = (params) => {
     const vocabToReview = sessionData.vocabToReview;
     const currentIndex = sessionData.currentIndex;
     const { mode } = SettingStore.getDisplayMode();
+    const isSkip = sessionData.isAllowSkip && params?.isSkip;
+    console.log({ isSkip });
+
     let userAnswer;
     let isCorrect;
+    if (!isSkip) {
+      if (mode === "multiple-choice") {
+        const selectedOption = document.querySelector(".answer-btn.selected");
+        if (!selectedOption) {
+          alert("Please select an answer!");
+          return;
+        }
+        userAnswer = selectedOption.dataset.answer;
+        // Check against translations for multiple choice
+        const correctAnswers = vocabToReview[currentIndex].translations
+          .join(",")
+          .toLowerCase();
+        isCorrect = correctAnswers.includes(userAnswer.toLowerCase());
+      } else if (mode === "word-completion") {
+        const textInput = document.getElementById("completion-answer-input");
+        if (!textInput.value.trim()) {
+          alert("Please enter your answer!");
+          return;
+        }
+        userAnswer = textInput.value.trim().toLowerCase();
+        // For word completion, compare with the original English word
+        isCorrect =
+          userAnswer === vocabToReview[currentIndex].text.toLowerCase();
+      } else {
+        // Handle translation input mode
+        const textInput = document.getElementById("text-answer-input");
+        if (!textInput.value.trim()) {
+          alert("Please enter your answer!");
+          return;
+        }
+        userAnswer = textInput.value.trim().toLowerCase();
+        // Check against translations for translation input
+        const correctAnswers = vocabToReview[currentIndex].translations.map(
+          (t) => t.toLowerCase()
+        );
+        isCorrect = correctAnswers.includes(userAnswer);
+      }
 
-    if (mode === "multiple-choice") {
-      const selectedOption = document.querySelector(".answer-btn.selected");
-      if (!selectedOption) {
-        alert("Please select an answer!");
+      if (!isCorrect) {
+        alert("Incorrect! Try again.");
         return;
       }
-      userAnswer = selectedOption.dataset.answer;
-      // Check against translations for multiple choice
-      const correctAnswers = vocabToReview[currentIndex].translations
-        .join(",")
-        .toLowerCase();
-      isCorrect = correctAnswers.includes(userAnswer.toLowerCase());
-    } else if (mode === "word-completion") {
-      const textInput = document.getElementById("completion-answer-input");
-      if (!textInput.value.trim()) {
-        alert("Please enter your answer!");
-        return;
-      }
-      userAnswer = textInput.value.trim().toLowerCase();
-      // For word completion, compare with the original English word
-      isCorrect = userAnswer === vocabToReview[currentIndex].text.toLowerCase();
-    } else {
-      // Handle translation input mode
-      const textInput = document.getElementById("text-answer-input");
-      if (!textInput.value.trim()) {
-        alert("Please enter your answer!");
-        return;
-      }
-      userAnswer = textInput.value.trim().toLowerCase();
-      // Check against translations for translation input
-      const correctAnswers = vocabToReview[currentIndex].translations.map((t) =>
-        t.toLowerCase()
+
+      const selectedRememberLevel = document.querySelector(
+        ".remember-level-btn.selected"
       );
-      isCorrect = correctAnswers.includes(userAnswer);
+
+      // Set default remember level based on vocab level
+      const currentVocab = vocabToReview[currentIndex];
+      const rememberLevel = (() => {
+        if (currentVocab.level < 4) return RememberLevel.OK;
+
+        if (!selectedRememberLevel) return RememberLevel.OK;
+
+        return parseInt(selectedRememberLevel.dataset.level);
+      })();
+
+      sessionData.wordsReviewed.push({
+        word: vocabToReview[currentIndex].text,
+        isCorrect,
+        level: isCorrect ? vocabToReview[currentIndex].level + 1 : 1,
+        rememberLevel,
+      });
+
+      const vocab = new Vocab();
+      vocab.learn(vocabToReview[currentIndex], isCorrect, rememberLevel);
     }
-
-    if (!isCorrect) {
-      alert("Incorrect! Try again.");
-      return;
-    }
-
-    const selectedRememberLevel = document.querySelector(
-      ".remember-level-btn.selected"
-    );
-    const rememberLevel = selectedRememberLevel
-      ? parseInt(selectedRememberLevel.dataset.level)
-      : RememberLevel.DEFAULT;
-
-    sessionData.wordsReviewed.push({
-      word: vocabToReview[currentIndex].text,
-      isCorrect,
-      level: isCorrect ? vocabToReview[currentIndex].level + 1 : 1,
-      rememberLevel,
-    });
-
-    const vocab = new Vocab();
-    vocab.learn(vocabToReview[currentIndex], isCorrect, rememberLevel);
 
     sessionData.totalReviewed++;
     sessionData.currentIndex++;
@@ -738,6 +760,14 @@ const handleLearning = (_vocabularies) => {
     modal.style.display = "none";
     overviewModal.style.display = "none";
   };
+
+  // Show skip button if allowed
+  if (sessionData.isAllowSkip) {
+    skipAnswerBtn.classList.add("show");
+    skipAnswerBtn.onclick = () => handleSubmitAnswer({ isSkip: true });
+  } else {
+    skipAnswerBtn.classList.remove("show");
+  }
 
   // Submit answer button
   submitAnswerBtn.onclick = () => handleSubmitAnswer();

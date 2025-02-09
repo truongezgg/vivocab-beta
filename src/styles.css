@@ -1972,3 +1972,25 @@ hr {
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
+#skip-answer-btn {
+  display: none; /* Hidden by default */
+  padding: 6px 12px;
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #666;
+  background-color: transparent;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#skip-answer-btn:hover {
+  background-color: #f5f5f5;
+  border-color: #ccc;
+}
+
+#skip-answer-btn.show {
+  display: block;
+}
+
