@@ -772,7 +772,7 @@ const handleLearning = (params) => {
         ${pronunciation}
         <span class="word-translations">${translations}</span>
         <span class="word-level">
-          ${wordData.isSkip ? "(Skipped)" : `(Level: ${wordData.level})`}
+          ${wordData.isSkip ? "(Skipped)" : `(Lv${wordData.level})`}
         </span>
       `;
         breakdownList.appendChild(listItem);
