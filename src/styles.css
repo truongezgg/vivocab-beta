@@ -2094,8 +2094,9 @@ hr {
 .stats-grid {
   display: flex;
   justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 32px;
+  gap: 6px;
+  margin-bottom: 10px;
+  margin-top: 10px;
   flex-wrap: nowrap;
 }
 
@@ -2103,7 +2104,7 @@ hr {
   flex: 1;
   background: white;
   border-radius: 12px;
-  padding: 10px;
+  padding: 5px;
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease;
@@ -2129,7 +2130,7 @@ hr {
 }
 
 .stat-label {
-  font-size: 0.8rem;
+  font-size: 0.5rem;
   color: #666;
   text-transform: uppercase;
   letter-spacing: 0.5px;
