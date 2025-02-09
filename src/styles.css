@@ -2128,16 +2128,6 @@ hr {
   letter-spacing: 0.5px;
 }
 
-/* Add responsive behavior for very small screens */
-@media screen and (max-width: 400px) {
-  .stats-grid {
-    flex-wrap: wrap;
-  }
-  
-  .stat-card {
-    flex: 1 1 40%;
-  }
-}
 
 /* Specific stat card colors */
 .stat-card:nth-child(1) .stat-value {
@@ -2159,7 +2149,6 @@ hr {
 /* Performance breakdown section */
 #performance-breakdown {
   margin-top: 24px;
-  padding: 20px;
   background: white;
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -2209,20 +2198,5 @@ hr {
 #back-to-home:active {
   transform: translateX(-1px);
   box-shadow: 0 2px 4px rgba(4, 107, 210, 0.2);
-}
-
-/* Responsive adjustments */
-@media screen and (max-width: 500px) {
-  #back-to-home {
-    position: static;
-    margin: 0 auto 20px;
-    justify-content: center;
-    width: 80%;
-    max-width: 200px;
-  }
-
-  .overview-header {
-    padding-right: 0;
-  }
 }
 
