@@ -22,9 +22,9 @@ function shuffleArray(array) {
   return shuffled;
 }
 
-const handleLearning = (_vocabularies) => {
-  sessionData.isShowTranslation = !!_vocabularies?.length;
-  sessionData.isAllowSkip = !!_vocabularies?.length;
+const handleLearning = (params) => {
+  const _vocabularies = params?.vocabularies || [];
+
   const vocabInstance = new Vocab();
   const getVocabToReview = () => {
     return _vocabularies?.length
@@ -38,7 +38,8 @@ const handleLearning = (_vocabularies) => {
         ];
   };
   sessionData.vocabToReview = getVocabToReview();
-
+  sessionData.isShowTranslation = !!params?.isShowTranslation;
+  sessionData.isAllowSkip = !!params?.isAllowSkip;
   sessionData.startTime = Date.now();
   sessionData.endTime = null;
   sessionData.wordsReviewed = [];
@@ -629,7 +630,19 @@ const handleLearning = (_vocabularies) => {
     const currentIndex = sessionData.currentIndex;
     const { mode } = SettingStore.getDisplayMode();
     const isSkip = sessionData.isAllowSkip && params?.isSkip;
-    console.log({ isSkip });
+
+    const selectedRememberLevel = document.querySelector(
+      ".remember-level-btn.selected"
+    );
+    // Set default remember level based on vocab level
+    const currentVocab = vocabToReview[currentIndex];
+    const rememberLevel = (() => {
+      if (currentVocab.level < 4) return RememberLevel.OK;
+
+      if (!selectedRememberLevel) return RememberLevel.OK;
+
+      return parseInt(selectedRememberLevel.dataset.level);
+    })();
 
     let userAnswer;
     let isCorrect;
@@ -676,30 +689,19 @@ const handleLearning = (_vocabularies) => {
         return;
       }
 
-      const selectedRememberLevel = document.querySelector(
-        ".remember-level-btn.selected"
-      );
-
-      // Set default remember level based on vocab level
-      const currentVocab = vocabToReview[currentIndex];
-      const rememberLevel = (() => {
-        if (currentVocab.level < 4) return RememberLevel.OK;
-
-        if (!selectedRememberLevel) return RememberLevel.OK;
-
-        return parseInt(selectedRememberLevel.dataset.level);
-      })();
-
-      sessionData.wordsReviewed.push({
-        word: vocabToReview[currentIndex].text,
-        isCorrect,
-        level: isCorrect ? vocabToReview[currentIndex].level + 1 : 1,
-        rememberLevel,
-      });
-
       const vocab = new Vocab();
       vocab.learn(vocabToReview[currentIndex], isCorrect, rememberLevel);
     }
+
+    sessionData.wordsReviewed.push({
+      word: vocabToReview[currentIndex].text,
+      isCorrect,
+      level: vocabToReview[currentIndex].level,
+      rememberLevel,
+      translations: vocabToReview[currentIndex].translations,
+      pronunciation: vocabToReview[currentIndex].pronunciation,
+      isSkip,
+    });
 
     sessionData.totalReviewed++;
     sessionData.currentIndex++;
@@ -716,13 +718,22 @@ const handleLearning = (_vocabularies) => {
   // Show the overview modal
   const showOverview = () => {
     sessionData.endTime = Date.now();
+    const totalReviewed = sessionData.wordsReviewed.length;
+    const correctAnswers = sessionData.wordsReviewed.filter(
+      (w) => w.isCorrect
+    ).length;
+    const incorrectAttempts = sessionData.wordsReviewed.filter(
+      (w) => !w.isCorrect && !w.isSkip
+    ).length;
+    const accuracyRate = totalReviewed
+      ? Math.round((correctAnswers / totalReviewed) * 100)
+      : 0;
 
-    document.getElementById("total-reviewed").textContent =
-      sessionData.wordsReviewed.length;
-    document.getElementById("correct-answers").textContent =
-      sessionData.wordsReviewed.filter((w) => w.isCorrect).length;
+    document.getElementById("total-reviewed").textContent = totalReviewed;
+    document.getElementById("correct-answers").textContent = correctAnswers;
     document.getElementById("incorrect-attempts").textContent =
-      sessionData.wordsReviewed.filter((w) => !w.isCorrect).length;
+      incorrectAttempts;
+    document.getElementById("accuracy-rate").textContent = accuracyRate;
     document.getElementById("time-spent").textContent = Math.floor(
       (sessionData.endTime - sessionData.startTime) / 1000
     );
@@ -730,14 +741,33 @@ const handleLearning = (_vocabularies) => {
     const breakdownList = document.getElementById("performance-breakdown");
     breakdownList.innerHTML = "";
     sessionData.wordsReviewed.forEach((wordData) => {
-      if (!wordData.isCorrect) return; // Only show correct words
+      if (!wordData.isCorrect && !wordData.isSkip) return; // Only show correct words
 
       const listItem = document.createElement("li");
       const pronunciation = wordData.pronunciation
         ? `(${wordData.pronunciation})`
         : "";
-      // const correct = wordData.isCorrect ? "Correct" : "Incorrect";
-      listItem.innerHTML = `<span class="speak-icon" onclick="speak(event)" data-word="${wordData.word}">${wordData.word}</span>${pronunciation}(Level: ${wordData.level})`;
+      const translations = wordData.translations
+        ? `: ${wordData.translations.join(", ")}`
+        : "";
+
+      // Add skipped class if word was skipped
+      if (wordData.isSkip) {
+        listItem.classList.add("skipped-word");
+      }
+
+      listItem.innerHTML = `
+        <span class="speak-icon" onclick="speak(event)" data-word="${
+          wordData.word
+        }">
+          ${wordData.word}🔊
+        </span>
+        ${pronunciation}
+        <span class="word-translations">${translations}</span>
+        <span class="word-level">
+          ${wordData.isSkip ? "(Skipped)" : `(Level: ${wordData.level})`}
+        </span>
+      `;
       breakdownList.appendChild(listItem);
     });
 

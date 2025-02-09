@@ -100,6 +100,9 @@
           <button id="learn-btn" class="start-learning-btn">
             Start Learning
           </button>
+          <button id="practice-btn" class="practice-learning-btn">
+            Practice Random Words
+          </button>
         </div>
 
         <!-- Learning Levels Info Section -->
@@ -329,14 +332,42 @@ Let's start with "kidnap".
     <!-- Overview Modal -->
     <div id="overview-modal" class="modal">
       <div class="modal-content">
-        <h2>Learning Session Overview</h2>
-        <p>Total Words Reviewed: <span id="total-reviewed"></span></p>
-        <p>Correct Answers: <span id="correct-answers"></span></p>
-        <p>Incorrect Attempts: <span id="incorrect-attempts"></span></p>
-        <p>Time Spent: <span id="time-spent"></span> seconds</p>
-        <h3>Performance Breakdown</h3>
+        <div class="overview-header">
+          <h2>Statistics</h2>
+          <div class="session-time">
+            <span class="time-icon">⏱️</span>
+            <span id="time-spent"></span> seconds
+          </div>
+        </div>
+
+        <button id="back-to-home">Return to Home</button>
+        
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">📚</div>
+            <div class="stat-value" id="total-reviewed">0</div>
+            <div class="stat-label">Total</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">✅</div>
+            <div class="stat-value" id="correct-answers">0</div>
+            <div class="stat-label">Correct</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">❌</div>
+            <div class="stat-value" id="incorrect-attempts">0</div>
+            <div class="stat-label">Incorrect</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⭐</div>
+            <div class="stat-value">
+              <span id="accuracy-rate">0</span>%
+            </div>
+            <div class="stat-label">Accuracy</div>
+          </div>
+        </div>
         <ul id="performance-breakdown"></ul>
-        <button id="back-to-home">Back to Home</button>
+        
         <!-- <button id="restart-learning">Restart Learning</button> -->
       </div>
     </div>

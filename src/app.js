@@ -114,6 +114,26 @@ document.addEventListener("DOMContentLoaded", () => {
     levelCount5.innerText = vocabularyByLevel[5] || 0;
   }
 
+  /* ------------------ Practice: Random Words ------------------ */
+  const practiceBtn = document.getElementById("practice-btn");
+  practiceBtn.addEventListener("click", () => {
+    // Get all vocabularies
+    const allVocabs = Store.database.vocabularies;
+    if (!allVocabs?.length) {
+      alert("You don't have any vocabulary to practice!");
+      return;
+    }
+
+    // Randomly select 10 words (or less if total vocab count is less than 10)
+    const shuffled = [...allVocabs].sort(() => 0.5 - Math.random());
+    const selectedVocabs = shuffled.slice(0, Math.min(10, shuffled.length));
+
+    // Open learning modal and start practice
+    const modal = document.getElementById("learning-modal");
+    modal.style.display = "flex";
+    handleLearning({ vocabularies: selectedVocabs, isAllowSkip: true });
+  });
+
   /* ------------------ Learn Now: Open Modal ------------------ */
   learnBtn.addEventListener("click", (e) => {
     if (learnBtn.textContent === "Add your first vocabulary") {

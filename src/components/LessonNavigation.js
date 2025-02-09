@@ -273,7 +273,11 @@ class LessonNavigation {
           );
 
           // Call handleLearning with the prepared words
-          handleLearning(wordsToLearn);
+          handleLearning({
+            vocabularies: wordsToLearn,
+            isShowTranslation: true,
+            isAllowSkip: true,
+          });
         }
       });
   }
