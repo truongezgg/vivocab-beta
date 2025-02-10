@@ -591,7 +591,7 @@ hr {
   /* position: absolute;
   bottom: 0;
   right: 0; */
-
+display: none;
   background-color: #ff6347;
   color: white;
   font-size: 24px;

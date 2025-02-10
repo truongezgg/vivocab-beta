@@ -40,38 +40,48 @@ document.addEventListener("DOMContentLoaded", () => {
   // Add the search input constant
   const searchInput = document.getElementById("vocab-search");
 
+  function goToTab(tabId, _tab = null) {
+    tabs.forEach((t) => t.classList.remove("active"));
+    contents.forEach((c) => c.classList.remove("active"));
+
+    const tab = _tab || document.getElementById(tabId);
+    if (!tab) {
+      console.error("Tab not found, tabId:", tabId);
+      return;
+    }
+
+    tab.classList.add("active");
+    document.getElementById(tabId).classList.add("active");
+
+    if (tabId === "add") {
+      fixedAddButton.style.display = "none";
+    } else {
+      fixedAddButton.style.display = "block";
+    }
+
+    if (tabId === "overview") updateOverview();
+    if (tabId === "list") {
+      renderVocabList();
+      loadVoices(); // Ensure voices are loaded
+    }
+
+    // Update storage info when settings tab is opened
+    if (tabId === "settings") {
+      updateStorageInfo();
+    }
+
+    // Initialize lesson navigation when lessons tab is clicked
+    if (tabId === "lessons-tab") {
+      // The LessonNavigation class will handle its own initialization
+      // when the script loads
+    }
+  }
+
   /* ------------------ Tab Navigation ------------------ */
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
-      tabs.forEach((t) => t.classList.remove("active"));
-      contents.forEach((c) => c.classList.remove("active"));
-
-      tab.classList.add("active");
       const tabId = tab.getAttribute("data-tab");
-      document.getElementById(tabId).classList.add("active");
-
-      if (tabId === "add") {
-        fixedAddButton.style.display = "none";
-      } else {
-        fixedAddButton.style.display = "block";
-      }
-
-      if (tabId === "overview") updateOverview();
-      if (tabId === "list") {
-        renderVocabList();
-        loadVoices(); // Ensure voices are loaded
-      }
-
-      // Update storage info when settings tab is opened
-      if (tabId === "settings") {
-        updateStorageInfo();
-      }
-
-      // Initialize lesson navigation when lessons tab is clicked
-      if (tabId === "lessons-tab") {
-        // The LessonNavigation class will handle its own initialization
-        // when the script loads
-      }
+      goToTab(tabId, tab);
     });
   });
 
@@ -125,7 +135,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Helper function to get random words from vocabulary list
-    const getRandomWords = (vocabArray, numOfWords) => {
+    const getRandomWords = (
+      _vocabArray,
+      numOfWords,
+      _lastReviewAt = Date.now()
+    ) => {
+      const vocabArray = _vocabArray.filter(
+        (v) => v.lastReviewAt < _lastReviewAt
+      );
       const selectedVocabs = [];
       const availableIndices = [...Array(vocabArray.length).keys()];
       const numWords = Math.min(numOfWords, vocabArray.length);
@@ -143,7 +160,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const lowLevelVocabs = allVocabs.filter((v) => (v.level || 0) < 6);
     const highLevelVocabs = allVocabs.filter((v) => (v.level || 0) >= 6);
     const maxWords = 10;
-    const lowLevelSelected = getRandomWords(lowLevelVocabs, 5);
+    const lowLevelSelected = getRandomWords(
+      lowLevelVocabs,
+      3,
+      Date.now() - 10 * 60 * 1000
+    );
     const remainingCount = maxWords - lowLevelSelected.length;
     const highLevelSelected = getRandomWords(highLevelVocabs, remainingCount);
     const selectedVocabs = [...lowLevelSelected, ...highLevelSelected].filter(
@@ -158,7 +179,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ------------------ Learn Now: Open Modal ------------------ */
   learnBtn.addEventListener("click", (e) => {
-    if (learnBtn.textContent === "Add your first vocabulary") {
+    // if (learnBtn.textContent === "Add your first vocabulary") {
+    //   return;
+    // }
+    if (!Store.database.vocabularies?.length) {
+      goToTab("lessons");
       return;
     }
 
@@ -606,7 +631,7 @@ document.addEventListener("DOMContentLoaded", () => {
   updateReviewCount();
 
   // Periodically check for updates (optional)
-  setInterval(updateReviewCount, 1000); // Check every minute
+  setInterval(updateReviewCount, 500); // Check every minute
 });
 
 const processVocabText = (inputText) => {
