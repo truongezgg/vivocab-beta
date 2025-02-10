@@ -636,6 +636,9 @@ const handleLearning = (params) => {
     );
     // Set default remember level based on vocab level
     const currentVocab = vocabToReview[currentIndex];
+    const isExist = sessionData.wordsReviewed.find(
+      (w) => w.id === currentVocab.id
+    );
     const oldLevel = currentVocab.level; // Store the original level
     const rememberLevel = (() => {
       if (currentVocab.level < 4) return RememberLevel.OK;
@@ -654,7 +657,7 @@ const handleLearning = (params) => {
         }
         userAnswer = selectedOption.dataset.answer;
         // Check against translations for multiple choice
-        const correctAnswers = vocabToReview[currentIndex].translations
+        const correctAnswers = currentVocab.translations
           .join(",")
           .toLowerCase();
         isCorrect = correctAnswers.includes(userAnswer.toLowerCase());
@@ -666,8 +669,7 @@ const handleLearning = (params) => {
         }
         userAnswer = textInput.value.trim().toLowerCase();
         // For word completion, compare with the original English word
-        isCorrect =
-          userAnswer === vocabToReview[currentIndex].text.toLowerCase();
+        isCorrect = userAnswer === currentVocab.text.toLowerCase();
       } else {
         // Handle translation input mode
         const textInput = document.getElementById("text-answer-input");
@@ -677,31 +679,51 @@ const handleLearning = (params) => {
         }
         userAnswer = textInput.value.trim().toLowerCase();
         // Check against translations for translation input
-        const correctAnswers = vocabToReview[currentIndex].translations.map(
-          (t) => t.toLowerCase()
+        const correctAnswers = currentVocab.translations.map((t) =>
+          t.toLowerCase()
         );
         isCorrect = correctAnswers.includes(userAnswer);
       }
 
       if (!isCorrect) {
+        const isExist = sessionData.wordsReviewed.find(
+          (w) => w.id === currentVocab.id
+        );
+        if (!isExist) {
+          sessionData.wordsReviewed.push({
+            id: currentVocab.id,
+            word: currentVocab.text,
+            isCorrect,
+            oldLevel, // Save the original level
+            level: currentVocab.level, // This is the new level
+            rememberLevel,
+            translations: currentVocab.translations,
+            pronunciation: currentVocab.pronunciation,
+            isSkip,
+          });
+        }
+
         alert("Incorrect! Try again.");
         return;
       }
 
       const vocab = new Vocab();
-      vocab.learn(vocabToReview[currentIndex], isCorrect, rememberLevel);
+      vocab.learn(currentVocab, isCorrect, rememberLevel);
     }
 
-    sessionData.wordsReviewed.push({
-      word: vocabToReview[currentIndex].text,
-      isCorrect,
-      oldLevel, // Save the original level
-      level: vocabToReview[currentIndex].level, // This is the new level
-      rememberLevel,
-      translations: vocabToReview[currentIndex].translations,
-      pronunciation: vocabToReview[currentIndex].pronunciation,
-      isSkip,
-    });
+    if (!isExist) {
+      sessionData.wordsReviewed.push({
+        id: currentVocab.id,
+        word: currentVocab.text,
+        isCorrect,
+        oldLevel, // Save the original level
+        level: currentVocab.level, // This is the new level
+        rememberLevel,
+        translations: currentVocab.translations,
+        pronunciation: currentVocab.pronunciation,
+        isSkip,
+      });
+    }
 
     sessionData.totalReviewed++;
     sessionData.currentIndex++;
@@ -718,7 +740,9 @@ const handleLearning = (params) => {
   // Show the overview modal
   const showOverview = () => {
     sessionData.endTime = Date.now();
-    const totalReviewed = sessionData.wordsReviewed.length;
+    const set = new Set(sessionData.wordsReviewed.map((item) => item.id));
+    const totalReviewed = set.size;
+
     const correctAnswers = sessionData.wordsReviewed.filter(
       (w) => w.isCorrect
     ).length;
@@ -747,9 +771,15 @@ const handleLearning = (params) => {
         return 0;
       })
       .forEach((wordData) => {
-        if (!wordData.isCorrect && !wordData.isSkip) return;
-
         const listItem = document.createElement("li");
+
+        // Add appropriate class based on status
+        if (wordData.isSkip) {
+          listItem.classList.add("skipped-word");
+        } else if (!wordData.isCorrect) {
+          listItem.classList.add("incorrect");
+        }
+
         const pronunciation = wordData.pronunciation
           ? `(${wordData.pronunciation})`
           : "";
@@ -763,10 +793,6 @@ const handleLearning = (params) => {
           levelChange > 0
             ? `Lv${wordData.level} (+${levelChange})`
             : `Lv${wordData.level}`;
-
-        if (wordData.isSkip) {
-          listItem.classList.add("skipped-word");
-        }
 
         listItem.innerHTML = `
         <span class="speak-icon" onclick="speak(event)" data-word="${
