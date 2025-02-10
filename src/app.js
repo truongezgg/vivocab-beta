@@ -124,13 +124,31 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Randomly select 10 words (or less if total vocab count is less than 10)
-    const selectedVocabs = [];
-    const numWords = Math.min(10, allVocabs.length);
-    for (let i = 0; i < numWords; i++) {
-      const randomIndex = Math.floor(Math.random() * allVocabs.length);
-      selectedVocabs.push(allVocabs[randomIndex]);
-    }
+    // Helper function to get random words from vocabulary list
+    const getRandomWords = (vocabArray, numOfWords) => {
+      const selectedVocabs = [];
+      const availableIndices = [...Array(vocabArray.length).keys()];
+      const numWords = Math.min(numOfWords, vocabArray.length);
+
+      for (let i = 0; i < numWords; i++) {
+        const randomIndex = Math.floor(Math.random() * availableIndices.length);
+        const selectedIndex = availableIndices[randomIndex];
+        selectedVocabs.push(vocabArray[selectedIndex]);
+        availableIndices.splice(randomIndex, 1);
+      }
+      return selectedVocabs;
+    };
+
+    // Get 5 words with level < 6 and 5 words with level >= 6
+    const lowLevelVocabs = allVocabs.filter((v) => (v.level || 0) < 6);
+    const highLevelVocabs = allVocabs.filter((v) => (v.level || 0) >= 6);
+    const maxWords = 10;
+    const lowLevelSelected = getRandomWords(lowLevelVocabs, 5);
+    const remainingCount = maxWords - lowLevelSelected.length;
+    const highLevelSelected = getRandomWords(highLevelVocabs, remainingCount);
+    const selectedVocabs = [...lowLevelSelected, ...highLevelSelected].filter(
+      Boolean
+    );
 
     // Open learning modal and start practice
     const modal = document.getElementById("learning-modal");
