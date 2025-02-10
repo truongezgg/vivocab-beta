@@ -2031,6 +2031,7 @@ hr {
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
+  font-size: 0.6rem;
 }
 
 #performance-breakdown .word-translations {
@@ -2067,7 +2068,6 @@ hr {
   margin-bottom: 24px;
   padding-bottom: 16px;
   border-bottom: 2px solid #f0f0f0;
-  padding-right: 120px; /* Make space for the button */
 }
 
 .overview-header h2 {
@@ -2185,6 +2185,7 @@ hr {
   gap: 8px;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(4, 107, 210, 0.2);
+  width: auto;
 }
 
 #back-to-home::before {
