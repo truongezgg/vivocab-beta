@@ -125,8 +125,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Randomly select 10 words (or less if total vocab count is less than 10)
-    const shuffled = [...allVocabs].sort(() => 0.5 - Math.random());
-    const selectedVocabs = shuffled.slice(0, Math.min(10, shuffled.length));
+    const selectedVocabs = [];
+    const numWords = Math.min(10, allVocabs.length);
+    for (let i = 0; i < numWords; i++) {
+      const randomIndex = Math.floor(Math.random() * allVocabs.length);
+      selectedVocabs.push(allVocabs[randomIndex]);
+    }
 
     // Open learning modal and start practice
     const modal = document.getElementById("learning-modal");

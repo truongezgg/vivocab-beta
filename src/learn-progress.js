@@ -636,11 +636,10 @@ const handleLearning = (params) => {
     );
     // Set default remember level based on vocab level
     const currentVocab = vocabToReview[currentIndex];
+    const oldLevel = currentVocab.level; // Store the original level
     const rememberLevel = (() => {
       if (currentVocab.level < 4) return RememberLevel.OK;
-
       if (!selectedRememberLevel) return RememberLevel.OK;
-
       return parseInt(selectedRememberLevel.dataset.level);
     })();
 
@@ -696,7 +695,8 @@ const handleLearning = (params) => {
     sessionData.wordsReviewed.push({
       word: vocabToReview[currentIndex].text,
       isCorrect,
-      level: vocabToReview[currentIndex].level,
+      oldLevel, // Save the original level
+      level: vocabToReview[currentIndex].level, // This is the new level
       rememberLevel,
       translations: vocabToReview[currentIndex].translations,
       pronunciation: vocabToReview[currentIndex].pronunciation,
@@ -742,23 +742,28 @@ const handleLearning = (params) => {
     breakdownList.innerHTML = "";
     sessionData.wordsReviewed
       .sort((a, b) => {
-        // If skip, show at the end, if not skip, keep the original order
         if (a.isSkip) return 1;
         if (b.isSkip) return -1;
         return 0;
       })
       .forEach((wordData) => {
-        if (!wordData.isCorrect && !wordData.isSkip) return; // Only show correct words
+        if (!wordData.isCorrect && !wordData.isSkip) return;
 
         const listItem = document.createElement("li");
         const pronunciation = wordData.pronunciation
           ? `(${wordData.pronunciation})`
           : "";
         const translations = wordData.translations
-          ? `: ${wordData.translations.join(", ")}`
+          ? `${wordData.translations.join(", ")}`
           : "";
 
-        // Add skipped class if word was skipped
+        // Calculate actual level change
+        const levelChange = wordData.level - wordData.oldLevel;
+        const levelDisplay =
+          levelChange > 0
+            ? `Lv${wordData.level} (+${levelChange})`
+            : `Lv${wordData.level}`;
+
         if (wordData.isSkip) {
           listItem.classList.add("skipped-word");
         }
@@ -769,10 +774,12 @@ const handleLearning = (params) => {
         }">
           ${wordData.word}🔊
         </span>
-        ${pronunciation}
+        ${pronunciation}:
+        <br>
         <span class="word-translations">${translations}</span>
         <span class="word-level">
-          ${wordData.isSkip ? "(Skipped)" : `(Lv${wordData.level})`}
+          ${levelDisplay}
+          ${wordData.isSkip ? "(Skipped)" : ""}
         </span>
       `;
         breakdownList.appendChild(listItem);
