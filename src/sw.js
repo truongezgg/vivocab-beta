@@ -1,4 +1,4 @@
-const version = "0.0.75";
+const version = "0.0.76";
 const cacheName = `vivocab@${version}`;
 const assets = [
   "/",
@@ -38,10 +38,34 @@ self.addEventListener("install", (e) => {
   );
 });
 
+// self.addEventListener("fetch", (fetchEvent) => {
+//   fetchEvent.respondWith(
+//     caches.match(fetchEvent.request).then((res) => {
+//       return res || fetch(fetchEvent.request);
+//     })
+//   );
+// });
 self.addEventListener("fetch", (fetchEvent) => {
   fetchEvent.respondWith(
     caches.match(fetchEvent.request).then((res) => {
-      return res || fetch(fetchEvent.request);
+      // If found in cache, return it
+      if (res) return res;
+
+      // If not in cache, try fetching from network
+      return fetch(fetchEvent.request)
+        .then((networkRes) => {
+          return caches.open(cacheName).then((cache) => {
+            cache.put(fetchEvent.request, networkRes.clone()); // Store for future use
+            return networkRes; // Return the network response
+          });
+        })
+        .catch(() => {
+          // If both cache and network fail, return an empty response
+          return new Response("", {
+            status: 504,
+            statusText: "Gateway Timeout",
+          });
+        });
     })
   );
 });
