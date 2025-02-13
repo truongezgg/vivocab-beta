@@ -1,4 +1,4 @@
-const version = "0.0.77";
+const version = "0.0.90";
 const cacheName = `vivocab@${version}`;
 const assets = [
   "/",
@@ -36,6 +36,7 @@ self.addEventListener("install", (e) => {
         .catch((e) => console.error("Install failed", e));
     })
   );
+  console.log("Service Worker installed");
 });
 
 // self.addEventListener("fetch", (fetchEvent) => {
@@ -46,6 +47,11 @@ self.addEventListener("install", (e) => {
 //   );
 // });
 self.addEventListener("fetch", (fetchEvent) => {
+  // Skip caching for non-http(s) requests (like chrome-extension://)
+  if (!fetchEvent.request.url.startsWith("http")) {
+    return;
+  }
+
   fetchEvent.respondWith(
     caches.match(fetchEvent.request).then((res) => {
       // If found in cache, return it
@@ -55,7 +61,10 @@ self.addEventListener("fetch", (fetchEvent) => {
       return fetch(fetchEvent.request)
         .then((networkRes) => {
           return caches.open(cacheName).then((cache) => {
-            cache.put(fetchEvent.request, networkRes.clone()); // Store for future use
+            // Only cache successful responses
+            if (networkRes.ok) {
+              cache.put(fetchEvent.request, networkRes.clone()); // Store for future use
+            }
             return networkRes; // Return the network response
           });
         })
@@ -81,6 +90,7 @@ const activateHandler = (e) => {
       return Promise.all(invalidNames.map((name) => caches.delete(name)));
     })
   );
+  console.log("Service Worker activated");
 };
 
 self.addEventListener("activate", activateHandler);
@@ -89,4 +99,58 @@ self.addEventListener("message", (event) => {
   if (event.data.action === "skipWaiting") {
     self.skipWaiting();
   }
+
+  if (event.data.type === "UPDATE_BADGE") {
+    console.log("UPDATE_BADGE", event.data.count);
+    updateBadge(event.data.count);
+  }
+
+  // Handle count response from client
+  if (event.data.type === "COUNT_RESPONSE") {
+    console.log("COUNT_RESPONSE", event.data.count);
+    updateBadge(event.data.count);
+  }
 });
+
+self.badgeCount = 0;
+// Function to update badge
+const updateBadge = async (count) => {
+  if (self.badgeCount === count) return;
+
+  if ("setAppBadge" in navigator) {
+    try {
+      if (count > 0) {
+        self.badgeCount = count;
+        await navigator.setAppBadge(count);
+      } else {
+        self.badgeCount = 0;
+        await navigator.clearAppBadge();
+      }
+    } catch (error) {
+      console.log("Error setting badge:", error);
+    }
+  }
+};
+
+// Add periodic sync event listener
+self.addEventListener("periodicsync", (event) => {
+  if (event.tag === "update-badge") {
+    event.waitUntil(backgroundJobUpdateBadge());
+  }
+});
+
+// Function to get review count from client
+const backgroundJobUpdateBadge = async () => {
+  try {
+    const getClients = async () =>
+      await self.clients.matchAll({
+        includeUncontrolled: true,
+      });
+    const clients = await getClients();
+    clients.forEach((client) => {
+      client.postMessage({ type: "REQUEST_COUNT", isShowNotification: true });
+    });
+  } catch (error) {
+    console.error("Error requesting count:", error);
+  }
+};

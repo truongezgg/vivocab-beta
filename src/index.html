@@ -424,7 +424,7 @@ Let's start with "kidnap".
       // Register PWA
       function checkForUpdate() {
         if ("serviceWorker" in navigator) {
-          navigator.serviceWorker.register("/sw.js").then((registration) => {
+          navigator.serviceWorker.register("/sw.js").then( (registration) => {
             registration.addEventListener("updatefound", () => {
               const newWorker = registration.installing;
       
@@ -438,16 +438,76 @@ Let's start with "kidnap".
                 }
               });
             });
+
+            // Notification Badge
+            const vocab = new Vocab();
+            
+            if (registration?.active) {
+              const totalVocabularies = vocab.getVocabToReview().totalVocabularies;
+              registration?.active?.postMessage({
+                type: 'UPDATE_BADGE',
+                count: totalVocabularies
+              });
+            }
+
+            // Register periodic sync if supported
+            if ('periodicSync' in registration) {
+              registration.periodicSync.register('update-badge', {
+                minInterval: 60 * 60 * 1000 // 1 hour
+              })
+              .then(() => {
+                console.log('Periodic sync registered', registration.periodicSync.getTags().then(console.log));
+              })
+              .catch((error) => {
+                console.log('Periodic sync could not be registered:', error);
+              });
+            }
+
+            setInterval(() => {
+              const totalVocabularies = vocab.getVocabToReview().totalVocabularies;
+              registration?.active?.postMessage({
+                type: 'UPDATE_BADGE',
+                count: totalVocabularies
+              });
+            }, 1_000);
+            
+            // Add message listener for count requests
+            navigator.serviceWorker.addEventListener('message', async (event) => {
+              if (event.data.type === "REQUEST_COUNT") {
+                const vocab = new Vocab();
+                const totalVocabularies = vocab.getVocabToReview().totalVocabularies;
+
+               try {
+                if (event.data.isShowNotification) {
+                  const registration = await navigator.serviceWorker.getRegistration()
+                  if ("showNotification" in registration) {
+                    registration.showNotification("VocabViVocab", {
+                      body: `You have ${totalVocabularies} words to review`,
+                    });
+                  } else {
+                    // Show notification
+                    new Notification("VocabViVocab", {
+                      body: `You have ${totalVocabularies} words to review`,
+                    });
+                  }
+                }
+               } catch (error) {
+                console.error("Error showing notification:", error);
+               }
+
+               try {
+                 // Send count back to service worker
+                 navigator.serviceWorker.controller.postMessage({
+                  type: "COUNT_RESPONSE",
+                  count: totalVocabularies
+                });
+               } catch (error) {
+                console.error("Error sending count response:", error);
+               }
+              }
+            });
+
           });
-      
-          // Listen for controlling new service worker
-          // let refreshing = false;
-          // navigator.serviceWorker.addEventListener("controllerchange", () => {
-          //  if (!refreshing) {
-          //    refreshing = true;
-          //    window.location.reload(); // Reload the page when new SW takes control
-          //  }
-          // });
         }
       }
 
