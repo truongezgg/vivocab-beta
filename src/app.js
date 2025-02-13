@@ -567,6 +567,94 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initial update
   updateStorageInfo();
+
+  /* -------------------------------------------------------------------------- */
+  /*                                Notification                                */
+  /* -------------------------------------------------------------------------- */
+
+  // Add notification related elements
+  const subscribeButton = document.getElementById("subscribe-button");
+  const notificationMessage = document.getElementById("notification-message");
+
+  // Check if notifications are supported
+  const supported = "Notification" in window;
+
+  // Function to update notification UI based on permission state
+  const updateNotificationUI = () => {
+    if (!supported) {
+      subscribeButton.disabled = true;
+      notificationMessage.className = "notification-message status-denied";
+      notificationMessage.innerHTML =
+        "⚠️ Your browser doesn't support notifications.";
+      return;
+    }
+
+    switch (Notification.permission) {
+      case "granted":
+        subscribeButton.disabled = true;
+        notificationMessage.className = "notification-message status-enabled";
+        notificationMessage.innerHTML =
+          "✅ Notifications are currently enabled for VocabViVocab";
+        break;
+
+      case "denied":
+        subscribeButton.disabled = true;
+        notificationMessage.className = "notification-message status-denied";
+        notificationMessage.innerHTML = `
+          <div>
+          ❌ Notifications are blocked. To enable them, you'll need to:
+          <ol>
+            <li>Backup your vocabulary data in Vocabularies/Export</li>
+            <li>Uninstall and reinstall VocabViVocab</li>
+            <li>When prompted, allow notifications</li>
+            <li>Restore your vocabulary data from backup in Vocabularies/Import</li>
+          </ol>
+          Note: Simply changing browser settings will not work - a full reinstall is required.</div>
+        `;
+        break;
+
+      default: // "default" state - not yet asked
+        subscribeButton.disabled = false;
+        notificationMessage.className = "notification-message status-prompt";
+        notificationMessage.innerHTML =
+          "⚠️ Enable notifications to get reminders for your vocabulary reviews. " +
+          "Note: Permission will only be asked once.";
+        break;
+    }
+  };
+
+  // Initial UI update
+  updateNotificationUI();
+
+  // Subscribe button click handler
+  subscribeButton.addEventListener("click", async () => {
+    try {
+      // Show confirmation dialog first
+      const confirmed = confirm(
+        "Important: You will only be asked for notification permission once.\n\n" +
+          "If you deny permission, you'll need to enable it manually in browser settings or reinstall the app.\n\n" +
+          "Would you like to enable notifications?"
+      );
+
+      if (!confirmed) {
+        return;
+      }
+
+      const permission = await Notification.requestPermission();
+
+      if (permission === "granted") {
+        // Show a test notification
+        new Notification("Notification Enabled", {
+          body: "You will now receive notifications from VocabViVocab",
+          icon: "/icons/favicon.ico",
+        });
+      }
+
+      updateNotificationUI();
+    } catch (error) {
+      console.error("Error requesting notification permission:", error);
+    }
+  });
 });
 
 function getTimeLeft(timeMs) {
