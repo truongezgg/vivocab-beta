@@ -196,6 +196,21 @@ class Vocab {
         data.shouldReviewAfter = shouldReviewAfter;
         Store.sync();
     }
+    handleIncorrect(vocab) {
+        const data = Store.database.vocabularies.find((item) => item.id === vocab.id);
+        if (!data)
+            return;
+        const currentTime = () => Date.now();
+        // If time to review is not passed, return current level.
+        if ((data === null || data === void 0 ? void 0 : data.shouldReviewAfter) && currentTime() < data.shouldReviewAfter) {
+            return;
+        }
+        data.level = Level.ONE;
+        const time = this.getShouldReviewAt(data.level, currentTime());
+        data.lastReviewAt = currentTime();
+        data.shouldReviewAfter = Vocab.roundTime(time);
+        Store.sync();
+    }
     getShouldReviewAt(level, _time) {
         const time = Vocab.roundTime(_time);
         if (level === Level.ZERO) {

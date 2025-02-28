@@ -7,7 +7,7 @@
   "background_color": "#ffffff",
   "theme_color": "#4c96d7",
   "orientation": "portrait-primary",
-  "version": "0.0.90",
+  "version": "0.0.91",
   "icons": [
     {
       "src": "icons/icon-192x192.png",

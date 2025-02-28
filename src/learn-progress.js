@@ -630,6 +630,7 @@ const handleLearning = (params) => {
     const currentIndex = sessionData.currentIndex;
     const { mode } = SettingStore.getDisplayMode();
     const isSkip = sessionData.isAllowSkip && params?.isSkip;
+    const vocab = new Vocab();
 
     const selectedRememberLevel = document.querySelector(
       ".remember-level-btn.selected"
@@ -704,10 +705,10 @@ const handleLearning = (params) => {
         }
 
         alert("Incorrect! Try again.");
+        vocab.handleIncorrect(currentVocab);
         return;
       }
 
-      const vocab = new Vocab();
       vocab.learn(currentVocab, isCorrect, rememberLevel);
     }
 
