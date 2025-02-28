@@ -687,9 +687,12 @@ const handleLearning = (params) => {
       }
 
       if (!isCorrect) {
+        vocab.handleIncorrect(currentVocab);
+
         const isExist = sessionData.wordsReviewed.find(
           (w) => w.id === currentVocab.id
         );
+
         if (!isExist) {
           sessionData.wordsReviewed.push({
             id: currentVocab.id,
@@ -705,7 +708,6 @@ const handleLearning = (params) => {
         }
 
         alert("Incorrect! Try again.");
-        vocab.handleIncorrect(currentVocab);
         return;
       }
 

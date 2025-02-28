@@ -289,6 +289,7 @@ class Vocab {
   }
 
   handleIncorrect(vocab: IVocabulary) {
+    vocab.level = Level.ONE;
     const data = Store.database.vocabularies.find(
       (item) => item.id === vocab.id
     );

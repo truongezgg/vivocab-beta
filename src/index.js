@@ -197,6 +197,7 @@ class Vocab {
         Store.sync();
     }
     handleIncorrect(vocab) {
+        vocab.level = Level.ONE;
         const data = Store.database.vocabularies.find((item) => item.id === vocab.id);
         if (!data)
             return;
