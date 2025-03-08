@@ -271,8 +271,12 @@ class Vocab {
     /*                                Rounded time                                */
     /* -------------------------------------------------------------------------- */
     const time = this.getShouldReviewAt(level, currentTime());
+
     // const timeToRound = 1000 * 60 * 15; // 15m
-    const shouldReviewAfter = Vocab.roundTime(time);
+    const shouldReviewAfter = Math.max(
+      Vocab.roundTime(time),
+      data?.shouldReviewAfter || 0
+    );
 
     if (!data) {
       vocab.level = level;

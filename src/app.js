@@ -167,9 +167,14 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     const remainingCount = maxWords - lowLevelSelected.length;
     const highLevelSelected = getRandomWords(highLevelVocabs, remainingCount);
-    const selectedVocabs = [...lowLevelSelected, ...highLevelSelected].filter(
-      Boolean
-    );
+
+    const selectedVocabs = (() => {
+      const data = [...lowLevelSelected, ...highLevelSelected].filter(Boolean);
+      if (data.length >= maxWords) return data;
+
+      const words = getRandomWords(allVocabs, maxWords);
+      return words.filter(Boolean);
+    })();
 
     // Open learning modal and start practice
     const modal = document.getElementById("learning-modal");
