@@ -635,11 +635,8 @@ const handleLearning = (params) => {
 
   function maskWordInSentence(sentence, targetWord, maskedWord) {
     // Case-insensitive replacement of the target word with its masked version
-    const result = sentence
-      .toLowerCase()
-      .split(targetWord.toLowerCase())
-      .join(maskedWord);
-    return result.charAt(0).toUpperCase() + result.slice(1);
+    const regex = new RegExp(targetWord, "gi");
+    return sentence.replace(regex, maskedWord);
   }
 
   // Handle submit answer
