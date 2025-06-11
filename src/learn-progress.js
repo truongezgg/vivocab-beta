@@ -586,8 +586,8 @@ const handleLearning = (params) => {
 
     if (len <= 2) return word;
 
-    const isMaskAll = MaxLevel || 5;
-    if (level >= isMaskAll) {
+    const max = MaxLevel || 5;
+    if (level >= max) {
       return word
         .split("")
         .map((char) => (excludes.includes(char) ? char : "*"))
