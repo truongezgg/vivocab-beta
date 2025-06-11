@@ -135,7 +135,8 @@ const handleLearning = (params) => {
 
     const { mode } = SettingStore.getDisplayMode(true);
     const isWordCompletion = mode === "word-completion";
-    const maskedWord = generateMaskedWord(vocab.text);
+    const level = Number(vocab.level || 0);
+    const maskedWord = generateMaskedWord(vocab.text, level);
 
     // Handle default display mode
     const vocabText = (() => {
@@ -483,7 +484,8 @@ const handleLearning = (params) => {
   };
 
   const showWordCompletion = (vocab, container, _maskedWord) => {
-    const maskedWord = _maskedWord || generateMaskedWord(vocab.text);
+    const level = Number(vocab.level || 0);
+    const maskedWord = _maskedWord || generateMaskedWord(vocab.text, level);
 
     container.classList.add("word-completion");
     container.classList.remove("multiple-choice", "text-input");
@@ -574,13 +576,23 @@ const handleLearning = (params) => {
     });
   };
 
-  function generateMaskedWord(word) {
+  function generateMaskedWord(word, level) {
+    const excludes = [" ", "-", "'", ".", ","];
+
     if (sessionData.isShowTranslation) return word;
 
     const letters = word.split("");
     const len = letters.length;
 
     if (len <= 2) return word;
+
+    const isMaskAll = MaxLevel || 5;
+    if (level >= isMaskAll) {
+      return word
+        .split("")
+        .map((char) => (excludes.includes(char) ? char : "*"))
+        .join("");
+    }
 
     // Calculate max number of letters to mask (50% of word length)
     const maxMasks = Math.floor(len / 2);
@@ -595,9 +607,11 @@ const handleLearning = (params) => {
 
       // Randomly decide to mask each middle letter
       if (Math.random() < 0.5) {
-        // 50% chance to mask
-        letters[i] = "*";
-        maskedCount++;
+        if (!excludes.includes(letters[i])) {
+          // 50% chance to mask
+          letters[i] = "*";
+          maskedCount++;
+        }
       }
     }
 
