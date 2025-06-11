@@ -635,7 +635,11 @@ const handleLearning = (params) => {
 
   function maskWordInSentence(sentence, targetWord, maskedWord) {
     // Case-insensitive replacement of the target word with its masked version
-    return sentence.split(targetWord).join(maskedWord);
+    const result = sentence
+      .toLowerCase()
+      .split(targetWord.toLowerCase())
+      .join(maskedWord);
+    return result.charAt(0).toUpperCase() + result.slice(1);
   }
 
   // Handle submit answer
